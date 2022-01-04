@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import medusa_bringup_ros.MedusaBringupVxNode
+
+if __name__ == '__main__':
+ medusa_bringup_ros.MedusaBringupVxNode.main()
