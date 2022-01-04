@@ -1,3 +1,9 @@
 [submodule "dsor_utils"]
 	path = dsor_utils
 	url = git@github.com:dsor-isr/dsor_utils.git
+[submodule "3rd_party/dmac"]
+	path = 3rd_party/dmac
+	url = git@github.com:EvoLogics/dmac.git
+[submodule "3rd_party/auv_msgs"]
+	path = 3rd_party/auv_msgs
+	url = git@github.com:oceansystemslab/auv_msgs.git
