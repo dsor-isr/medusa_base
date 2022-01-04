@@ -1,0 +1,3 @@
+[submodule "dsor_utils"]
+	path = dsor_utils
+	url = git@github.com:dsor-isr/dsor_utils.git
