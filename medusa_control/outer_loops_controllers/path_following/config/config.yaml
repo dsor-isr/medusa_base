@@ -1,0 +1,76 @@
+node_frequency: 2
+flag: "/Flag"
+topics:
+  #Define here the names of the topics that can be subscribed 
+  subscribers:
+    state: "/nav/filter/state"
+    path: "/PathData"
+    vc: "/PF/vc"
+  
+  # Define here the name of the topics to publish the reference signals
+  publishers:
+    # Publishers for linear motion
+    surge: "/ref/surge"
+    sway: "/ref/sway"
+    heave: "/ref/heave"
+    
+    # Publishers for angular motion
+    roll: "/ref/roll"
+    roll_rate: "/ref/roll_rate"
+    pitch: "/ref/pitch"
+    pitch_rate: "/ref/pitch_rate"
+    yaw: "/ref/yaw"
+    yaw_rate: "/ref/yaw_rate"
+    
+    # Publishers for the virtual target
+    rabbit: "/Gamma"
+  # Define here the name of the services to publish the reference signals
+  services:
+    # Service names to start and stop the path following algorithm
+    start_pf: "/PFStart"
+    stop_pf: "/PFStop"
+    updates_gains_pf: "/PFUpdateGains"
+          
+    # Service names to switch the path following algorithm
+    aguiar_pf: "/PFSetAguiar"
+    brevik_pf: "/PFSetBrevik"
+    fossen_pf: "/PFSetFossen"
+    romulo_pf: "/PFSetRomulo"
+    lapierre_pf: "/PFSetLapierre"
+    pramod_pf: "/PFSetPramod"
+    samson_pf: "/PFSetSamson"
+    # Service names related to the path
+    reset_path: "/ResetPath"
+    set_path_mode: "/SetMode"
+    # Service names related to the waypoint
+    wp_standard: "/controls/send_wp_standard"
+ 
+# Path Following configurations
+path_following:
+  controller_gains:
+    lapierre:
+      k1: 0.2
+      k2: 1.0
+      k3: 0.1
+      theta: 0.5
+      k_delta: 1.0
+    aguiar:
+      delta: -1.0
+      kx: 0.5
+      ky: 0.5
+      kz: 0.5
+      k_pos: 0.5
+      k_currents: 0.5
+    romulo:
+      ke: [0.05, 0.0, 0.0, 0.05]
+      kz: 0.2
+    pramod:
+      kp: 0.01
+      kd: 0.14
+    samson:
+      k1: 0.2
+      k2: 1.0
+      k3: 0.1
+      theta: 0.5
+      k_delta: 1.0
+

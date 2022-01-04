@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- small description about your node -->
+
+	<!--<node pkg="my_package_name" type="my_node_name" name="my_node_name" respawn="false" output="screen" args="$(find status_aggregator)/config/my_arg_file.yaml"/>-->
+
+	<node pkg="diagnostic_aggregator" type="aggregator_node" name="aggregator" output="screen">
+		<rosparam command="load" file="$(find status_aggregator)/config/config_status_aggregator.yaml"/>
+	</node>
+
+	<node pkg="rqt_robot_monitor" type="rqt_robot_monitor" name="robot_monitor" />
+
+</launch>
+

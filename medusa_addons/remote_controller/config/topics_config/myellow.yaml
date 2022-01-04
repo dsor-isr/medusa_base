@@ -1,0 +1,20 @@
+remote_controller:
+  node_frequency: 10 #Hz
+  topics:
+    publishers:
+      # Linear velocity inner-loops
+      surge: "/myellow/ref/surge"
+      sway: "/myellow/ref/sway"
+      heave: "/myellow/ref/heave"
+
+      # Angular speed references
+      yaw_rate: "/myellow/ref/yaw_rate"
+
+      # Orientation references
+      yaw: "/myellow/ref/yaw"
+
+      # Depth references
+      depth: "/myellow/ref/depth"
+
+    subscribers:
+      state: "/myellow/nav/filter/state"

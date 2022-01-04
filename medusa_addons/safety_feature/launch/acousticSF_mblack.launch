@@ -1,0 +1,14 @@
+<launch>
+  <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+  <arg name="surfacerole" default="ssv" />
+  <arg name="ownrole" default="ssv" />
+  <node pkg="safety_feature" type="acoustic_safety" name="safety_feature" output="screen">
+	<param name="SAFETY_PORT" value="10111" />
+	<!--<param name="RATE" value="0.0167" />-->
+	<param name="RATE" value="1.0" />
+	<param name="ownrole" value="$(arg ownrole)" />
+	<param name="surfacerole" value="$(arg surfacerole)" />
+	<param name="watchdog" value="31.0" /> <!-- After 31secs it aborts (6 pings at 5secs) -->
+	<param name="wifi_timeout" value="10.0" />
+  </node>
+</launch>

@@ -1,0 +1,10 @@
+medusa_msgs/mThrusterStatus[] thrusters
+medusa_msgs/Pressure[] pressure
+medusa_msgs/mLatLonPos gps
+medusa_msgs/mIMU imu
+std_msgs/Bool[] leaks
+std_msgs/Int8 safety_feature
+medusa_msgs/mBatMonit bat
+std_msgs/Float32 altimeter
+std_msgs/Bool bags
+std_msgs/String free_space

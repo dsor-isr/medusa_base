@@ -1,0 +1,10 @@
+<launch>
+  <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+  <arg name="surfacerole" default="ssv" />
+  <node pkg="safety_feature" type="acoustic_safety" name="acoustic_safety" output="screen" respawn="true">
+	<param name="RATE" value="1.0" />
+	<param name="ownrole" value="lsv" />
+	<param name="surfacerole" value="$(arg surfacerole)" />
+	<param name="watchdog" value="31.0" /> <!-- After 31secs it aborts (6 pings at 5secs) -->
+  </node>
+</launch>

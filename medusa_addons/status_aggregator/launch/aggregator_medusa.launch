@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Medusa diagnostics aggregator -->
+
+    <!--<node pkg="my_package_name" type="my_node_name" name="my_node_name" respawn="false" output="screen" args="$(find dsor_depth_cell)/config/my_arg_file.yaml"/>-->
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+    <arg name="name" default="mred"/>
+
+    <node pkg="diagnostic_aggregator" type="aggregator_node" name="aggregator" output="screen">
+        <rosparam command="load" file="$(find status_aggregator)/config/$(arg name).yaml"/>
+    </node>
+</launch>

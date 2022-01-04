@@ -1,0 +1,55 @@
+#include "wp_heading.h"
+
+WpHeading::WpHeading(ros::Publisher surge_pub, ros::Publisher sway_pub,
+          ros::Publisher yaw_rate_pub)
+    : surge_pub_(surge_pub), sway_pub_(sway_pub), yaw_rate_pub_(yaw_rate_pub) {}
+
+void WpHeading::calculateRef(Vehicle_t state, WPref_t wp_ref) {
+  // parameters from config
+  double cdist{gains_[0]};
+  double k1{gains_[1]};
+  double k2{gains_[2]};
+  double k3{gains_[3]};
+
+  // state input
+  double yaw{state.eta2[2]};
+  double x{state.eta1[0]};
+  double y{state.eta1[1]};
+  double yaw_rad = yaw * MedusaGimmicks::PI / 180;
+
+  // waypoint reference input
+  double x_ref{wp_ref.eta1[0]};
+  double y_ref{wp_ref.eta1[1]};
+  double yaw_ref{wp_ref.eta2[2]};
+  double yaw_ref_rad = yaw_ref * MedusaGimmicks::PI / 180;
+
+  // output
+  double u_ref{0.0};
+  double v_ref{0.0};
+  double r_ref{0.0};
+
+  double distance_to_wp = sqrt(pow((x - x_ref), 2) + pow((y - y_ref), 2));
+
+  if (distance_to_wp > cdist) {
+    u_ref = -k1 * (x - x_ref) * cos(yaw_rad) - k2 * (y - y_ref) * sin(yaw_rad);
+    v_ref = k1 * (x - x_ref) * sin(yaw_rad) - k2 * (y - y_ref) * cos(yaw_rad);
+
+  } else // waypoint was reached, holding position
+  {
+    u_ref = 0;
+    v_ref = 0;
+  }
+  r_ref = -k3 * MedusaGimmicks::angleDiff(yaw_rad, yaw_ref_rad) * 180.0 / MedusaGimmicks::PI;
+  setSurgeOut(u_ref);
+  setSwayOut(v_ref);
+  setYawrateOut(r_ref);
+}
+
+void WpHeading::publish() {
+  MedusaGimmicks::publishValue<std_msgs::Float64, const double>(surge_pub_,
+                                                                getSurgeOut());
+  MedusaGimmicks::publishValue<std_msgs::Float64, const double>(sway_pub_,
+                                                                getSwayOut());
+  MedusaGimmicks::publishValue<std_msgs::Float64, const double>(
+      yaw_rate_pub_, getYawrateOut());
+}

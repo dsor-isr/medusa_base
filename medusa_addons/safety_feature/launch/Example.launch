@@ -1,0 +1,10 @@
+<launch>
+  <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+  <arg name="RELAY" default="false"/>
+  <node pkg="safety_feature" type="safety_feature" name="wifi_acoustic_safety" output="screen" respawn="true">
+	<param name="SAFETY_PORT" value="10111" />
+	<!--<param name="RATE" value="0.0167" />-->
+	<param name="RATE" value="1.0" />
+	<param name="RELAY" value="$(arg RELAY)" />
+  </node>
+</launch>

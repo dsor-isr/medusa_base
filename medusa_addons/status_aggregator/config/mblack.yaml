@@ -1,0 +1,50 @@
+pub_rate: 2.0
+analyzers:
+    sensors:
+      type: diagnostic_aggregator/StatusAnalyzer
+      path: Sensors
+      analyzers:
+        leaks:    
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Leaks
+            contains: Leaks
+        pressure:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Pressure
+            contains: Pressure
+        temp:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Temperature
+            contains: Temperature
+        imu:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: IMU
+            contains: IMU
+        gps:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: GPS
+            contains: GPS
+        altimeter:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Altimeter
+            contains: Altimeter
+    actuators:
+      type: diagnostic_aggregator/StatusAnalyzer
+      path: Actuators
+      analyzers:
+        thruster_0:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Thruster0
+            contains: Thruster0
+        thruster_1:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Thruster1
+            contains: Thruster1
+    power_system:
+      type: diagnostic_aggregator/StatusAnalyzer
+      path: Power System
+      analyzers:
+        batmonit:
+            type: diagnostic_aggregator/GenericAnalyzer
+            path: Batmonit
+            contains: Batmonit

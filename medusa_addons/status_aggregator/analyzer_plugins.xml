@@ -1,0 +1,7 @@
+<library path="lib/libstatus_aggregator_analyzers">
+  <class name="diagnostic_aggregator/StatusAnalyzer" type="diagnostic_aggregator::StatusAnalyzer" base_class_type="diagnostic_aggregator::Analyzer">
+    <description>
+          StatusAnalyzer is a diagnostic analyzer for a group of devices (sensors, actuators, power system).
+    </description>
+  </class>
+</library>

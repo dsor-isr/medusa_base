@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--  <!DOCTYPE html> -->
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <head> </head>
+    <style>
+	    #logoDiv {
+			position: absolute; 
+			visibility:visible;
+			z-index:5;
+			top: 0%;
+			right: 0%;
+		    font-family: Arial, Helvetica, sans-serif;
+		  	cursor: hand;
+		  	border-radius: 5px;
+		  	background-color: #FFFFFF;
+			border: 1px solid black;
+		}
+		#dsor_logo { background-image: url('logos/dsor_logo.jpg'); }
+		.dsor_logo { width: 42px;  }
+		#isr_logo { background-image: url('logos/isr_logo.png'); }
+		.isr_logo { width: 34px; }
+		#ist_logo { background-image: url('logos/ist_logo.png'); }
+		.ist_logo { width: 39px;  }
+
+		.logos 
+        {
+		  border-style: solid;
+		  border-width: 0px;
+		  padding-top:0;
+		  background-size: 100% 100%;
+		  height: 50px;
+		  text-align: right;
+		}
+
+        #txtSerial
+        {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #serialBts_div
+        {
+            display:inline-block;
+            margin:0 0 0 0;
+            border: 0px solid green;
+            padding: 5px;
+        }
+        .serialBts 
+        {
+            list-style-type:none;
+            margin:0 0 0 0;
+            padding:0;
+        }
+
+        .serialBts li 
+        {
+            float:left;
+            margin:0 5px 0 0;
+            width:100px;
+            height:50px;
+            position:relative;
+        }
+
+        .serialBts label, .serialBts input 
+        {
+            display:block;
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+
+        .serialBts input[type="radio"] 
+        {
+            opacity:0.011;
+            z-index:100;
+        }
+
+        .serialBts input[type="radio"]:checked + label {
+            background:yellow;
+        }
+
+        .serialBts label {
+            padding:5px;
+            border:1px solid #CCC; 
+            cursor:pointer;
+            z-index:90;
+        }
+
+        .serialBts label:hover 
+        {
+             background:#DDD;
+        }
+    </style>
+    <script>
+        var activeObj = undefined;
+        var requestTimer ;
+        var xmlhttp;
+        //Http Requester
+        if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }else{// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp){
+        	xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState != 4) 
+                    return;
+                
+                clearTimeout(requestTimer); 
+                if (xmlhttp.status != 200){
+                    xmlhttp.abort();
+                    return;
+                }
+                readXML(xmlhttp);
+        	};
+        }
+
+        function serialport_list(){
+            this.bts=[];
+            this.addBt = function(obj_bt){
+                this.bts.push(obj_bt);
+            }
+            this.obj_by_topic = function(topic)
+            {
+                for (var i = 0; i < this.bts.length; i++ )
+                    if(this.bts[i].topic.replace(/\//g,'_') == topic)
+                        return this.bts[i];
+
+                return undefined
+            }
+            this.list_of_topics = function()
+            {
+                list="";
+                for (var i = 0; i < this.bts.length; i++ )
+                    list = list + "%20" + this.bts[i].topic;
+                return list;
+            }
+        }
+
+        function serialportBt(name, devname, baudrate, topic, output_sample){
+            this.name=name;
+            this.devname=devname;
+            this.baudrate=baudrate;
+            this.topic = topic;
+            this.text_recv = "No data";
+            this.time_recv = -1;
+            this.output_sample = output_sample;
+        }
+        var serial_list = new serialport_list;
+
+
+        function checkTime(i)
+        {
+            if (i<10)
+            {
+              i="0" + i;
+            } 
+            return i;
+        }
+        function getClock()
+        {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            // add a zero in front of numbers<10
+            h=checkTime(h);
+            m=checkTime(m);
+            s=checkTime(s);
+            return h+":"+m+":"+s;
+        }
+        
+        function unixTime(timestamp)
+        {
+            // Create a new JavaScript Date object based on the timestamp
+            // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+            var date = new Date(parseFloat(timestamp)*1000);
+            // Hours part from the timestamp
+            var hours =checkTime(date.getHours());
+            // Minutes part from the timestamp
+            var minutes = checkTime(date.getMinutes());
+            // Seconds part from the timestamp
+            var seconds = checkTime(date.getSeconds());
+
+            // Will display time in 10:30:23 format
+            // var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+            var formattedTime = hours + ':' + minutes + ':' + seconds;
+            return formattedTime;
+        }
+
+        function btClearCallback()
+        {
+            activeObj.text_recv = "";
+            txtSerial_p.innerHTML = activeObj.text_recv;
+        }
+
+        function addMSG(obj, time, data)
+        {
+            if(obj.text_recv=="No data")
+                obj.text_recv = ""
+            
+            if(obj.time_recv == time)
+            {
+                txtSerial_p.innerHTML = activeObj.text_recv;
+                return;
+            }
+            
+            obj.text_recv = unixTime(time) +  " - " + data + "<br>" + obj.text_recv;
+            obj.time_recv  = time;
+
+            if(obj.text_recv.length>5000)
+                obj.text_recv = obj.text_recv.substring(0,5000)
+            txtSerial_p.innerHTML = activeObj.text_recv;
+        }
+        function readXML(xmlhttp) {
+            //console.log("readXML");
+            if(xmlhttp.readyState == 4 && xmlhttp.status==200){    
+                xmlDoc=xmlhttp.responseXML;
+                if (xmlDoc){
+                    if(xmlDoc.getElementsByTagName("ROSMessage").length!=0){
+                        var rosmsg = xmlDoc.getElementsByTagName("ROSMessage");
+                        var rosn   = rosmsg.length;
+                        var seq_num = 0;
+                        for(var i=0;i<rosn;i++)
+                            if(serial_list.obj_by_topic(rosmsg[i].attributes.getNamedItem("name").nodeValue) != undefined)
+                            {
+                                console.log("found one");
+                                var var_elements = rosmsg[i].getElementsByTagName("VAR");
+                                for(var j=0;j<var_elements.length;j++)
+                                {
+/*                                    if(serial_list.obj_by_topic(rosmsg[i].attributes.getNamedItem("name").nodeValue), var_elements[j].getElementsByTagName("KEY")[0].textContent==undefined)
+                                        addMSG(var_elements[j].getElementsByTagName("TIME")[0].text, var_elements[j].getElementsByTagName("DOUBLE")[0].text);
+                                    else*/
+                                    var rcv_time_ = var_elements[j].getElementsByTagName("TIME")[0];
+
+                                    if(rcv_time_ == undefined)
+                                        rcv_time_ = Date.now()/1000; // using local time
+                                    else
+                                        rcv_time_ = rcv_time_.textContent;
+
+                                    addMSG(serial_list.obj_by_topic(rosmsg[i].attributes.getNamedItem("name").nodeValue), rcv_time_, var_elements[j].getElementsByTagName("DOUBLE")[0].textContent);
+                                }
+                            }
+                    }   
+                }
+            }
+            xmlhttp.abort();
+        }
+
+        function askVars(){
+            if(xmlhttp){
+                xmlhttp.open("GET","/VAR"+serial_list.list_of_topics(),true);
+                var requestTimer = setTimeout(function() {
+                    xmlhttp.abort();
+                }, 400);
+                xmlhttp.send();
+            }
+        }
+        function btClick(id)
+        {
+            btObj = serial_list.bts[id];
+            /*txtInfo_p = document.getElementById("txtInfo");*/
+            txtSerial_p = document.getElementById("txtSerial");
+            /*txtOS_p = document.getElementById("txtOutputSample");*/
+            /*txtInfo_p.innerHTML = "Port Information: " + btObj.name + " should be connected to " + btObj.devname + " with " + btObj.baudrate + " baudrate ";*/
+            txtSerial_p.innerHTML = btObj.text_recv;
+            /*txtOS_p.innerHTML = "Output Sample: " + btObj.output_sample;*/
+            activeObj = btObj;
+        }
+        function init(){
+            serial_list.addBt(new serialportBt("batmonit", "HUB1_USB3", 9600, "lower/bat_monit/raw", ""));
+            /*serial_list.addBt(new serialportBt("usbl", "HUB1_USB0", 9600, "tracklink/raw", "1,04/14/15,18:18:35,  251.1833, -4717.9035,   251.4270, -4717.9378, 136.1, 12.6"));*/
+            btClick(0);
+            document.getElementById("btbatmonit").checked = true;
+            setInterval("askVars();",500);    
+        }
+    </script>
+
+    <body onload="init();">
+        <div id="logoDiv">
+            <table id="table_header" border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+            	<tr>
+                <td class="dsor_logo"><div class="logos buttons_header" id="dsor_logo" title="DSOR Logo" ></div></td>
+                <td class="isr_logo"><div class="logos buttons_header" id="isr_logo" title="ISR Logo" > </div></td>
+                <td class="ist_logo"><div class="logos buttons_header" id="ist_logo" title="IST Logo" ></div></td>
+                </tr>
+            </table>
+        </div>
+        <center><h1>MedusaDS - Serial Port Debugger</h1></center>
+        <center><h3>Instituto Superior Tecnico</h3></center>
+        <br>
+        <div id="serialBts_div">
+            <ul class="serialBts">
+                <li>
+                    <input type="radio" id="btbatmonit" onclick="btClick(0);" name="amount" />
+                    <label for="btbatmonit">BATMONIT</label>
+                </li>
+<!--                 <li>
+                    <input type="radio" id="btDVL" onclick="btClick(1);" name="amount" />
+                    <label for="btDVL">DVL</label>
+                </li>
+                <li>
+                    <input type="radio" id="btship_gps" onclick="btClick(4);" name="amount" />
+                    <label for="btship_gps">SHIP GPS</label>
+                </li>
+                <li>
+                    <input type="radio" id="btship_vru" onclick="btClick(3);" name="amount" />
+                    <label for="btship_vru">SHIP VRU</label>
+                </li>
+                <li>
+                    <input type="radio" id="btluso" onclick="btClick(2);" name="amount" />
+                    <label for="btluso">LUSO (HUHDT)</label>
+                </li> -->
+            </ul>
+        </div>
+        <p id="txtInfo" ></p>
+        <p id="txtOutputSample" style="margin-top: -10px;"></p>
+        <p style="margin-bottom: -10px;">Serial Data (it shows the last message every 500ms, it can repeat messages!):
+            <input id="btClear" type='button' value="Clear" onclick="btClearCallback()">
+        </p>
+
+        <p id="txtSerial">
+        </p>
+    </body>
+</html>
+

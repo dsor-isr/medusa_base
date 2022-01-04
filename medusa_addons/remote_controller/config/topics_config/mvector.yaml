@@ -1,0 +1,20 @@
+remote_controller:
+  node_frequency: 10 #Hz
+  topics:
+    publishers:
+      # Linear velocity inner-loops
+      surge: "/mvector/ref/surge"
+      sway: "/mvector/ref/sway"
+      heave: "/mvector/ref/heave"
+
+      # Angular speed references
+      yaw_rate: "/mvector/ref/yaw_rate"
+
+      # Orientation references
+      yaw: "/mvector/ref/yaw"
+
+      # Depth references
+      depth: "/mvector/ref/depth"
+
+    subscribers:
+      state: "/mvector/nav/filter/state"

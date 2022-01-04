@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+ <name>status_aggregator</name>
+ <version>1.0.0</version>
+ <description>Reports the overall system status</description>
+
+ <license>MIT</license>
+
+ <author email="jquintas@gmail.com">Joao Quintas</author>
+ <maintainer email="jquintas@gmail.com">Joao Quintas</maintainer>
+
+ <buildtool_depend>catkin</buildtool_depend>
+ <depend>std_msgs</depend>
+ <depend>std_srvs</depend>
+ <depend>roscpp</depend>
+ <depend>medusa_msgs</depend>
+ <depend>diagnostic_msgs</depend>
+ <depend>diagnostic_aggregator</depend>
+ <depend>pluginlib</depend>
+
+ <export>
+    <diagnostic_aggregator plugin="${prefix}/analyzer_plugins.xml"/>
+ </export>
+
+</package>

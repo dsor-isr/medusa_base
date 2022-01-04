@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import medusa_identification_ros.MedusaIdentificationNode
+
+if __name__ == '__main__':
+ medusa_identification_ros.MedusaIdentificationNode.main()
