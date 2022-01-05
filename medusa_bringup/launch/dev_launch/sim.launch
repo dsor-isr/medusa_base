@@ -6,8 +6,10 @@
     <arg name="name"            /> <!-- Name of the vehicle being launched -->   
     <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
     <arg name="folder"             default="simulation" />  <!-- Name of the folder for the configuration files --> 
-    <arg name="dynamics"           default="false"   />
-    <arg name="sensors"            default="false"   />
+    <arg name="namepsace"          default="false" />
+
+    <arg name="dynamics"           default="false" />
+    <arg name="sensors"            default="false" />
 
     <group ns="sim" unless="$(eval arg('gazebo'))">
         <!-- Vehicle Specific Config File -->
