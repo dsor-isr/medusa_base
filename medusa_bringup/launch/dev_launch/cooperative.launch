@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+
+    <!-- Parameters and Arguments -->
+    <arg name="name"            /> <!-- Name of the vehicle being launched -->   
+    <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
+    <arg name="folder"             default="simulation" />  <!-- Name of the folder for the configuration files --> 
+ 
+    <arg name="cpf_gamma"          default="false" />
+    <arg name="cpf_control"        default="false" /> 
+
+    <group ns="cooperative">
+        <!-- Vehicle Specific Config File -->
+        <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/cooperative.yaml" />
+
+        <!-- CPF Controller -->
+        <group if="$(arg cpf_control)">
+            <node pkg="cpf_control" type="cpf_control_node" name="cpf_control" output="screen" />
+        </group>
+
+        <!-- CPF WIFI Broadcaster -->
+        <group if="$(arg cpf_gamma)">
+            <node pkg="cpf_gamma" type="cpf_gamma_client_node" name="cpf_gamma_client" respawn="false" output="screen"    />
+            <node pkg="cpf_gamma" type="cpf_gamma_server_node" name="cpf_gamma_server" respawn="false" output="screen"    />
+        </group>
+
+    </group> 
+</launch>
