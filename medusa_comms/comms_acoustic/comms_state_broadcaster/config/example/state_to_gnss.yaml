@@ -1,0 +1,15 @@
+# topics
+#   subscribers
+#       state: receives vehicle state in UTM
+#   publishers
+#       gnss: publishes gps measurement
+# default_altitude: in case of invalid depth, assign this altitude
+# utm_zone: utm zone of the mission space
+
+topics:
+    subscribers:
+        state: "/dynamics_sim/position"
+    publishers:
+        gnss: "convert/gps"
+utm_zone: "29S"
+default_altitude: 0.2

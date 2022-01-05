@@ -47,10 +47,10 @@ class ProcessActionType(object):
 
 class Process:
 
-    def __init__(self, name, cmd, vehicle_name, config_package, folder, namespace, args=None, launch_on_startup=False,
+    def __init__(self, name, cmd, vehicle_name, config_package_path, folder, namespace, args=None, launch_on_startup=False,
                  delay_before_start=0.0, dependencies=None):
         self.name = name
-        self.config_package = config_package
+        self.config_package_path = config_package_path
         self.cmd = cmd
         self.folder = folder
         self.namespace = namespace
@@ -63,7 +63,7 @@ class Process:
 
     def start(self):
         if not self.is_active():
-            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["config_package:=" + self.config_package] + ["folder:=" + str(self.folder)] + ["namespace:=" + str(self.namespace)]
+            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["config_package_path:=" + self.config_package_path] + ["folder:=" + str(self.folder)] + ["namespace:=" + str(self.namespace)]
             if self.delay_before_start:
                 rospy.sleep(self.delay_before_start)
             self.process = subprocess.Popen(cmd)
@@ -97,9 +97,9 @@ class Process:
 
 class MedusaSetup:
 
-    def __init__(self, vehicle_name, config_package, folder, namespace):
+    def __init__(self, vehicle_name, config_package_path, folder, namespace):
         self.vehicle_name = vehicle_name
-        self.config_package = config_package
+        self.config_package_path = config_package_path
         self.folder = folder
         self.namespace = namespace
         self.process_list = []
@@ -173,7 +173,7 @@ class MedusaSetup:
                                              delay_before_start=p['delay_before_start'],
                                              dependencies=p['dependencies'], 
                                              vehicle_name=self.vehicle_name, 
-                                             config_package=self.config_package, 
+                                             config_package_path=self.config_package_path, 
                                              folder = self.folder,
                                              namespace=self.namespace))
 

@@ -5,7 +5,7 @@
 
     <!-- Parameters and Arguments -->
     <arg name="name"            /> <!-- Name of the vehicle being launched -->   
-    <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
+    <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
     <arg name="folder"                      default="simulation" />  <!-- Name of the folder for the configuration files --> 
     <arg name="namespace"                   default="false" />
 
@@ -19,7 +19,8 @@
     <group ns="addons">
 
         <!-- Vehicle Specific Config File -->
-        <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/addons.yaml" />
+        <arg name="dollar" value="$" />
+        <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/addons.yaml" />
 
         <!-- Launch Nodes that are common to all vehicles -->
         <!-- Acoustic Safety -->

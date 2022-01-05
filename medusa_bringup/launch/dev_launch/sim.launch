@@ -4,21 +4,23 @@
 
     <!-- Parameters and Arguments -->
     <arg name="name"            /> <!-- Name of the vehicle being launched -->   
-    <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
+    <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
     <arg name="folder"             default="simulation" />  <!-- Name of the folder for the configuration files --> 
     <arg name="namespace"          default="false" />
 
     <arg name="dynamics"           default="false" />
     <arg name="sensors"            default="false" />
 
-    <group ns="sim" unless="$(eval arg('gazebo'))">
+    <group ns="sim">
+        
         <!-- Vehicle Specific Config File -->
-        <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/sim.yaml" />
+        <arg name="dollar" value="$" />
+        <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/sim.yaml" />
 
         <!-- Launch Nodes that are common to all vehicles -->
         <!-- dynamics: simulates the dynamics of the vehicle -->
         <group if="$(arg dynamics)">
-            <node pkg="dsor_sim" type="dsor_sim_node" name="dsor_sim" respawn="false" output="screen" />
+            <node pkg="auv_sim" type="auv_sim_node" name="auv_sim" respawn="false" output="screen" />
         </group>
 
         <!-- sensors: simulates the sensors -->

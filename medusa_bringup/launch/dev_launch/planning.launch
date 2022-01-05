@@ -4,11 +4,11 @@
 
   <!-- Parameters and Arguments -->
   <arg name="name"            /> <!-- Name of the vehicle being launched -->   
-  <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
-  <arg name="folder"          default="simulation" />  <!-- Name of the folder for the configuration files --> 
-  <arg name="namespace"       default="false" />
+  <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
+  <arg name="folder"              default="simulation" />  <!-- Name of the folder for the configuration files --> 
+  <arg name="namespace"           default="false" />
   
-  <arg name="dsor_paths"      default="false" />
+  <arg name="dsor_paths"          default="false" />
 
   <group ns="planning">
     <!-- Launch Nodes that are common to all vehicles -->

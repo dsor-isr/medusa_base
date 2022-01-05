@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Convert usbl fixes to state fixes -->
+    <node pkg="comms_state_broadcaster" type="usblfix_to_state" name="UsblFix2State" respawn="false" output="screen">
+        <rosparam command="load" file="$(find comms_launch)/config/example/usblfix_to_state.yaml"/>
+    </node>
+
+</launch>

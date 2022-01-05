@@ -5,7 +5,7 @@
 
     <!-- Parameters and Arguments -->
     <arg name="name"            /> <!-- Name of the vehicle being launched -->   
-    <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
+    <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
     <arg name="folder"             default="simulation" />  <!-- Name of the folder for the configuration files --> 
     <arg name="namespace"          default="false" />
 
@@ -20,7 +20,9 @@
     <group ns="acomms">
 
         <!-- Vehicle Specific Config File -->
-        <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/comms.yaml" />
+        <arg name="dollar" value="$" />
+        <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/comms.yaml" />
+        <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/acoustic_data.yaml" />
 
         <!-- Launch Nodes that are common to all vehicles -->
         <!-- Modem Driver  -->
@@ -30,19 +32,17 @@
 
         <!-- Interrogation Scheme -->
         <group if="$(arg pinger)">
-            <node pkg="interrogation_scheme" type="pinger_sync_node" name="pinger" output="screen"   />
+            <node pkg="interrogation_scheme" type="pinger_sync_node" name="pinger" output="screen"  />
         </group>
         
         <!-- Pinger OR Replier -->
         <group if="$(arg replier)">
-            <node pkg="interrogation_scheme" type="replier_sync_node"  name="replier" output="screen"   />
+            <node pkg="interrogation_scheme" type="replier_sync_node"  name="replier" output="screen" />
         </group>
 
         <!-- Data Serializer -->
         <group if="$(arg data_serializer)">
-            <node pkg="data_serializer" type="data_serializer_node" name="data_serializer" output="screen">    
-                <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/acoustic_data.yaml" />
-            </node>
+            <node pkg="data_serializer" type="data_serializer_node" name="data_serializer" respawn="false" output="screen" />    
         </group>
 
         <!-- DMAC Message Convertor -->

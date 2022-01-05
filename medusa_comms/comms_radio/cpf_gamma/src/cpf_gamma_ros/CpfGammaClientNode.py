@@ -30,10 +30,10 @@ class CpfGammaClientNode():
 		"""
 		self.loadParams()
 
-		# +.+ Tuple with Broadcast address and port
+		# Tuple with Broadcast address and port
 		self.address = (self.addr, self.port)
 
-		# +.+ Socket
+		# Socket
 		self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.sock.bind(("",0))
 		self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -67,14 +67,14 @@ class CpfGammaClientNode():
 	###########################################################################################
 	"""
 
-	# +.+ Broadcasts the value of gamma from path following
+	# Broadcasts the value of gamma from path following
 	def broadcastGammaCallback(self, msg):
 
-		# +.+ Build the message
+		# Build the message
 		data = "$CPF,%02i,%06.4f,%06.4f\n" % (msg.ID, msg.gamma,msg.vd)
 
 		# print(data)
-		# +.+ Send message
+		# Send message
 		count = 0
 		while count < len(data):
 			count += self.sock.sendto(data, self.address)
@@ -83,7 +83,7 @@ def main():
 	
 	cpfGamma = CpfGammaClientNode()
 
-	# +.+ Added to work with timer -> going into spin; let the callbacks do all the work
+	# Added to work with timer -> going into spin; let the callbacks do all the work
 	rospy.spin()
 
 if __name__ == '__main__':

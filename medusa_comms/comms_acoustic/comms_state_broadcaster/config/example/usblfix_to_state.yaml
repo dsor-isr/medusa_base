@@ -1,0 +1,22 @@
+## 
+# topics
+#   subscribers
+#       usbl: topic to receive usbl_fix'es of type medusa_msgs::mUSBLFix
+#       state: receives anchor state
+#   publishers:
+#       state: publishes computed state
+# t_sync: max delay allowed between async range and angle measurements
+# fix_type: 
+#   false: vehicle acts as an achor, estimates other vehicles position
+#   true: vehicle estimates its position with respect to an anchor 
+#       
+
+topics:
+    subscribers:
+        usbl: "measurement/usbl_fix"
+        state: "/State"
+    publishers:
+        state: "state"
+t_sync: "2"
+fix_type: false
+world_frame_id: "map"

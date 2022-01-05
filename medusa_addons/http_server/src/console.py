@@ -44,7 +44,7 @@ NFILE=0 # Temp filename
 from operator import itemgetter
 
 # Services
-from waypoint_vx.srv import *
+from waypoint.srv import *
 
 class ROSTopicException(Exception):
     """

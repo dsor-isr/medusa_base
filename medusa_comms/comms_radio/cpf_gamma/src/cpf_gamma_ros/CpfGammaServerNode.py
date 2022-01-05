@@ -56,8 +56,8 @@ class CpfGammaServerNode():
 		rospy.loginfo('Initializing Publishers for CpfGammaNode')
 		self.pubs = []
 		self.pubs.append(rospy.Publisher(rospy.get_param('~topics/publishers/cpf_gamma','External/Gamma'), CPFGamma, queue_size=10))
-		self.pubs.append(rospy.Publisher(rospy.get_param('~topics/publishers/etcpf_gamma','etcpf_gamma'), CPFGamma, queue_size=10))
-		self.pubs.append(rospy.Publisher(rospy.get_param('~topics/publishers/etcpf_ack','etcpf_ack'), CPFGamma, queue_size=10))
+		#self.pubs.append(rospy.Publisher(rospy.get_param('~topics/publishers/etcpf_gamma','etcpf_gamma'), CPFGamma, queue_size=10))
+		#self.pubs.append(rospy.Publisher(rospy.get_param('~topics/publishers/etcpf_ack','etcpf_ack'), CPFGamma, queue_size=10))
 		
 		
 

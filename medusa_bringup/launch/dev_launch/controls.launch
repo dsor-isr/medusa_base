@@ -5,7 +5,7 @@
 
   <!-- Parameters and Arguments -->
   <arg name="name"            /> <!-- Name of the vehicle being launched -->   
-  <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
+  <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
   <arg name="folder"              default="simulation" />  <!-- Name of the folder for the configuration files --> 
   <arg name="namespace"           default="false" />
 
@@ -16,7 +16,8 @@
   <group ns="controls">
 
     <!-- Vehicle Specific Config File -->
-    <rosparam command="load" file="$(find $(arg config_package))/config/$(arg folder)/$(arg name)/control.yaml" />
+    <arg name="dollar" value="$" />
+    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/control.yaml" />
 
     <!-- Launch Nodes that are common to all vehicles -->
     <!-- innerloops: convert dynamic references to thruster force components -->
@@ -27,7 +28,7 @@
     <!-- outerloops: provides kinetic references and vehicle planning behaviors -->
     <!-- waypoint behavior -->
     <group if="$(arg waypoint)">
-      <node pkg="waypoint_vx" type="waypoint_vx_node" name="waypoint" output="screen" />
+      <node pkg="waypoint" type="waypoint_node" name="waypoint" output="screen" />
     </group>
 
     <!-- path following path following controllers   -->
