@@ -7,13 +7,13 @@
     <arg name="name"            /> <!-- Name of the vehicle being launched -->   
     <arg name="config_package"  /> <!-- Name of the package where the configuration files are stored -->
     <arg name="folder"             default="simulation" />  <!-- Name of the folder for the configuration files -->     
-    <arg name="namepsace"          default="false" />
+    <arg name="namespace"          default="false" />
 
     <arg name="broadcast_tf"       default="false" />
 
     <!-- Define whether to put namespace or not in the tfs -->
-    <arg if="$(eval arg('namepsace'))" name="tf_name" value="$(arg name)_"/>
-    <arg unless="$(eval arg('namepsace'))" name="tf_name" value=""/>
+    <arg if="$(eval arg('namespace'))" name="tf_name" value="$(arg name)_"/>
+    <arg unless="$(eval arg('namespace'))" name="tf_name" value=""/>
 
     <group if="$(arg broadcast_tf)">
         <group ns="tfs/broadcaster">

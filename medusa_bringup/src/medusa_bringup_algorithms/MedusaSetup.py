@@ -47,12 +47,13 @@ class ProcessActionType(object):
 
 class Process:
 
-    def __init__(self, name, cmd, vehicle_name, launch_type, gazebo, args=None, launch_on_startup=False,
+    def __init__(self, name, cmd, vehicle_name, config_package, folder, namespace, args=None, launch_on_startup=False,
                  delay_before_start=0.0, dependencies=None):
         self.name = name
-        self.launch_type = launch_type
+        self.config_package = config_package
         self.cmd = cmd
-        self.gazebo = gazebo
+        self.folder = folder
+        self.namespace = namespace
         self.args = args if args is not None else []
         self.dependencies = dependencies if dependencies is not None else []
         self.launch_on_startup = launch_on_startup
@@ -62,7 +63,7 @@ class Process:
 
     def start(self):
         if not self.is_active():
-            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["type:=" + self.launch_type] + ["gazebo:=" + str(self.gazebo)]
+            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["config_package:=" + self.config_package] + ["folder:=" + str(self.folder)] + ["namespace:=" + str(self.namespace)]
             if self.delay_before_start:
                 rospy.sleep(self.delay_before_start)
             self.process = subprocess.Popen(cmd)
@@ -96,10 +97,11 @@ class Process:
 
 class MedusaSetup:
 
-    def __init__(self, vehicle_name, launch_type, gazebo):
+    def __init__(self, vehicle_name, config_package, folder, namespace):
         self.vehicle_name = vehicle_name
-        self.launch_type = launch_type
-        self.gazebo = gazebo
+        self.config_package = config_package
+        self.folder = folder
+        self.namespace = namespace
         self.process_list = []
         self.process_config = rospy.get_param("~processes")
         self.create_processes()
@@ -169,7 +171,11 @@ class MedusaSetup:
             self.process_list.append(Process(name=p['name'], cmd=p['cmd'], args=p['args'],
                                              launch_on_startup=p['launch_on_startup'],
                                              delay_before_start=p['delay_before_start'],
-                                             dependencies=p['dependencies'], vehicle_name=self.vehicle_name, launch_type=self.launch_type, gazebo = self.gazebo))
+                                             dependencies=p['dependencies'], 
+                                             vehicle_name=self.vehicle_name, 
+                                             config_package=self.config_package, 
+                                             folder = self.folder,
+                                             namespace=self.namespace))
 
     def start_init_processes(self):
         for process in self.process_list:

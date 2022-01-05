@@ -29,7 +29,7 @@ class MedusaBringupVxNode():
 
 		"""
 		self.loadParams()
-		MedusaSetup(self.name, self.type, self.gazebo)
+		MedusaSetup(self.name, self.config_package, self.folder, self.namespace)
 
 
 	"""
@@ -41,8 +41,9 @@ class MedusaBringupVxNode():
 		# self.node_frequency = rospy.get_param('~node_frequency', 10)
 		# self.real = rospy.get_param('~real', False)
 		self.name = rospy.get_param('~name', "mred")
-		self.type = rospy.get_param('~type', "simulation/single_vehicle")
-		self.gazebo = rospy.get_param('~gazebo', "false")
+		self.config_package = rospy.get_param('~type', "medusa_bringup")
+		self.folder = rospy.get_param('~folder', "simulation")
+		self.namespace = rospy.get_param('~namespace', "false")
 
 		#self.bags = rospy.get_param('~bags', False)
 		#self.pf_controller = rospy.get_param('~path_following', "Lapierre")
