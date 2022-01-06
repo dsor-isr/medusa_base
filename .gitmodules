@@ -13,3 +13,6 @@
 [submodule "3rd_party/flexbe_behavior_engine"]
 	path = 3rd_party/flexbe_behavior_engine
 	url = git@github.com:team-vigir/flexbe_behavior_engine.git
+[submodule "3rd_party/flexbe_app"]
+	path = 3rd_party/flexbe_app
+	url = git@github.com:FlexBE/flexbe_app.git
