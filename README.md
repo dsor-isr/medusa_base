@@ -54,7 +54,8 @@ git clone --recursive git@github.com:dsor-isr/medusa_base.git
 ```
 
 ### Using Medusa Scripts and Alias
-In order to make use of the scripts and alias developed to make the development of code easier, please add the following lines to your ~/.bashrc file
+In order to make use of the scripts and alias developed to make the development of code easier, please add the following lines to your ~/.bashrc file.
+NOTE: replace '/<path_to_workspace>' with the folder where you put you catkin_ws inside. If you put in your home folder, then this variable should be left empty!
 ```
 # Function to change between different catkin workspaces on the fly - this is not compulsory, but it is a nice addition 🤓
 
@@ -77,7 +78,7 @@ set_catkin_ws_function() {
 
 # This is required (to source the ROS and medusa files)
 source /opt/ros/noetic/setup.bash
-export CATKIN_ROOT=$(~/<path_to_workspace>)
+export CATKIN_ROOT=${HOME}/<path_to_workspace>
 export ROS_WORKSPACE=${CATKIN_ROOT}/${CATKIN_PACKAGE}
 export MEDUSA_SCRIPTS=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_scripts | head -n 1)
 source ${MEDUSA_SCRIPTS}/medusa_easy_alias/medusa_permanent_alias/alias.sh
