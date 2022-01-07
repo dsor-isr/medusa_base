@@ -56,18 +56,26 @@ git clone --recursive git@github.com:dsor-isr/medusa_base.git
 ### Using Medusa Scripts and Alias
 In order to make use of the scripts and alias developed to make the development of code easier, please add the following lines to your ~/.bashrc file
 ```
-# Function to change catkin_ws workspace on the fly
-# This is not compulsory, but it is a nice addition
-if [ -z ${CATKIN_PACKAGE+x} ]; then export CATKIN_PACKAGE=catkin_ws;fi
+# Function to change between different catkin workspaces on the fly - this is not compulsory, but it is a nice addition 🤓
 
+# Create a file to store the latest catkin workspace (if it does not exist) and put in the first line the default name, i.e. catkin_ws
+if [ ! -f ~/.catkin_ws_config ]; then touch ~/.catkin_ws_config && echo catkin_ws > ~/.catkin_ws_config ;fi
+
+# Check if the variable CATKIN_PACKAGE is set, if not set it with the workspace in the catkin_ws_config file
+if [ -z ${CATKIN_PACKAGE+x} ]; then export CATKIN_PACKAGE=$(head -n 1 ~/.catkin_ws_config);fi
+
+# Function to update the default catkin workspace variable and store the last setting in the file
 set_catkin_ws_function() {
     #set CATKIN_PACKAGE according the an input parameter
     export CATKIN_PACKAGE=catkin_ws_$1
     echo CATKIN_PACKAGE = ${CATKIN_PACKAGE}
+    
+    # save into a hidden file the catkin workspace setting
+    echo $CATKIN_PACKAGE > ~/.catkin_ws_config
     source ~/.bashrc
 }
 
-# This is required
+# This is required (to source the ROS and medusa files)
 source /opt/ros/noetic/setup.bash
 export CATKIN_ROOT=$(~/<path_to_workspace>)
 export ROS_WORKSPACE=${CATKIN_ROOT}/${CATKIN_PACKAGE}
