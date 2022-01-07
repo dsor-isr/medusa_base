@@ -68,7 +68,7 @@ set_catkin_ws_function() {
 }
 
 # This is required
-source /opt/ros/${ROS_DISTRO}/setup.bash
+source /opt/ros/noetic/setup.bash
 export CATKIN_ROOT=$(~/<path_to_workspace>)
 export ROS_WORKSPACE=${CATKIN_ROOT}/${CATKIN_PACKAGE}
 export MEDUSA_SCRIPTS=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_scripts | head -n 1)
