@@ -11,6 +11,9 @@ source ${MEDUSA_SCRIPTS}/medusa_scripts_for_bash/git-completion.bash
 # display git branch on console prompt
 source ${MEDUSA_SCRIPTS}/medusa_scripts_for_bash/display_git_branch_in_prompt.sh
 
+# git pull repo and get the latest updates in the corresponding submodules
+source ${MEDUSA_SCRIPTS}/medusa_scripts_for_bash/git_special_commands.sh
+
 # roscat cat a file by pkg_name and filename
 source ${MEDUSA_SCRIPTS}/medusa_scripts_for_bash/roscat.sh
 
@@ -123,9 +126,12 @@ alias medusa_change_pfollowing_gains='bash ${MEDUSA_SCRIPTS}/medusa_scripts_for_
 ##########################
 export ROS_BAG_FOLDER="${CATKIN_ROOT}"
 export ROS_PACKAGE_PATH="${ROS_WORKSPACE}/src:/opt/ros/${ROS_DISTRO}/share"
-export ROS_LOCATIONS="medusa_base=${ROS_WORKSPACE}/src/medusa_base"
-export ROS_LOCATIONS="medusa_real=${ROS_WORKSPACE}/src/medusa_real"
-export ROS_LOCATIONS="medusa_simulation=${ROS_WORKSPACE}/src/medusa_simulation"
+if [ -d "${ROS_WORKSPACE}/src/medusa_real" ]; then
+	export ROS_LOCATIONS="medusa_real=${ROS_WORKSPACE}/src/medusa_real"
+fi
+if [ -d "${ROS_WORKSPACE}/src/medusa_simulation" ]; then
+	export ROS_LOCATIONS="medusa_simulation=${ROS_WORKSPACE}/src/medusa_simulation"
+fi
 export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${node}: ${message}'
 export EDITOR=vim
 
