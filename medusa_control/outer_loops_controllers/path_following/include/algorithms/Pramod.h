@@ -17,7 +17,7 @@
  * @author    Hung Tuan
  * @version   1.0a
  * @date      2021
- * @copyright GPLv3
+ * @copyright MIT
  */
 class Pramod : public PathFollowing {
 

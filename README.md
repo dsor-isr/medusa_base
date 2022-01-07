@@ -8,13 +8,44 @@ This code stack was developed with ROS1 in mind. In order to use, you are requir
 - Python 3
 
 ### Installation
-Install the Python requirements:
+- Install the Python requirements:
 ```
-TODO
+pip3 install --user numpy pandas matplotlib scipy sklearn rospkg catkin_pkg future joystick-controller
 ```
-Install C++ requirements:
+
+- Install C++ (apt-get) requirements:
 ```
-TODO
+sudo apt-get install libgeographic-dev ros-noetic-geographic-msgs libxmlrcpp-dev librosconsole-dev libudev-dev libusb-1.0-0-dev ros-noetic-geodesy -y
+```
+
+- Manual install Geographiclib 1.50.1 (C++ library):
+```
+wget https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.50.1.tar.gz/download
+tar xfpz download
+cd GeographicLib-1.50.1 
+mkdir BUILD
+cd BUILD
+cmake ..
+sudo make
+sudo make test
+sudo make install
+cd ..
+cd ..
+sudo rm -R download GeographicLib-1.50.1
+```
+
+- Manual install Eigen version 3.4.0 (C++ equivalent of numpy in python):
+```
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar xfpz eigen-3.4.0.tar.gz
+mkdir BUILD
+cd BUILD
+cmake ..
+sudo make
+sudo make install
+cd ..
+cd ..
+sudo rm -R eigen-3.4.0 eigen-3.4.0.tar.gz
 ```
 
 - Clone this repository and its submodules:
@@ -25,9 +56,21 @@ git clone --recursive git@github.com:dsor-isr/medusa_base.git
 ### Using Medusa Scripts and Alias
 In order to make use of the scripts and alias developed to make the development of code easier, please add the following lines to your ~/.bashrc file
 ```
+# Function to change catkin_ws workspace on the fly
+# This is not compulsory, but it is a nice addition
+if [ -z ${CATKIN_PACKAGE+x} ]; then export CATKIN_PACKAGE=catkin_ws;fi
+
+set_catkin_ws_function() {
+    #set CATKIN_PACKAGE according the an input parameter
+    export CATKIN_PACKAGE=catkin_ws_$1
+    echo CATKIN_PACKAGE = ${CATKIN_PACKAGE}
+    source ~/.bashrc
+}
+
+# This is required
 source /opt/ros/${ROS_DISTRO}/setup.bash
 export CATKIN_ROOT=$(~/<path_to_workspace>)
-export ROS_WORKSPACE=${CATKIN_ROOT}/<catkin_ws>
+export ROS_WORKSPACE=${CATKIN_ROOT}/${CATKIN_PACKAGE}
 export MEDUSA_SCRIPTS=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_scripts | head -n 1)
 source ${MEDUSA_SCRIPTS}/medusa_easy_alias/medusa_permanent_alias/alias.sh
 ```
@@ -50,14 +93,29 @@ Documentation TODO
 - Marcelo Jacinto <marcelo.jacinto@tecnico.ulisboa.pt>
 - David Souto <david.souto@tecnico.ulisboa.pt>
 - André Potes <andre.potes@tecnico.ulisboa.pt>
-- Francisco Rego
-- David Cabecinhas
+- Francisco Rego <ffcrego@gmail.com>
+- David Cabecinhas <dcabecinhas@isr.tecnico.ulisboa.pt>
 
 ### Previous Contributors
 - João Cruz
+- Hung Tuan
+- Shubham Garg
 - Jorge Ribeiro
 - Miguel Ribeiro
-- Shubham Garg
+- Henrique Silva
+- João Botelho
+- Filipa Almeida
+
+### Omnipresent
+- Prof. António Pascoal
+- Prof. Carlos Silvestre
+- Prof. Rita Cunha
+- Prof. Bruno Guerreiro
+- Prof. Pedro Batista
+- Luís Sebastião
+- Manuel Rufino
+- Pedro Gois
+- Helena Santana
 
 ### License
 MIT

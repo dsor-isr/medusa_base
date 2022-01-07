@@ -3,7 +3,7 @@
 ############################################################
 
 # source devel setup.bash
-source ${CATKIN_ROOT}/devel/setup.bash
+source ${ROS_WORKSPACE}/devel/setup.bash
 
 # enable git completition
 source ${MEDUSA_SCRIPTS}/medusa_scripts_for_bash/git-completion.bash
