@@ -92,7 +92,10 @@ catkin build
 ```
 
 ### Citation
-If you use medusa_base in a scientific publication, we would appreciate citations: TODO
+If you use MedusaBase in a scientific publication, please cite:
+```
+TODO
+```
 
 ### Help and Support
 Documentation TODO
@@ -127,4 +130,4 @@ Documentation TODO
 - Helena Santana
 
 ### License
-MIT
+MedusaBase is open-sourced under the MIT license. See the [LICENSE](LICENSE) file for details.
