@@ -38,6 +38,7 @@ sudo rm -R download GeographicLib-1.50.1
 ```
 wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
 tar xfpz eigen-3.4.0.tar.gz
+cd eigen-3.4.0
 mkdir BUILD
 cd BUILD
 cmake ..
