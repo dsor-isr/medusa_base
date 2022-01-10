@@ -93,7 +93,7 @@ catkin build
 ```
 
 ### Citation
-If you use MedusaBase in a scientific publication, please cite:
+If you use Medusa Base in a scientific publication, please cite:
 ```
 TODO
 ```
