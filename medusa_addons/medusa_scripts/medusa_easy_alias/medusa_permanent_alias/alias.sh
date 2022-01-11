@@ -127,11 +127,14 @@ alias medusa_change_pfollowing_gains='bash ${MEDUSA_SCRIPTS}/medusa_scripts_for_
 export ROS_BAG_FOLDER="${CATKIN_ROOT}"
 export ROS_PACKAGE_PATH="${ROS_WORKSPACE}/src:/opt/ros/${ROS_DISTRO}/share"
 
+if [ -d "$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_base | head -n 1)" ]; then
+	export ROS_LOCATIONS="medusa=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_base | head -n 1)"
+fi
 if [ -d "${ROS_WORKSPACE}/src/medusa_real" ]; then
-	export ROS_LOCATIONS="medusa_real=${ROS_WORKSPACE}/src/medusa_real:medusa_base=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_base | head -n 1)"
+	export ROS_LOCATIONS="medusa_real=${ROS_WORKSPACE}/src/medusa_real:${ROS_LOCATIONS}"
 fi
 if [ -d "${ROS_WORKSPACE}/src/medusa_simulation" ]; then
-	export ROS_LOCATIONS="medusa_simulation=${ROS_WORKSPACE}/src/medusa_simulation:medusa_base=$(find ${ROS_WORKSPACE}/src/ -type d -iname medusa_base | head -n 1)"
+	export ROS_LOCATIONS="medusa_simulation=${ROS_WORKSPACE}/src/medusa_simulation:${ROS_LOCATIONS}"
 fi
 export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${node}: ${message}'
 export EDITOR=vim

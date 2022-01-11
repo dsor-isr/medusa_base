@@ -19,7 +19,6 @@ alias sf_mred='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/C
 alias sf_mblack='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT mblack'
 alias sf_delfim='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT delfim'
 alias sf_muned='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT muned'
-alias sf_msim='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT malaclemys'
 
 # VPN DSOR
 alias vpn_dsor_on='sudo systemctl start wg-quick@vpn-dsor'
