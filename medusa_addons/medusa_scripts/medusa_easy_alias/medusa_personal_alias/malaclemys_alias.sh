@@ -15,6 +15,16 @@ alias mvector='ssh medusa@mvector'	        # Mvector
 # Position in console for support vessel
 alias console_position='roslaunch console_pos pos.launch'
 
+# *.* MEDUSA Safety Features
+alias sf_myellow='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT myellow'
+alias sf_mvector='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT mvector'
+alias sf_mred='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT mred'
+alias sf_mblack='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT mblack'
+alias sf_delfim='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT delfim'
+alias sf_muned='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT muned'
+alias sf_msim='$(find ${ROS_WORKSPACE}/src/ -type d -iname safety_feature)/src/Client/SafetyFeatureCLT malaclemys'
+
+
 # VPN DSOR
 alias vpn_dsor_on='sudo systemctl start wg-quick@vpn-dsor'
 alias vpn_dsor_off='sudo systemctl stop wg-quick@vpn-dsor'
