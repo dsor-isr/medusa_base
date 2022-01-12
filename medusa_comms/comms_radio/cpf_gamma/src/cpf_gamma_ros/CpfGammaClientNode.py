@@ -77,7 +77,7 @@ class CpfGammaClientNode():
 		# Send message
 		count = 0
 		while count < len(data):
-			count += self.sock.sendto(data, self.address)
+			count += self.sock.sendto(data.encode(), self.address)
 
 def main():
 	

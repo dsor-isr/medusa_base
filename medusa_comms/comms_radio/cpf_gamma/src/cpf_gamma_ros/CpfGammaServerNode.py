@@ -89,6 +89,7 @@ class CpfGammaServerNode():
 	def parseData(self, data):
 
 		# +.+ Sends the event trigger data through UDP.
+		data = data.decode()
 		parsed_data = data.strip().split(',')
 		if(len(parsed_data) <= 0):
 			rospy.logerr("Not possible to parse data, received [{}].".format(data.strip()))
