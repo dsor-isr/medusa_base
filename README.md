@@ -63,8 +63,8 @@ NOTE: replace '/<path_to_workspace>' with the folder where you put you catkin_ws
 # Create a file to store the latest catkin workspace (if it does not exist) and put in the first line the default name, i.e. catkin_ws
 if [ ! -f ~/.catkin_ws_config ]; then touch ~/.catkin_ws_config && echo catkin_ws > ~/.catkin_ws_config ;fi
 
-# Check if the variable CATKIN_PACKAGE is set, if not set it with the workspace in the catkin_ws_config file
-if [ -z ${CATKIN_PACKAGE+x} ]; then export CATKIN_PACKAGE=$(head -n 1 ~/.catkin_ws_config);fi
+# Set the variable CATKIN_PACKAGE with the workspace in the catkin_ws_config file
+export CATKIN_PACKAGE=$(head -n 1 ~/.catkin_ws_config)
 
 # Function to update the default catkin workspace variable and store the last setting in the file
 set_catkin_ws_function() {
