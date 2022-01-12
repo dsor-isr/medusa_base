@@ -133,8 +133,10 @@ void Gnss2Utm::gnssBroadcasterCallback(const sensor_msgs::NavSatFix &msg)
 }
 
 void Gnss2Utm::timerGPSCallback(const ros::TimerEvent &event){
-  if(gps_good_)
+  if(gps_good_ && !utm_.value.empty()){
     gnss_position_pub_.publish(utm_);
+    utm_.value.clear();
+  }
 }
 
 void Gnss2Utm::timerGPSGtCallback(const ros::TimerEvent &event){
