@@ -116,6 +116,12 @@ private:
 
   double torque_request_[3]{}; // Torques, x,y,z (body)
 
+  // Boolean to store whether we use soft by-pass of body forces or hard by-pass
+  // Soft - sums the output of the forces given by the PIDs and the ones received from external topics
+  // Hard - discards the values from the PIDs and only uses the ones received from external topics
+  bool forces_hard_bypass_;
+  double timeout_ref_;
+
   ros::Subscriber st_sub_; // State subscriber
   ros::Subscriber force_bypass_sub_;
   ros::ServiceServer change_gains_srv_;

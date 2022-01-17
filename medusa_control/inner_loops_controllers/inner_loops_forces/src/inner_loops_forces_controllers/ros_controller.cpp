@@ -16,6 +16,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   setPositiveOutput(true);
 
   // read parameters
+  double timout = nh.param("timout_ref", 1.5);
   double kp = nh.param("controllers/" + controller_name + "/kp", 0.0);
   double ki = nh.param("controllers/" + controller_name + "/ki", 0.0);
   double kd = nh.param("controllers/" + controller_name + "/kd", 0.0);
@@ -43,7 +44,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   // initialize variables
   ref_value_ = 0.0;
   ref_time_ = ros::Time(0.0);
-  timeout_ref_ = ros::Duration(2.0);
+  timeout_ref_ = ros::Duration(timout);
   last_cmd_ = ros::Time::now();
 }
 

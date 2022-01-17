@@ -3,6 +3,17 @@
 #include "ros/init.h"
 
 Innerloops::Innerloops(ros::NodeHandle &nh) : nh_(nh) {
+  
+  // Initialize the forces bypass flag
+  forces_hard_bypass_ = nh.param("forces_hard_bypass", false);
+
+  // Initialize the timeout (references will be ignored if the last reference received is this time old) [s]
+  timeout_ref_ = nh.param("timout_ref", 0.5);
+
+  ROS_INFO_STREAM(timeout_ref_);
+  ROS_INFO_STREAM(forces_hard_bypass_);
+  
+  // Initialize all the other ROS nodes and services
   initializeSubscribers();
   initializePublishers();
   initializeServices();
@@ -166,14 +177,32 @@ void Innerloops::timerCallback(const ros::TimerEvent &event) {
   output_msg.wrench.torque.x = torque_request_[0];
   output_msg.wrench.torque.y = torque_request_[1];
   output_msg.wrench.torque.z = torque_request_[2];
+  
+  // Make sure that the last manual force reference is not too hold  
+  if (ros::Time::now() - ref_force_bypass_ < ros::Duration(timeout_ref_)) {
 
-  if (ros::Time::now() - ref_force_bypass_ < ros::Duration(0.5)) {
-    output_msg.wrench.force.x += force_bypass_.wrench.force.x;
-    output_msg.wrench.force.y += force_bypass_.wrench.force.y;
-    output_msg.wrench.force.z += force_bypass_.wrench.force.z;
-    output_msg.wrench.torque.x += force_bypass_.wrench.torque.x;
-    output_msg.wrench.torque.y += force_bypass_.wrench.torque.y;
-    output_msg.wrench.torque.z += force_bypass_.wrench.torque.z;
+    if(forces_hard_bypass_ == false) {
+      // If soft bypass - sum the forces
+      // This is usefull if we want to use "for example" the surge inner-loop
+      // but manually assign an external force to control the torque about the z-axis
+      // i.e. an external yaw controller that is not a PID
+      output_msg.wrench.force.x += force_bypass_.wrench.force.x;
+      output_msg.wrench.force.y += force_bypass_.wrench.force.y;
+      output_msg.wrench.force.z += force_bypass_.wrench.force.z;
+      output_msg.wrench.torque.x += force_bypass_.wrench.torque.x;
+      output_msg.wrench.torque.y += force_bypass_.wrench.torque.y;
+      output_msg.wrench.torque.z += force_bypass_.wrench.torque.z;
+    } else {
+
+      // If hard bypass - ignore completely the inner-loops
+      output_msg.wrench.force.x = force_bypass_.wrench.force.x;
+      output_msg.wrench.force.y = force_bypass_.wrench.force.y;
+      output_msg.wrench.force.z = force_bypass_.wrench.force.z;
+      output_msg.wrench.torque.x = force_bypass_.wrench.torque.x;
+      output_msg.wrench.torque.y = force_bypass_.wrench.torque.y;
+      output_msg.wrench.torque.z = force_bypass_.wrench.torque.z;
+    }
+    
   }
 
   ft_pub_.publish(output_msg);
