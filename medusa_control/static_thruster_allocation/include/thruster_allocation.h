@@ -1,4 +1,3 @@
-
 #include <Eigen/Dense>
 #include <auv_msgs/BodyForceRequest.h>
 #include <dsor_msgs/Thruster.h>

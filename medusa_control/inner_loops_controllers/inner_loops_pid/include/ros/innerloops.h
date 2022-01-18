@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <ros/ros.h>
 
-#include "inner_loops_forces/ChangeInnerGains.h"
-#include "inner_loops_forces/ChangeInnerLimits.h"
+#include "inner_loops_pid/ChangeInnerGains.h"
+#include "inner_loops_pid/ChangeInnerLimits.h"
 #include <auv_msgs/BodyForceRequest.h>
 #include <auv_msgs/NavigationStatus.h>
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
@@ -89,8 +89,8 @@ private:
    * @return true
    * @return false
    */
-  bool changeGainsService(inner_loops_forces::ChangeInnerGains::Request &req,
-                          inner_loops_forces::ChangeInnerGains::Response &res);
+  bool changeGainsService(inner_loops_pid::ChangeInnerGains::Request &req,
+                          inner_loops_pid::ChangeInnerGains::Response &res);
   /**
    * @brief Service to change Limits
    *
@@ -100,8 +100,8 @@ private:
    * @return false
    */
   bool
-  changeLimitsService(inner_loops_forces::ChangeInnerLimits::Request &req,
-                      inner_loops_forces::ChangeInnerLimits::Response &res);
+  changeLimitsService(inner_loops_pid::ChangeInnerLimits::Request &req,
+                      inner_loops_pid::ChangeInnerLimits::Response &res);
 
   // Handlers
   ros::NodeHandle nh_;

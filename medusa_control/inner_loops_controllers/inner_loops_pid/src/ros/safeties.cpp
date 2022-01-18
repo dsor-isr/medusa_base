@@ -14,29 +14,25 @@ void Safeties::loadParams(ros::NodeHandle &nh) {
 
 void Safeties::initializeSubscribers(ros::NodeHandle &nh) {
   depth_sub_ = nh.subscribe(MedusaGimmicks::getParameters<std::string>(
-                                nh, "topics/subscribers/depth", "/ref/depth"),
-                            10, &Safeties::depthSafetyCallback, this);
+    nh, "topics/subscribers/depth", "/ref/depth"),
+    10, &Safeties::depthSafetyCallback, this);
 
-  altitude_sub_ =
-      nh.subscribe(MedusaGimmicks::getParameters<std::string>(
-                       nh, "topics/subscribers/altitude", "/ref/altitude"),
-                   10, &Safeties::altitudeSafetyCallback, this);
+  altitude_sub_ = nh.subscribe(MedusaGimmicks::getParameters<std::string>(
+    nh, "topics/subscribers/altitude", "/ref/altitude"),
+    10, &Safeties::altitudeSafetyCallback, this);
 
-  state_sub_ =
-      nh.subscribe(MedusaGimmicks::getParameters<std::string>(
-                       nh, "topics/subscribers/state", "/nav/filter/state"),
-                   10, &Safeties::stateCallback, this);
+  state_sub_ = nh.subscribe(MedusaGimmicks::getParameters<std::string>(
+    nh, "topics/subscribers/state", "/nav/filter/state"),
+    10, &Safeties::stateCallback, this);
 }
 
 void Safeties::initializePublishers(ros::NodeHandle &nh) {
   depth_safety_pub_ = nh.advertise<std_msgs::Float64>(
       MedusaGimmicks::getParameters<std::string>(
-          nh, "topics/subscribers/depth_safety", "/ref/depth_safety"),
-      1);
+          nh, "topics/subscribers/depth_safety", "/ref/depth_safety"), 1);
   altitude_safety_pub_ = nh.advertise<std_msgs::Float64>(
       MedusaGimmicks::getParameters<std::string>(
-          nh, "topics/subscribers/altitude_safety", "/ref/altitude_safety"),
-      1);
+          nh, "topics/subscribers/altitude_safety", "/ref/altitude_safety"), 1);
 }
 
 void Safeties::depthSafetyCallback(const std_msgs::Float64 &msg) {
