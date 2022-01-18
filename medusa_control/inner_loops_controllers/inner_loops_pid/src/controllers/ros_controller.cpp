@@ -38,8 +38,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
                           &RosController::refCallback, this);
 
   // create the PID controller
-  pid_c_ =
-      new PID_Controller(kp, ki, kd, max_error, max_out, min_error, min_out);
+  pid_c_ = new PID_Controller(kp, ki, kd, max_error, max_out, min_error, min_out);
 
   // initialize variables
   ref_value_ = 0.0;
@@ -75,15 +74,12 @@ double RosController::computeCommand() {
 
     if (error < -180)
       error += 360;
-    //error = MedusaGimmicks::wrap2pi(error, 1);
   }
 
   ros::Time tnow = ros::Time::now();
 
   // Call the controller
-  *force_or_torque_ptr_ +=
-      (positive_output_ ? 1 : -1) *
-      pid_c_->computeCommand(error, (tnow - last_cmd_).toSec());
+  *force_or_torque_ptr_ += (positive_output_ ? 1 : -1) * pid_c_->computeCommand(error, (tnow - last_cmd_).toSec());
   last_cmd_ = tnow;
 
   return *force_or_torque_ptr_;

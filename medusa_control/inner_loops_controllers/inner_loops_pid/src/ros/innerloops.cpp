@@ -1,5 +1,4 @@
 #include "innerloops.h"
-
 #include "ros/init.h"
 
 Innerloops::Innerloops(ros::NodeHandle &nh) : nh_(nh) {
@@ -9,9 +8,6 @@ Innerloops::Innerloops(ros::NodeHandle &nh) : nh_(nh) {
 
   // Initialize the timeout (references will be ignored if the last reference received is this time old) [s]
   timeout_ref_ = nh.param("timout_ref", 0.5);
-
-  ROS_INFO_STREAM(timeout_ref_);
-  ROS_INFO_STREAM(forces_hard_bypass_);
   
   // Initialize all the other ROS nodes and services
   initializeSubscribers();
@@ -26,28 +22,28 @@ void Innerloops::initializeSubscribers() {
   // Angular controllers
   // Yaw
   controllers_.push_back(
-      new RosController(nh_, "yaw",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/yaw", "yaw_ref"),
-                        &yaw_, &torque_request_[2]));
+      new RosController(nh_, "yaw", 
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/yaw", "yaw_ref"),
+          &yaw_, &torque_request_[2]));
 
   controllers_.back()->setCircularUnits(true);
 
   // Pitch
   controllers_.push_back(
       new RosController(nh_, "pitch",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/pitch", "pitch_ref"),
-                        &pitch_, &torque_request_[1]));
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/pitch", "pitch_ref"),
+          &pitch_, &torque_request_[1]));
 
   controllers_.back()->setCircularUnits(true);
 
   // Roll
   controllers_.push_back(
       new RosController(nh_, "roll",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/roll", "roll_ref"),
-                        &roll_, &torque_request_[0]));
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/roll", "roll_ref"),
+          &roll_, &torque_request_[0]));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -55,90 +51,85 @@ void Innerloops::initializeSubscribers() {
   // Yaw rate
   controllers_.push_back(
       new RosController(nh_, "yaw_rate",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
-                        &yaw_rate_, &torque_request_[2]));
+          MedusaGimmicks::getParameters<std::string>(
+            nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
+            &yaw_rate_, &torque_request_[2]));
 
   // Pitch rate
-  controllers_.push_back(new RosController(
-      nh_, "pitch_rate",
-      MedusaGimmicks::getParameters<std::string>(
+  controllers_.push_back(
+      new RosController(nh_, "pitch_rate",
+        MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/pitch_rate", "pitch_rate_ref"),
-      &pitch_rate_, &torque_request_[1]));
+          &pitch_rate_, &torque_request_[1]));
 
   // Roll rate
-  controllers_.push_back(new RosController(
-      nh_, "roll_rate",
+  controllers_.push_back(
+    new RosController(nh_, "roll_rate",
       MedusaGimmicks::getParameters<std::string>(
-          nh_, "topics/subscribers/roll_rate", "roll_rate_ref"),
-      &roll_rate_, &torque_request_[0]));
+        nh_, "topics/subscribers/roll_rate", "roll_rate_ref"),
+        &roll_rate_, &torque_request_[0]));
 
   // Speed controllers
   // Surge
   controllers_.push_back(
       new RosController(nh_, "surge",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/surge", "surge_ref"),
-                        &surge_, &force_request_[0]));
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/surge", "surge_ref"),
+          &surge_, &force_request_[0]));
 
   // Sway
   controllers_.push_back(
       new RosController(nh_, "sway",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/sway", "sway_ref"),
-                        &sway_, &force_request_[1]));
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/sway", "sway_ref"),
+          &sway_, &force_request_[1]));
 
   // Heave
   controllers_.push_back(
       new RosController(nh_, "heave",
-                        MedusaGimmicks::getParameters<std::string>(
-                            nh_, "topics/subscribers/heave", "heave_ref"),
-                        &heave_, &force_request_[2]));
+        MedusaGimmicks::getParameters<std::string>(
+          nh_, "topics/subscribers/heave", "heave_ref"),
+          &heave_, &force_request_[2]));
 
   // Depth & Altitude controllers
   // Depth
-  controllers_.push_back(new RosController(
-      nh_, "depth",
-      MedusaGimmicks::getParameters<std::string>(
+  controllers_.push_back(
+      new RosController(nh_, "depth",
+        MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/depth_safety", "depth_ref"),
-      &depth_, &force_request_[2]));
+          &depth_, &force_request_[2]));
 
   // Altitude
-  controllers_.push_back(new RosController(
-      nh_, "altitude",
+  controllers_.push_back(
+    new RosController(nh_, "altitude",
       MedusaGimmicks::getParameters<std::string>(
-          nh_, "topics/subscribers/altitude_safety", "altitude_ref"),
-      &altitude_, &force_request_[2]));
+        nh_, "topics/subscribers/altitude_safety", "altitude_ref"),
+        &altitude_, &force_request_[2]));
   controllers_.back()->setPositiveOutput(false);
 
   // state subscription
-  st_sub_ =
-      nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
-                        nh_, "topics/subscribers/state", "/nav/filter/state"),
-                    10, &Innerloops::StateCallback, this);
+  st_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+              nh_, "topics/subscribers/state", "/nav/filter/state"),
+              10, &Innerloops::StateCallback, this);
 
   // state subscription
-  force_bypass_sub_ = nh_.subscribe(
-      MedusaGimmicks::getParameters<std::string>(
-          nh_, "topics/subscribers/force_bypass", "/force_bypass"),
-      10, &Innerloops::forceBypassCallback, this);
+  force_bypass_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+                        nh_, "topics/subscribers/force_bypass", "/force_bypass"),
+                        10, &Innerloops::forceBypassCallback, this);
 }
 
 void Innerloops::initializeServices() {
-  change_gains_srv_ =
-      nh_.advertiseService("/inner_forces/change_inner_gains",
-                           &Innerloops::changeGainsService, this);
-  change_limits_srv_ =
-      nh_.advertiseService("/inner_forces/change_inner_limits",
-                           &Innerloops::changeLimitsService, this);
+  change_gains_srv_ = nh_.advertiseService("/inner_forces/change_inner_gains",
+                        &Innerloops::changeGainsService, this);
+  change_limits_srv_ = nh_.advertiseService("/inner_forces/change_inner_limits",
+                        &Innerloops::changeLimitsService, this);
 }
 
 void Innerloops::initializePublishers() {
   // output forces and torques
   ft_pub_ = nh_.advertise<auv_msgs::BodyForceRequest>(
       MedusaGimmicks::getParameters<std::string>(
-          nh_, "topics/publishers/thrust_body_request", "/thrust_body_request"),
-      1);
+          nh_, "topics/publishers/thrust_body_request", "/thrust_body_request"), 1);
 }
 
 void Innerloops::initializeTimer() {
@@ -149,8 +140,7 @@ void Innerloops::initializeTimer() {
 
 double Innerloops::nodeFrequency() {
   double node_frequency;
-  node_frequency =
-      MedusaGimmicks::getParameters<double>(nh_, "node_frequency", 5);
+  node_frequency = MedusaGimmicks::getParameters<double>(nh_, "node_frequency", 5);
   ROS_INFO("Node will run at : %lf [hz]", node_frequency);
   return node_frequency;
 }
@@ -161,8 +151,7 @@ void Innerloops::timerCallback(const ros::TimerEvent &event) {
   std::memset(torque_request_, 0, sizeof torque_request_);
 
   // call the pid controllers
-  for (std::vector<RosController *>::iterator it = controllers_.begin();
-       it != controllers_.end(); ++it) {
+  for (std::vector<RosController *>::iterator it = controllers_.begin(); it != controllers_.end(); ++it) {
     (*it)->computeCommand();
   }
 
@@ -241,8 +230,8 @@ void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
 }
 
 bool Innerloops::changeGainsService(
-    inner_loops_forces::ChangeInnerGains::Request &req,
-    inner_loops_forces::ChangeInnerGains::Response &res) {
+    inner_loops_pid::ChangeInnerGains::Request &req,
+    inner_loops_pid::ChangeInnerGains::Response &res) {
 
   bool control_changed{false};
 
@@ -264,8 +253,8 @@ bool Innerloops::changeGainsService(
     res.message += "Bad control name " + req.inner_type;
   } else {
     res.success = true;
-    res.message += "New " + req.inner_type + " gains are " +
-                   "kp: " + std::to_string(req.kp) +
+    res.message += "New " + req.inner_type + " gains are" +
+                   " kp: " + std::to_string(req.kp) +
                    " ki: " + std::to_string(req.ki) +
                    " kd: " + std::to_string(req.kd);
   }
@@ -274,8 +263,8 @@ bool Innerloops::changeGainsService(
 }
 
 bool Innerloops::changeLimitsService(
-    inner_loops_forces::ChangeInnerLimits::Request &req,
-    inner_loops_forces::ChangeInnerLimits::Response &res) {
+    inner_loops_pid::ChangeInnerLimits::Request &req,
+    inner_loops_pid::ChangeInnerLimits::Response &res) {
 
   bool control_changed{false};
 
@@ -297,8 +286,8 @@ bool Innerloops::changeLimitsService(
     res.message += "Bad control name " + req.inner_type;
   } else {
     res.success = true;
-    res.message += "New " + req.inner_type + " limits are " +
-                   "max_out: " + std::to_string(req.max_out) +
+    res.message += "New " + req.inner_type + " limits are" +
+                   " max_out: " + std::to_string(req.max_out) +
                    " min_out: " + std::to_string(req.min_out);
   }
 

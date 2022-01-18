@@ -8,18 +8,17 @@ ThrustAllocation::ThrustAllocation(ros::NodeHandle &nh) {
 
 void ThrustAllocation::initializeSubscribers(ros::NodeHandle &nh) {
   // subscribe to thrust
-  ft_sub_ = nh.subscribe(MedusaGimmicks::getParameters<std::string>(
-                             nh, "topics/publishers/thrust_body_request",
-                             "/thrust_body_request"),
-                         10, &ThrustAllocation::thrusterAllocation, this);
+  ft_sub_ = nh.subscribe(MedusaGimmicks::getParameters<std::string>(nh, 
+    "topics/subscribers/thrust_body_request", 
+    "/thrust_body_request"),
+    10, &ThrustAllocation::thrusterAllocation, this);
 }
 
 void ThrustAllocation::initializePublishers(ros::NodeHandle &nh) {
   thrusters_pub_ = nh.advertise<dsor_msgs::Thruster>(
-      MedusaGimmicks::getParameters<std::string>(
-          nh, "topics/publishers/thrusters",
-          "/thrusters/RPM_Command"),
-      1);
+    MedusaGimmicks::getParameters<std::string>(nh, 
+    "topics/publishers/thrusters",
+    "/thrusters/RPM_Command"), 1);
 }
 
 void ThrustAllocation::loadParams(ros::NodeHandle &nh) {
@@ -50,8 +49,7 @@ void ThrustAllocation::saturateVector(Eigen::VectorXd &thr_thrust) {
 void ThrustAllocation::readTAM(ros::NodeHandle &nh) {
   XmlRpc::XmlRpcValue allocation_matrix;
   nh.getParam("thrusters/allocation_matrix", allocation_matrix);
-  // create Thruster Allocation Matrix (B) with shape [num of forces][num of
-  // thrusters]
+  // create Thruster Allocation Matrix (B) with shape [num of forces][num of thrusters]
 
   Eigen::MatrixXd b(6, allocation_matrix.size() / 6);
   for (int i = 0; i < 6; ++i) {
@@ -85,12 +83,14 @@ void ThrustAllocation::readRPMGain(ros::NodeHandle &nh) {
   rpm_gain_ = aux;
 }
 
-void ThrustAllocation::thrusterAllocation(
-    const auv_msgs::BodyForceRequest &msg) {
+void ThrustAllocation::thrusterAllocation(const auv_msgs::BodyForceRequest &msg) {
   Eigen::VectorXd ft_req(6);
-  ft_req << float(msg.wrench.force.x), float(msg.wrench.force.y),
-      float(msg.wrench.force.z), float(msg.wrench.torque.x),
-      float(msg.wrench.torque.y), float(msg.wrench.torque.z);
+  ft_req << float(msg.wrench.force.x), 
+            float(msg.wrench.force.y),
+            float(msg.wrench.force.z), 
+            float(msg.wrench.torque.x),
+            float(msg.wrench.torque.y), 
+            float(msg.wrench.torque.z);
 
   // Compute the force necessary for each thruster
   Eigen::VectorXd thr_thrust = b_inv_ * ft_req;
@@ -105,15 +105,19 @@ void ThrustAllocation::thrusterAllocation(
     if (thr_thrust[i] == 0) {
       thr_RPM[i] = 0;
     } else if (thr_thrust[i] > 0) {
-      thr_RPM[i] = (-ctf_[1] + sqrt(ctf_[1] * ctf_[1] -
-                                    4 * ctf_[0] * (ctf_[2] - thr_thrust[i]))) /
-                   (2 * ctf_[0]);
+      thr_RPM[i] = (-ctf_[1] + sqrt(ctf_[1] * ctf_[1] - 4 * ctf_[0] * (ctf_[2] - thr_thrust[i]))) / (2 * ctf_[0]);
     } else if (thr_thrust[i] < 0) {
-      thr_RPM[i] = (-ctb_[1] + sqrt(ctb_[1] * ctb_[1] -
-                                    4 * ctb_[0] * (ctb_[2] - thr_thrust[i]))) /
-                   (2 * ctb_[0]);
+      thr_RPM[i] = (-ctb_[1] + sqrt(ctb_[1] * ctb_[1] - 4 * ctb_[0] * (ctb_[2] - thr_thrust[i]))) / (2 * ctb_[0]);
     }
     thrust.value.push_back(thr_RPM[i] / rpm_gain_[i]);
   }
   thrusters_pub_.publish(thrust);
+}
+
+/* Create the Static Thruster Allocation Object */
+int main(int argc, char **argv) {
+  ros::init(argc, argv, "Static Thruster Allocation");
+  ros::NodeHandle nh("~");
+  ThrustAllocation thr(nh);
+  ros::spin();
 }

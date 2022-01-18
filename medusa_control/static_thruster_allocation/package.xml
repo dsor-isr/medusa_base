@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>inner_loops_forces</name>
+  <name>static_thruster_allocation</name>
   <version>1.0.0</version>
-  <description>The inner_loops_forces package</description>
+  <description>A static thruster allocation package</description>
   
   <author email="jcruz.pedro.cruz@tecnico.ulisboa.pt">Joao Cruz</author>
   <maintainer email="marcelo.jacinto@tecnico.ulisboa.pt">Marcelo Jacinto</maintainer>
@@ -17,7 +17,6 @@
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
   <depend>auv_msgs</depend>
-  <depend>medusa_msgs</depend>
   <depend>dsor_msgs</depend>
   <depend>roscpp</depend>
   <depend>std_msgs</depend>

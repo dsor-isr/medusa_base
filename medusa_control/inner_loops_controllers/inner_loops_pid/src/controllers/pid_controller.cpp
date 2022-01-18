@@ -77,9 +77,7 @@ std::vector<double> PID_Controller::getLimitBounds() const {
 }
 
 float PID_Controller::sat(float u, float low, float high) {
-  if (u < low)
-    return low;
-  if (u > high)
-    return high;
+  if (u < low) return low;
+  if (u > high) return high;
   return u;
 }

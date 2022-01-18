@@ -6,12 +6,13 @@
   <!-- Parameters and Arguments -->
   <arg name="name"            /> <!-- Name of the vehicle being launched -->   
   <arg name="config_package_path"  /> <!-- Name of the package where the configuration files are stored -->
-  <arg name="folder"              default="simulation" />  <!-- Name of the folder for the configuration files --> 
-  <arg name="namespace"           default="false" />
+  <arg name="folder"                      default="simulation" />  <!-- Name of the folder for the configuration files --> 
+  <arg name="namespace"                   default="false" />
 
-  <arg name="inner_loops_forces"  default="false" />   
-  <arg name="waypoint"            default="false" />
-  <arg name="path_following"      default="false" />
+  <arg name="static_thruster_allocation"  default="false" />
+  <arg name="inner_loops_pid"             default="false" />   
+  <arg name="waypoint"                    default="false" />
+  <arg name="path_following"              default="false" />
   
   <group ns="controls">
 
@@ -20,9 +21,15 @@
     <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/control.yaml" />
 
     <!-- Launch Nodes that are common to all vehicles -->
+
+    <!-- Thrust allocation: convert forces applied in body frame to desired thrust to apply to the motors -->
+    <group if="$(arg static_thruster_allocation)">
+      <node pkg="static_thruster_allocation" type="static_thruster_allocation" name="static_thruster_allocation" output="screen" />
+    </group>
+
     <!-- innerloops: convert dynamic references to thruster force components -->
-    <group if="$(arg inner_loops_forces)">
-      <node pkg="inner_loops_forces" type="inner_loops_forces" name="inner_loops_forces" output="screen" />
+    <group if="$(arg inner_loops_pid)">
+      <node pkg="inner_loops_pid" type="inner_loops_pid" name="inner_loops_pid" output="screen" />
     </group>
 
     <!-- outerloops: provides kinetic references and vehicle planning behaviors -->
