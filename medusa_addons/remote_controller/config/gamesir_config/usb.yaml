@@ -52,11 +52,3 @@ remote_controller:
             "integrate": true,
             "lower_limit": -1,
             "upper_limit": 2.5}
-    
-    # Depth input
-    #depth: {"inputs":[
-    #            {"type": "axis", "id": 2, "gain": 0.5, "offset": 1.0},
-    #            {"type": "button", "id": 4, "gain": -0.5, "offset": 0.0}],
-    #        "integrate": true,
-    #        "lower_limit": -1,
-    #        "upper_limit": 2.5}
