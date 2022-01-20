@@ -20,17 +20,17 @@ remote_controller:
                 # Surge input
                 surge: {"inputs":[
                                 {"type": "axis", "id": 1, "gain": -0.5, "offset": 0.0}],
-                        "integrate": False},
+                        "integrate": False}
 
                 # Sway input
                 sway: {"inputs":[
                                 {"type": "axis", "id": 0, "gain": 0.5, "offset": 0.0}],
-                        "integrate": False},
+                        "integrate": False}
                 
                 # Yaw-rate input
                 yaw_rate: {"inputs":[
                                 {"type": "axis", "id": 2, "gain": -5, "offset": 0.0}],
-                        "integrate": False},
+                        "integrate": False}
                 
                 # Depth input
                 depth: {"inputs":[
@@ -39,3 +39,11 @@ remote_controller:
                         "integrate": True,
                         "lower_limit": 0.0,
                         "upper_limit": 1500.0}
+
+                # Heave input
+                heave: {"inputs":[],
+                        "integrate": false}
+
+                # Yaw input
+                yaw: {"inputs":[],
+                        "integrate": true}
