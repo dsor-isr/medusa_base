@@ -16,13 +16,13 @@
 	
 	<group if="$(arg onebag)">
 		<!-- store everything in one bag -->
-		<node pkg="rosbag" type="record" name="record_medusa" args="$(arg split) -o $(arg bags_folder)/$(arg bag_prefix)_ -a"/>
+		<node pkg="rosbag" type="record" name="record_medusa" args="$(arg split) -o $(arg bags_folder)/$(arg prefix)_ -a"/>
 	</group>
 	
 	<group unless="$(arg onebag)">	
 		<!-- Record medusa topics -->
-		<node pkg="rosbag" type="record" name="record_medusa"     args="$(arg split) -o $(arg bags_folder)/$(arg bag_prefix)_ -a -x '$(arg ignore_topics)|$(arg not_medusa_topics)'"/>
+		<node pkg="rosbag" type="record" name="record_medusa"     args="$(arg split) -o $(arg bags_folder)/$(arg prefix)_ -a -x '$(arg ignore_topics)|$(arg not_medusa_topics)'"/>
 		<!-- Record topics that are not_medusa -->
-		<node pkg="rosbag" type="record" name="record_not_medusa" args="$(arg split) -o $(arg bags_folder)/$(arg bag_prefix)_$(arg folder)_ -e '$(arg not_medusa_topics)'"/>
+		<node pkg="rosbag" type="record" name="record_not_medusa" args="$(arg split) -o $(arg bags_folder)/$(arg prefix)_$(arg folder)_ -e '$(arg not_medusa_topics)'"/>
 	</group>
 </launch>
