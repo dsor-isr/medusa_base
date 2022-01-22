@@ -15,7 +15,7 @@ pip3 install --user numpy pandas matplotlib scipy sklearn rospkg catkin_pkg futu
 
 - Install C++ (apt-get) requirements:
 ```
-sudo apt-get install libgeographic-dev ros-noetic-geographic-msgs libxmlrcpp-dev librosconsole-dev libudev-dev libusb-1.0-0-dev ros-noetic-geodesy -y
+sudo apt-get install python3-catkin-tools libgeographic-dev ros-noetic-geographic-msgs libxmlrcpp-dev librosconsole-dev libudev-dev libusb-1.0-0-dev ros-noetic-geodesy -y
 ```
 
 - Manual install Geographiclib 1.50.1 (C++ library):
