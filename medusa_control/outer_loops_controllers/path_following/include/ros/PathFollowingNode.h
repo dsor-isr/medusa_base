@@ -16,6 +16,7 @@
 #include <medusa_msgs/mPFollowingDebug.h>
 
 /* Include the Control libraries */
+#include "RelativeHeading.h"
 #include "Marcelo.h"
 #include "Aguiar.h"
 #include "Brevik.h"
@@ -124,6 +125,7 @@ class PathFollowingNode {
     ros::ServiceServer pf_pramod_srv_;
     ros::ServiceServer pf_samson_srv_;
     ros::ServiceServer pf_marcelo_srv_;
+    ros::ServiceServer pf_relative_heading_srv_;
 
     /* Service to reset the virtual target position */
     ros::ServiceServer pf_reset_vt_srv_;
@@ -207,6 +209,8 @@ class PathFollowingNode {
     bool UpdateGainsPFService(path_following::UpdateGainsPF::Request &req,
         path_following::UpdateGainsPF::Response &res);
 
+    bool SetRelativeHeadingService(path_following::SetPF::Request &req, 
+        path_following::SetPF::Response &res);
     bool SetMarceloService(path_following::SetPF::Request &req, 
         path_following::SetPF::Response &res);
     bool SetAguiarService(path_following::SetPF::Request &req,
