@@ -240,7 +240,7 @@ bool PathFollowingNode::SetRelativeHeadingService(path_following::SetPF::Request
         nh_p_.getParam("controller_gains/relative_heading/p_sat", p_sat);
 
         /* Assign the new controller */
-        this->pf_algorithm_ = new RelativeHeading(kx,ky,kz,Eigen::Vector2d(p_sat.data()),yaw_offset,this->publishers_[0], this->publishers_[1], this->publishers_[2], this->publishers_[3]);
+        this->pf_algorithm_ = new RelativeHeading(kx, ky, kz, Eigen::Vector2d(p_sat.data()), yaw_offset, this->publishers_[0], this->publishers_[1], this->publishers_[2], this->publishers_[3]);
 
         /* Path the debug variables publisher to the class*/
         pf_algorithm_->setPFollowingDebugPublisher(nh_p_.advertise<medusa_msgs::mPFollowingDebug>(pfollowing_debug_topic,1));
