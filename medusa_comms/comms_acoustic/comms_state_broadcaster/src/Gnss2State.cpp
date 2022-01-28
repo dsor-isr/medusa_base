@@ -121,6 +121,8 @@ void Gnss2State::gnssBroadcasterCallback(const auv_msgs::NavigationStatus &msg)
 
     state_fix.position.north = northing;
     state_fix.position.east  = easting;
+    state_fix.orientation.z = msg.orientation.z;
+    state_fix.position.depth = msg.position.depth;
 	// state_fix.position.depth = p_default_depth;
 	// If merging, fill in other fields too
 	// state_fix.orientation 		= state_merge.orientation;
