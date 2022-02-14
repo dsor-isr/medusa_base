@@ -32,6 +32,8 @@ void PathFollowingNode::initializeServices() {
       this->nh_p_, "topics/services/pramod_pf", "/set_pramod_pf");
   std::string set_samson_name = MedusaGimmicks::getParameters<std::string>(
       this->nh_p_, "topics/services/samson_pf", "/set_samson_pf");
+  std::string set_relative_heading_name = MedusaGimmicks::getParameters<std::string>(
+      this->nh_p_, "topics/services/relative_heading_pf", "/set_relative_heading_pf");
 
   /* Get the service name for reseting the virtual target in the path following */
   std::string reset_virtual_taget_name = MedusaGimmicks::getParameters<std::string>(
@@ -59,6 +61,8 @@ void PathFollowingNode::initializeServices() {
   this->pf_update_gains_srv_ = this->nh_.advertiseService(
       update_gains_name, &PathFollowingNode::UpdateGainsPFService, this);
 
+  this->pf_relative_heading_srv_ = this->nh_.advertiseService(
+    set_relative_heading_name, &PathFollowingNode::SetRelativeHeadingService, this);
   this->pf_marcelo_srv_ = this->nh_.advertiseService(
     set_marcelo_name, &PathFollowingNode::SetMarceloService, this);
   this->pf_aguiar_srv_ = this->nh_.advertiseService(
@@ -191,7 +195,71 @@ bool PathFollowingNode::UpdateGainsPFService(
   return true;
 }
 
-/* Service to switch to the Aguiar Path Following method */
+/* Service to switch to the RelativeHeading Path Following method */
+bool PathFollowingNode::SetRelativeHeadingService(path_following::SetPF::Request &req, path_following::SetPF::Response &res) {
+
+    /* Don't change if the algorithm is running */
+    if (this->timer_.hasStarted()) {
+        ROS_INFO("Can't change algorithm when PF is running.");
+        res.success = false;
+        return true;
+    }
+
+    /* Clear the memory used by the previous controller */
+    this->deleteCurrentController();
+
+    /* Get the topic names for the publishers */
+    std::string surge_topic = MedusaGimmicks::getParameters<std::string>(
+            this->nh_p_, "topics/publishers/surge");
+    std::string sway_topic = MedusaGimmicks::getParameters<std::string>(
+            this->nh_p_, "topics/publishers/sway");
+    std::string yaw_topic = MedusaGimmicks::getParameters<std::string>(
+            this->nh_p_, "topics/publishers/yaw");
+    std::string rabbit_topic = MedusaGimmicks::getParameters<std::string>(
+            this->nh_p_, "topics/publishers/rabbit");
+    std::string pfollowing_debug_topic = MedusaGimmicks::getParameters<std::string>(
+            this->nh_p_, "topics/publishers/pfollowing_debug");
+
+    /* Create the publishers for the node */
+    this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(surge_topic, 1));
+    this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(sway_topic, 1));
+    this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(yaw_topic, 1));
+    this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(rabbit_topic, 1));
+
+    /* Read the control gains from the parameter server */
+    double kx, ky, kz, yaw_offset;
+    std::vector<double> p_sat;
+
+    try {
+
+        /* Read the gains for the controller */
+        nh_p_.getParam("controller_gains/relative_heading/kx", kx);
+        nh_p_.getParam("controller_gains/relative_heading/ky", ky);
+        nh_p_.getParam("controller_gains/relative_heading/kz", kz);
+        nh_p_.getParam("controller_gains/relative_heading/yaw_offset", yaw_offset);
+        nh_p_.getParam("controller_gains/relative_heading/p_sat", p_sat);
+
+        /* Assign the new controller */
+        this->pf_algorithm_ = new RelativeHeading(kx, ky, kz, Eigen::Vector2d(p_sat.data()), yaw_offset, this->publishers_[0], this->publishers_[1], this->publishers_[2], this->publishers_[3]);
+
+        /* Path the debug variables publisher to the class*/
+        pf_algorithm_->setPFollowingDebugPublisher(nh_p_.advertise<medusa_msgs::mPFollowingDebug>(pfollowing_debug_topic,1));
+
+        /* Return success */
+        res.success = true;
+
+    } catch (...) {
+        ROS_WARN("Some error occured. Please reset the PF node for safety");
+        res.success = false;
+        return false;
+    }
+
+    /* Return success */
+    ROS_INFO("PF controller switched to RelativeHeading");
+    return true;
+}
+
+/* Service to switch to the Marcelo Path Following method */
 bool PathFollowingNode::SetMarceloService(path_following::SetPF::Request &req,
     path_following::SetPF::Response &res) {
 

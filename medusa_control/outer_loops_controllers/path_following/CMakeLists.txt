@@ -71,6 +71,7 @@ add_executable(${PROJECT_NAME}_node
   src/algorithms/Samson.cpp
   src/algorithms/Fossen.cpp
   src/algorithms/Marcelo.cpp
+  src/algorithms/RelativeHeading.cpp
 )
 
 add_dependencies(${PROJECT_NAME}_node ${catkin_EXPORTED_TARGETS})

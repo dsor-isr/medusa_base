@@ -32,6 +32,7 @@ topics:
     updates_gains_pf: "/PFUpdateGains"
           
     # Service names to switch the path following algorithm
+    relative_heading_pf: "/PFSetRelativeHeading"
     aguiar_pf: "/PFSetAguiar"
     brevik_pf: "/PFSetBrevik"
     fossen_pf: "/PFSetFossen"
