@@ -482,7 +482,7 @@ void FiltersNode::sensorSplit(const FilterGimmicks::measurement &m_in,
       if(p_dvl_body_frame_){
         // +.+ Convert velocities form the body to the inercial frame
         m_horizontal.value(0) = cos(DEG2RAD(state_.orientation.z))*m_in.value(0)  - sin(DEG2RAD(state_.orientation.z))*m_in.value(1);
-        m_horizontal.value(1) = sin(DEG2RAD(state_.orientation.z))*m_in.value(0)  + sin(DEG2RAD(state_.orientation.z))*m_in.value(1);
+        m_horizontal.value(1) = sin(DEG2RAD(state_.orientation.z))*m_in.value(0)  + cos(DEG2RAD(state_.orientation.z))*m_in.value(1);
         }else{
         // +.+ If in Inercial frame
         m_horizontal.value = m_in.value.segment<2>(0);  
