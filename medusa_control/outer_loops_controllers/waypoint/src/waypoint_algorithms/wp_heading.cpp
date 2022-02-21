@@ -30,9 +30,26 @@ void WpHeading::calculateRef(Vehicle_t state, WPref_t wp_ref) {
 
   double distance_to_wp = sqrt(pow((x - x_ref), 2) + pow((y - y_ref), 2));
 
+  Eigen::Matrix2d rot;
+  rot << cos(yaw_rad), -sin(yaw_rad),
+         sin(yaw_rad), cos(yaw_rad);
+  
+  Eigen::Matrix2d gains;
+  gains << k1, 0.0,
+           0.0, k2;
+
+  Eigen::Vector2d ref, errors, error_body;
+  errors << x - x_ref, y - y_ref;
+
   if (distance_to_wp > cdist) {
-    u_ref = -k1 * (x - x_ref) * cos(yaw_rad) - k2 * (y - y_ref) * sin(yaw_rad);
-    v_ref = k1 * (x - x_ref) * sin(yaw_rad) - k2 * (y - y_ref) * cos(yaw_rad);
+    // ref = - gains * tanh( rot * errors )
+    error_body = rot * errors;
+    error_body = error_body.array().tanh();
+    ref = - gains * error_body;  
+    
+    u_ref = ref(0); v_ref = ref(1);
+    // u_ref = -k1 * (x - x_ref) * cos(yaw_rad) - k2 * (y - y_ref) * sin(yaw_rad);
+    // v_ref = k1 * (x - x_ref) * sin(yaw_rad) - k2 * (y - y_ref) * cos(yaw_rad);
 
   } else // waypoint was reached, holding position
   {
