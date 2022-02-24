@@ -47,13 +47,14 @@ class ProcessActionType(object):
 
 class Process:
 
-    def __init__(self, name, cmd, vehicle_name, config_package_path, folder, namespace, args=None, launch_on_startup=False,
+    def __init__(self, name, cmd, vehicle_name, config_package_path, folder, namespace, vehicle_configuration=None, args=None, launch_on_startup=False,
                  delay_before_start=0.0, dependencies=None):
         self.name = name
         self.config_package_path = config_package_path
         self.cmd = cmd
         self.folder = folder
         self.namespace = namespace
+        self.vehicle_configuration = vehicle_configuration
         self.args = args if args is not None else []
         self.dependencies = dependencies if dependencies is not None else []
         self.launch_on_startup = launch_on_startup
@@ -63,7 +64,10 @@ class Process:
 
     def start(self):
         if not self.is_active():
-            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["config_package_path:=" + self.config_package_path] + ["folder:=" + str(self.folder)] + ["namespace:=" + str(self.namespace)]
+            cmd = self.cmd.split(' ') + self.args + ["name:=" + self.vehicle_name] + ["config_package_path:=" + self.config_package_path] + ["folder:=" + str(self.folder)] + ["namespace:=" + str(self.namespace)] 
+            # If we specify a vehicle configuration argument, then add it to the list of commnad arguments
+            if self.vehicle_configuration is not None:
+                cmd = cmd + ["vehicle_configuration:=" + str(self.vehicle_configuration)]
             if self.delay_before_start:
                 rospy.sleep(self.delay_before_start)
             self.process = subprocess.Popen(cmd)
@@ -97,11 +101,12 @@ class Process:
 
 class MedusaSetup:
 
-    def __init__(self, vehicle_name, config_package_path, folder, namespace):
+    def __init__(self, vehicle_name, config_package_path, folder, namespace, vehicle_configuration=None):
         self.vehicle_name = vehicle_name
         self.config_package_path = config_package_path
         self.folder = folder
         self.namespace = namespace
+        self.vehicle_configuration = vehicle_configuration
         self.process_list = []
         self.process_config = rospy.get_param("~processes")
         self.create_processes()
@@ -175,7 +180,8 @@ class MedusaSetup:
                                              vehicle_name=self.vehicle_name, 
                                              config_package_path=self.config_package_path, 
                                              folder = self.folder,
-                                             namespace=self.namespace))
+                                             namespace=self.namespace,
+                                             vehicle_configuration=self.vehicle_configuration))
 
     def start_init_processes(self):
         for process in self.process_list:
