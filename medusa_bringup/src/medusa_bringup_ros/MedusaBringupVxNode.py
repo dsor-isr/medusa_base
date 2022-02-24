@@ -29,7 +29,7 @@ class MedusaBringupVxNode():
 
 		"""
 		self.loadParams()
-		MedusaSetup(self.name, self.config_package_path, self.folder, self.namespace)
+		MedusaSetup(self.name, self.config_package_path, self.folder, self.namespace, self.vehicle_configuration)
 
 
 	"""
@@ -44,6 +44,7 @@ class MedusaBringupVxNode():
 		self.config_package_path = rospy.get_param('~config_package_path', "~/catkin_ws/medusa_simulation/medusa_base/medusa_bringup")
 		self.folder = rospy.get_param('~folder', "simulation")
 		self.namespace = rospy.get_param('~namespace', "false")
+		self.vehicle_configuration = rospy.get_param('~vehicle_configuration', None)
 
 		#self.bags = rospy.get_param('~bags', False)
 		#self.pf_controller = rospy.get_param('~path_following', "Lapierre")
