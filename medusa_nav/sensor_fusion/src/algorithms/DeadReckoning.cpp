@@ -120,7 +120,7 @@ void DeadReckoning::predict(std::vector<double> &state_vec, double dt) {
 // @.@ Callbacks Section / Methods
 void DeadReckoning::velocityCallback(const dsor_msgs::Measurement &msg) {
   // +.+ Check if velocity measurement is from dvl
-  if (msg.header.frame_id == "dvl_bt"){
+  if (msg.header.frame_id.find("dvl_bt") != std::string::npos){
     // Convert body velocity to inercial velocity
     if(p_dvl_body_frame_){
       dvl_vx_ = cos(DEG2RAD(yaw_))*msg.value[0]  - sin(DEG2RAD(yaw_))*msg.value[1];
@@ -137,7 +137,7 @@ void DeadReckoning::velocityCallback(const dsor_msgs::Measurement &msg) {
 void DeadReckoning::orientationCallback(const dsor_msgs::Measurement &msg) {
   
   // +.+ Check if measurement is from ahrs
-  if (msg.header.frame_id == "ahrs"){
+  if (msg.header.frame_id.find("ahrs") != std::string::npos){
     roll_ = RAD2DEG(MedusaGimmicks::wrap2pi(msg.value[0], 0));
     pitch_ = RAD2DEG(MedusaGimmicks::wrap2pi(msg.value[1], 0));
     yaw_ = RAD2DEG(MedusaGimmicks::wrap2pi(msg.value[2], 0));
