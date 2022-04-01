@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <ros/ros.h>
 
+#include "inner_loops_pid/ChangeFFGains.h"
 #include "inner_loops_pid/ChangeInnerGains.h"
 #include "inner_loops_pid/ChangeInnerLimits.h"
 #include <auv_msgs/BodyForceRequest.h>
@@ -82,6 +83,17 @@ private:
   void forceBypassCallback(const auv_msgs::BodyForceRequest &msg);
 
   /**
+   * @brief Service to change feedforward gains
+   *
+   * @param req client request
+   * @param res server response
+   * @return true
+   * @return false
+   */
+  bool changeFFGainsService(inner_loops_pid::ChangeFFGains::Request &req,
+                          inner_loops_pid::ChangeFFGains::Response &res);
+
+  /**
    * @brief Service to change gains
    *
    * @param req client request
@@ -124,8 +136,11 @@ private:
 
   ros::Subscriber st_sub_; // State subscriber
   ros::Subscriber force_bypass_sub_;
+
+  ros::ServiceServer change_ff_gains_srv_;
   ros::ServiceServer change_gains_srv_;
   ros::ServiceServer change_limits_srv_;
+
   ros::Timer timer_; // timer
 
   // variable to bypass innerloops and publish a direct force on the vehicle

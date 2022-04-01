@@ -21,20 +21,31 @@ PID_Controller::PID_Controller(float Kp, float Ki, float Kd, float max_error,
   disable = true;
 }
 
-float PID_Controller::computeCommand(float error_p, float duration) {
+PID_Controller::PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kff_d, float Kff_dd,  
+                               float max_error, float max_out, float min_error, float min_out) 
+      : p_gain_(Kp), i_gain_(Ki), d_gain_(Kd), ff_gain_(Kff), ff_d_gain_(Kff_d), ff_dd_gain_(Kff_dd),
+        max_error_(max_error), min_error_(min_error), max_out_(max_out), min_out_(min_out) {
+  reset();
+  disable = true;
+}
+
+float PID_Controller::computeCommand(float error_p, float ref_value, float duration) {
   // Don't return nothing if controller is disabled
   if (disable || duration < 0.05 || duration > 0.2)
     return 0.0;
 
+  float current_value = error_p + ref_value;
   float error = sat(error_p, min_out_, max_out_);
   integral_ += error * duration;
 
   // Compute PID Terms
+  float ffTerm = ff_gain_ * ref_value;
+  float ffDragTerm = ff_d_gain_ * current_value + ff_dd_gain_ * std::abs(current_value) * current_value;
   float pTerm = p_gain_ * error;
   float iTerm = i_gain_ * integral_;
   float dTerm = d_gain_ * (error - pre_error_) / duration;
 
-  float out = pTerm + iTerm + dTerm;
+  float out = ffTerm + ffDragTerm + pTerm + iTerm + dTerm;
 
   // Saturate output
   if (out > max_out_) {
@@ -53,6 +64,13 @@ float PID_Controller::computeCommand(float error_p, float duration) {
 void PID_Controller::reset() {
   integral_ = 0;
   pre_error_ = 0;
+}
+
+void PID_Controller::setFFGains(const float &ff_gain, const float &ff_d_gain,
+                              const float &ff_dd_gain) {
+  ff_gain_ = ff_gain;
+  ff_d_gain_ = ff_d_gain;
+  ff_dd_gain_ = ff_dd_gain;
 }
 
 void PID_Controller::setGains(const float &kp, const float &ki,

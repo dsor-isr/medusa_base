@@ -1,0 +1,7 @@
+string inner_type
+float64 ff_gain
+float64 ff_d_gain
+float64 ff_dd_gain
+---
+bool success
+string message

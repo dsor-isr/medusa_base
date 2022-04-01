@@ -67,6 +67,16 @@ public:
    * 
    */
   std::string getControllerName() const {return controller_name_;}
+
+  /**
+   * @brief Set the Feedforwar gains P I D object
+   * 
+   * @param ff Feedforward gain 
+   * @param ff_d_gain Feedforwad gain (linear drag)
+   * @param ff_dd_gain Feedforwad gain (quadratic drag)
+   */
+  void setFFGainsPID(const float &kp, const float &ki, const float &kd) {pid_c_->setGains(kp, ki, kd);}
+
   /**
    * @brief Set the Gains P I D object
    * 

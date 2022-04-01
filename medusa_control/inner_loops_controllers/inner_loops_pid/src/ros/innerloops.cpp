@@ -119,6 +119,8 @@ void Innerloops::initializeSubscribers() {
 }
 
 void Innerloops::initializeServices() {
+  change_ff_gains_srv_ = nh_.advertiseService("/inner_forces/change_ff_gains",
+                        &Innerloops::changeFFGainsService, this);
   change_gains_srv_ = nh_.advertiseService("/inner_forces/change_inner_gains",
                         &Innerloops::changeGainsService, this);
   change_limits_srv_ = nh_.advertiseService("/inner_forces/change_inner_limits",
@@ -227,6 +229,39 @@ void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
 
   vdepth_ = msg.seafloor_velocity.z;
   valtitude_ = -msg.seafloor_velocity.z;
+}
+
+bool Innerloops::changeFFGainsService(
+    inner_loops_pid::ChangeFFGains::Request &req,
+    inner_loops_pid::ChangeFFGains::Response &res) {
+
+  bool control_changed{false};
+
+  for (auto &controller : controllers_) {
+    if ((controller->getControllerName().size() == req.inner_type.size()) &&
+        std::equal(req.inner_type.begin(), req.inner_type.end(),
+                   controller->getControllerName().begin(),
+                   [](char &c1, char &c2) {
+                     return (c1 == c2 || std::toupper(c1) == std::toupper(c2));
+                   })) {
+      controller->setFFGainsPID(req.ff_gain, req.ff_d_gain, req.ff_dd_gain);
+      control_changed = true;
+      break;
+    }
+  }
+
+  if (!control_changed) {
+    res.success = false;
+    res.message += "Bad control name " + req.inner_type;
+  } else {
+    res.success = true;
+    res.message += "New " + req.inner_type + " feedfoward gains are" +
+                   " arbitrary ff: " + std::to_string(req.ff_gain) +
+                   " linear drag ff: " + std::to_string(req.ff_d_gain) +
+                   " quadratic drag ff: " + std::to_string(req.ff_dd_gain);
+  }
+
+  return true;
 }
 
 bool Innerloops::changeGainsService(
