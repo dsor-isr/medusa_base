@@ -13,6 +13,7 @@
   <arg name="inner_loops_pid"             default="false" />   
   <arg name="waypoint"                    default="false" />
   <arg name="path_following"              default="false" />
+  <arg name="vehicle_stabilizer"          default="false" />
   
   <group ns="controls">
 
@@ -42,5 +43,11 @@
     <group if="$(arg path_following)">
       <node pkg="path_following" type="path_following_node" name="path_following" output="screen" />
     </group>
+
+    <!-- vehicle_stabilizer: node that stabilizes the vehicle according to pre-defined references in configuration files -->
+    <group if="$(arg vehicle_stabilizer)">
+        <node pkg="vehicle_stabilizer" type="vehicle_stabilizer_node" name="vehicle_stabilizer" respawn="true" output="screen" />
+    </group>
+
   </group>
 </launch>
