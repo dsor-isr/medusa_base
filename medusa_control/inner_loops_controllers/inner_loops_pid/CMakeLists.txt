@@ -3,6 +3,7 @@ project(inner_loops_pid)
 
 find_package(catkin REQUIRED COMPONENTS
   medusa_msgs
+  dsor_utils
   dsor_msgs
   roscpp
   auv_msgs
@@ -14,6 +15,7 @@ add_compile_options(-std=c++17 -Wall -O3)
 
 add_service_files(
   FILES
+  ChangeFFGains.srv
   ChangeInnerGains.srv
   ChangeInnerLimits.srv
 )
@@ -24,7 +26,7 @@ generate_messages(
 )
 
 catkin_package(
-  CATKIN_DEPENDS roscpp medusa_gimmicks_library auv_msgs)
+  CATKIN_DEPENDS dsor_utils dsor_msgs roscpp medusa_gimmicks_library auv_msgs)
 
 include_directories(include include/ros include/controllers)
 include_directories(${catkin_INCLUDE_DIRS})

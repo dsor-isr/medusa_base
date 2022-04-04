@@ -20,10 +20,11 @@ public:
    * @param refCallback_topic  Topic name
    * @param state  Pointer to state variable being controlled
    * @param force_or_torque  Pointer to force or torque output
+   * @param frequency Frequency of controller sampling rate
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
                 std::string refCallback_topic, double *state,
-                double *force_or_torque);
+                double *force_or_torque, double frequency);
 
   /**
    * @brief  Constructor of a innerloop controller
@@ -36,11 +37,11 @@ public:
    * @param state_dot  Pointer to the derivative of the state variable being
    * controlled
    * @param force_or_torque  Pointer to force or torque output
+   * @param frequency Frequency of controller sampling rate
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
                 std::string refCallback_topic, double *state, double *state_dot,
-                double *force_or_torque);
-
+                double *force_or_torque, double frequency);
   /**
    * @brief  Core function. Computes the PID output
    *
@@ -67,6 +68,16 @@ public:
    * 
    */
   std::string getControllerName() const {return controller_name_;}
+
+  /**
+   * @brief Set the Feedforwar gains P I D object
+   * 
+   * @param ff Feedforward gain 
+   * @param ff_d_gain Feedforwad gain (linear drag)
+   * @param ff_dd_gain Feedforwad gain (quadratic drag)
+   */
+  void setFFGainsPID(const float &kp, const float &ki, const float &kd) {pid_c_->setGains(kp, ki, kd);}
+
   /**
    * @brief Set the Gains P I D object
    * 
@@ -118,6 +129,9 @@ protected:
 
   // pointer to correspondig force or torque
   double *force_or_torque_ptr_;
+
+  // frequency of the controller sampling rate
+  double frequency_;
 
   bool circular_units_;  // for angles
   bool positive_output_; // positive output or switch sign

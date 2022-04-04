@@ -25,7 +25,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw", 
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
-          &yaw_, &torque_request_[2]));
+          &yaw_, &torque_request_[2], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -34,7 +34,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "pitch",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/pitch", "pitch_ref"),
-          &pitch_, &torque_request_[1]));
+          &pitch_, &torque_request_[1], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -43,7 +43,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "roll",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/roll", "roll_ref"),
-          &roll_, &torque_request_[0]));
+          &roll_, &torque_request_[0], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -53,21 +53,21 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw_rate",
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
-            &yaw_rate_, &torque_request_[2]));
+            &yaw_rate_, &torque_request_[2], Innerloops::nodeFrequency()));
 
   // Pitch rate
   controllers_.push_back(
       new RosController(nh_, "pitch_rate",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/pitch_rate", "pitch_rate_ref"),
-          &pitch_rate_, &torque_request_[1]));
+          &pitch_rate_, &torque_request_[1], Innerloops::nodeFrequency()));
 
   // Roll rate
   controllers_.push_back(
     new RosController(nh_, "roll_rate",
       MedusaGimmicks::getParameters<std::string>(
         nh_, "topics/subscribers/roll_rate", "roll_rate_ref"),
-        &roll_rate_, &torque_request_[0]));
+        &roll_rate_, &torque_request_[0], Innerloops::nodeFrequency()));
 
   // Speed controllers
   // Surge
@@ -75,21 +75,21 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "surge",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/surge", "surge_ref"),
-          &surge_, &force_request_[0]));
+          &surge_, &force_request_[0], Innerloops::nodeFrequency()));
 
   // Sway
   controllers_.push_back(
       new RosController(nh_, "sway",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/sway", "sway_ref"),
-          &sway_, &force_request_[1]));
+          &sway_, &force_request_[1], Innerloops::nodeFrequency()));
 
   // Heave
   controllers_.push_back(
       new RosController(nh_, "heave",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/heave", "heave_ref"),
-          &heave_, &force_request_[2]));
+          &heave_, &force_request_[2], Innerloops::nodeFrequency()));
 
   // Depth & Altitude controllers
   // Depth
@@ -97,14 +97,14 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "depth",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/depth_safety", "depth_ref"),
-          &depth_, &force_request_[2]));
+          &depth_, &force_request_[2], Innerloops::nodeFrequency()));
 
   // Altitude
   controllers_.push_back(
     new RosController(nh_, "altitude",
       MedusaGimmicks::getParameters<std::string>(
         nh_, "topics/subscribers/altitude_safety", "altitude_ref"),
-        &altitude_, &force_request_[2]));
+        &altitude_, &force_request_[2], Innerloops::nodeFrequency()));
   controllers_.back()->setPositiveOutput(false);
 
   // state subscription
@@ -119,6 +119,8 @@ void Innerloops::initializeSubscribers() {
 }
 
 void Innerloops::initializeServices() {
+  change_ff_gains_srv_ = nh_.advertiseService("/inner_forces/change_ff_gains",
+                        &Innerloops::changeFFGainsService, this);
   change_gains_srv_ = nh_.advertiseService("/inner_forces/change_inner_gains",
                         &Innerloops::changeGainsService, this);
   change_limits_srv_ = nh_.advertiseService("/inner_forces/change_inner_limits",
@@ -227,6 +229,39 @@ void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
 
   vdepth_ = msg.seafloor_velocity.z;
   valtitude_ = -msg.seafloor_velocity.z;
+}
+
+bool Innerloops::changeFFGainsService(
+    inner_loops_pid::ChangeFFGains::Request &req,
+    inner_loops_pid::ChangeFFGains::Response &res) {
+
+  bool control_changed{false};
+
+  for (auto &controller : controllers_) {
+    if ((controller->getControllerName().size() == req.inner_type.size()) &&
+        std::equal(req.inner_type.begin(), req.inner_type.end(),
+                   controller->getControllerName().begin(),
+                   [](char &c1, char &c2) {
+                     return (c1 == c2 || std::toupper(c1) == std::toupper(c2));
+                   })) {
+      controller->setFFGainsPID(req.ff_gain, req.ff_d_gain, req.ff_dd_gain);
+      control_changed = true;
+      break;
+    }
+  }
+
+  if (!control_changed) {
+    res.success = false;
+    res.message += "Bad control name " + req.inner_type;
+  } else {
+    res.success = true;
+    res.message += "New " + req.inner_type + " feedfoward gains are" +
+                   " arbitrary ff: " + std::to_string(req.ff_gain) +
+                   " linear drag ff: " + std::to_string(req.ff_d_gain) +
+                   " quadratic drag ff: " + std::to_string(req.ff_dd_gain);
+  }
+
+  return true;
 }
 
 bool Innerloops::changeGainsService(
