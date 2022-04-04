@@ -4,6 +4,9 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <memory>
+#include <dsor_utils/filters/lowpass_filter.hpp>
+
 /**
  * @brief  Implementation of a PID with anti windup
  */
@@ -43,7 +46,7 @@ public:
                  float min_error, float min_out);
 
   /**
-   * @brief  Constructor of a PID controller. Initially enabled.
+   * @brief  Constructor of a PID controller (without low pass filter). Initially enabled.
    *
    * @param Kp Proporcional gain
    * @param Ki Integral gain
@@ -56,8 +59,27 @@ public:
    * @param min_error minimum refrence error allowed
    * @param min_out minimum output allowed
    */
-  PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kff_d, float Kff_dd,
+  PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kff_d, float Kff_lin_drag, float Kff_quad_drag,
                  float max_error, float max_out, float min_error, float min_out);
+
+  /**
+   * @brief  Constructor of a PID controller (with low pass filter). Initially enabled.
+   *
+   * @param Kp Proporcional gain
+   * @param Ki Integral gain
+   * @param Kd Derivative gain
+   * @param Kff Feedforward gain
+   * @param Kff_d Feedforward gain (linear drag) []
+   * @param Kff_dd Feedforward gain (quadratic drag)
+   * @param max_error maximum reference error allowed
+   * @param max_out maximum output allowed
+   * @param min_error minimum refrence error allowed
+   * @param min_out minimum output allowed
+   * @param lpf_dt Low pass filter sampling time
+   * @param lpf_fc Low pass filter cutoff param
+   */
+  PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kff_d, float Kff_lin_drag, float Kff_quad_drag,
+                 float max_error, float max_out, float min_error, float min_out, double lpf_dt, double lpf_fc);
 
   /**
    * @brief Core function. Computes the output of the PID.
@@ -78,11 +100,12 @@ public:
   /**
    * @brief Set the feedfoward Gains object
    *
-   * @param ff_gain Feefoward gain (arbitrary)
-   * @param ff_d_gain Feefoward gain (linear drag)
-   * @param ff_dd_gain Feefoward gain (quadratic drag)
+   * @param ff_gain Feefoward gain of reference
+   * @param ff_d_gain Feedoforward gain of reference derivative 
+   * @param ff_lin_drag_gain Feefoward gain (for linear drag)
+   * @param ff_quad_drag_gain Feefoward gain (for quadratic drag)
    */
-  void setFFGains(const float &ff_gain, const float &ff_d_gain, const float &ff_dd_gain); 
+  void setFFGains(const float &ff_gain, const float &ff_d_gain, const float &ff_lin_drag_gain, const float &ff_quad_drag_gain); 
 
   /**
    * @brief Set the Gains object
@@ -116,16 +139,20 @@ public:
   std::vector<double> getLimitBounds() const;
 
 protected:
-  // Controller Gains
-  float p_gain_, i_gain_, d_gain_, ff_gain_, ff_d_gain_, ff_dd_gain_;
-  // Max and Min output value
-  float max_out_, min_out_;
-  // Max and Min error value
-  float max_error_, min_error_;
+  // Controller PID Gains
+  float p_gain_, i_gain_, d_gain_;
+  // Controller feedforwad gains
+  float ff_gain_, ff_d_gain_, ff_lin_drag_gain_, ff_quad_drag_gain_;
+  // Max and Min output/error values
+  float max_error_, max_out_, min_error_, min_out_;
   // Integral error
   float integral_;
-  // Previous error
-  float pre_error_;
+  // Previous error and reference value
+  float pre_error_, prev_ref_value_;
+  
+  // Low pass filter object
+  bool has_lpf_{false};
+  std::unique_ptr<LowPassFilter> lpf_; 
 
 private:
 

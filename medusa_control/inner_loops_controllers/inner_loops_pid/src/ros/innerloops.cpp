@@ -25,7 +25,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw", 
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
-          &yaw_, &torque_request_[2]));
+          &yaw_, &torque_request_[2], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -34,7 +34,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "pitch",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/pitch", "pitch_ref"),
-          &pitch_, &torque_request_[1]));
+          &pitch_, &torque_request_[1], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -43,7 +43,7 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "roll",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/roll", "roll_ref"),
-          &roll_, &torque_request_[0]));
+          &roll_, &torque_request_[0], Innerloops::nodeFrequency()));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -53,21 +53,21 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw_rate",
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
-            &yaw_rate_, &torque_request_[2]));
+            &yaw_rate_, &torque_request_[2], Innerloops::nodeFrequency()));
 
   // Pitch rate
   controllers_.push_back(
       new RosController(nh_, "pitch_rate",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/pitch_rate", "pitch_rate_ref"),
-          &pitch_rate_, &torque_request_[1]));
+          &pitch_rate_, &torque_request_[1], Innerloops::nodeFrequency()));
 
   // Roll rate
   controllers_.push_back(
     new RosController(nh_, "roll_rate",
       MedusaGimmicks::getParameters<std::string>(
         nh_, "topics/subscribers/roll_rate", "roll_rate_ref"),
-        &roll_rate_, &torque_request_[0]));
+        &roll_rate_, &torque_request_[0], Innerloops::nodeFrequency()));
 
   // Speed controllers
   // Surge
@@ -75,21 +75,21 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "surge",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/surge", "surge_ref"),
-          &surge_, &force_request_[0]));
+          &surge_, &force_request_[0], Innerloops::nodeFrequency()));
 
   // Sway
   controllers_.push_back(
       new RosController(nh_, "sway",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/sway", "sway_ref"),
-          &sway_, &force_request_[1]));
+          &sway_, &force_request_[1], Innerloops::nodeFrequency()));
 
   // Heave
   controllers_.push_back(
       new RosController(nh_, "heave",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/heave", "heave_ref"),
-          &heave_, &force_request_[2]));
+          &heave_, &force_request_[2], Innerloops::nodeFrequency()));
 
   // Depth & Altitude controllers
   // Depth
@@ -97,14 +97,14 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "depth",
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/depth_safety", "depth_ref"),
-          &depth_, &force_request_[2]));
+          &depth_, &force_request_[2], Innerloops::nodeFrequency()));
 
   // Altitude
   controllers_.push_back(
     new RosController(nh_, "altitude",
       MedusaGimmicks::getParameters<std::string>(
         nh_, "topics/subscribers/altitude_safety", "altitude_ref"),
-        &altitude_, &force_request_[2]));
+        &altitude_, &force_request_[2], Innerloops::nodeFrequency()));
   controllers_.back()->setPositiveOutput(false);
 
   // state subscription
