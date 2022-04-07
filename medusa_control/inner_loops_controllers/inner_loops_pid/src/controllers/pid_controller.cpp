@@ -54,7 +54,7 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
   }
 
   float current_value = error_p + ref_value;
-  float error = sat(error_p, min_out_, max_out_);
+  float error = sat(error_p, min_error_, max_error_);
   integral_ += error * duration;
 
   // Compute PID Terms
