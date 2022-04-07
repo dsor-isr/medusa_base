@@ -58,7 +58,7 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
   integral_ += error * duration;
 
   // Compute PID Terms
-  float ffTerm = ff_gain_ * ref_value;
+  float ffTerm = ff_gain_ * std::abs(ref_value) * ref_value;
   float ffDTerm = ff_d_gain_ * ref_d_value;
   float ffDragTerm = ( ff_lin_drag_gain_ + ff_quad_drag_gain_ * std::abs(current_value) ) * current_value;
   float pTerm = p_gain_ * error;
