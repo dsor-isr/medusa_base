@@ -38,7 +38,7 @@ PID_Controller::PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kf
   lpf_ = std::make_unique<LowPassFilter>(lpf_dt, 2*M_PI*lpf_fc);
 }
 
-float PID_Controller::computeCommand(float error_p, float ref_value, float duration) {
+float PID_Controller::computeCommand(float error_p, float ref_value, float duration, bool debug) {
   float ref_d_value;
 
   // Don't return nothing if controller is disabled
@@ -65,7 +65,6 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
   float iTerm = i_gain_ * integral_;
   float dTerm = d_gain_ * (error - pre_error_) / duration;
 
-
   float out = ffTerm + ffDTerm + ffDragTerm + pTerm + iTerm + dTerm;
 
   // Saturate output
@@ -80,8 +79,28 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
   pre_error_ = error;
   prev_ref_value_ = ref_value;
 
+  if (debug) {
+    msg_debug_.ref = ref_value;
+    msg_debug_.ref_d = (ref_value - prev_ref_value_) / duration;
+    if (has_lpf_) {
+      msg_debug_.ref_d_filtered = ref_d_value;
+    } else {
+      msg_debug_.ref_d_filtered = (ref_value - prev_ref_value_) / duration;
+    }
+    msg_debug_.error = error_p;
+    msg_debug_.error_saturated = error;
+    msg_debug_.ffTerm = ffTerm;
+    msg_debug_.ffDTerm = ffDTerm;
+    msg_debug_.ffDragTerm = ffDragTerm;
+    msg_debug_.pTerm = pTerm;
+    msg_debug_.iTerm = iTerm;
+    msg_debug_.dTerm = dTerm;
+    msg_debug_.output = out;
+  }
+
   return out;
 }
+
 
 void PID_Controller::reset() {
   integral_ = 0;
@@ -115,6 +134,10 @@ std::vector<double> PID_Controller::getGains() const {
 
 std::vector<double> PID_Controller::getLimitBounds() const {
   return std::vector<double>{max_out_, min_out_};
+}
+
+medusa_msgs::mPidDebug PID_Controller::getDebugInfo() const {
+  return msg_debug_;
 }
 
 float PID_Controller::sat(float u, float low, float high) {
