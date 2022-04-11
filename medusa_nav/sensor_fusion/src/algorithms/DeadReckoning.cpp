@@ -90,8 +90,8 @@ void DeadReckoning::computePredict() {
 	state_dr_console_.Yaw = yaw_;
 
 	// Set Velocity
-	state_dr_console_.Vx = dvl_vy_;
-	state_dr_console_.Vy = dvl_vx_;
+	state_dr_console_.Vx = dvl_vx_;
+	state_dr_console_.Vy = dvl_vy_;
 	
   // +.+ Publish state dr
   state_dr_pub_.publish(state_dr_msg_);
