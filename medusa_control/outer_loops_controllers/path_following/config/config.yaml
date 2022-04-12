@@ -40,6 +40,7 @@ topics:
     lapierre_pf: "/PFSetLapierre"
     pramod_pf: "/PFSetPramod"
     samson_pf: "/PFSetSamson"
+    potes_pf: "/PFSetPotes"
     # Service names related to the path
     reset_path: "/ResetPath"
     set_path_mode: "/SetMode"
