@@ -69,15 +69,10 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
 
   // Saturate output
   if (out > max_out_) {
-    out = max_out_;
     integral_ -= error * duration;
   } else if (out < min_out_) {
-    out = min_out_;
     integral_ -= error * duration;
   }
-
-  pre_error_ = error;
-  prev_ref_value_ = ref_value;
 
   if (debug) {
     msg_debug_.ref = ref_value;
@@ -97,6 +92,16 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
     msg_debug_.dTerm = dTerm;
     msg_debug_.output = out;
   }
+
+  // Saturate output
+  if (out > max_out_) {
+    out = max_out_;
+  } else if (out < min_out_) {
+    out = min_out_;
+  }
+
+  pre_error_ = error;
+  prev_ref_value_ = ref_value;
 
   return out;
 }
