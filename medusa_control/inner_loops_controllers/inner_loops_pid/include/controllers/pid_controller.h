@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <dsor_utils/filters/lowpass_filter.hpp>
+#include <medusa_msgs/mPidDebug.h>
 
 /**
  * @brief  Implementation of a PID with anti windup
@@ -87,10 +88,11 @@ public:
    * @param error_p Error between the reference and the estimated variable
    * @param ref_value Reference value to compute the feedforward term
    * @param duration Sample time
+   * @param debug Check if we want to generate a debugging message to later publish
    *
    * @return
    */
-  float computeCommand(float error_p, float ref_value, float duration);
+  float computeCommand(float error_p, float ref_value, float duration, bool debug);
 
   /**
    * @brief  Reset function. Sets the integral error term to 0.
@@ -138,6 +140,13 @@ public:
    */
   std::vector<double> getLimitBounds() const;
 
+  /**
+   * @brief Get debug info from the PID controller internal variables
+   *
+   * @return std::vector<float> const
+   */
+  medusa_msgs::mPidDebug getDebugInfo() const;
+
 protected:
   // Controller PID Gains
   float p_gain_, i_gain_, d_gain_;
@@ -153,6 +162,9 @@ protected:
   // Low pass filter object
   bool has_lpf_{false};
   std::unique_ptr<LowPassFilter> lpf_; 
+
+  // Debug message
+  medusa_msgs::mPidDebug msg_debug_;
 
 private:
 

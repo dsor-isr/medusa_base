@@ -5,6 +5,7 @@
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>
+#include <medusa_msgs/mPidDebug.h>
 
 /**
  * @brief  ROS implementation of the innerloops controllers. Based on a desired reference computes the force or torque to be applied.
@@ -123,6 +124,8 @@ protected:
   double min_ref_value_; // minimum value of the reference being controlled
   ros::Time ref_time_;   // timestamp of the reference
   ros::Time last_cmd_;   // last controller call
+  bool debug_;           // flag to check wheter to output or not pid internal information 
+  medusa_msgs::mPidDebug debug_msg_; // msg to publish debug information
 
   // pointers to state values
   double *state_ptr_;
@@ -139,6 +142,7 @@ protected:
   // handlers
   PID_Controller *pid_c_;
   ros::Subscriber ros_sub_;
+  ros::Publisher debug_pub_;
 };
 
 #endif /* ifndef __ROS_CONTROLLER__*/

@@ -38,7 +38,7 @@ PID_Controller::PID_Controller(float Kp, float Ki, float Kd, float Kff, float Kf
   lpf_ = std::make_unique<LowPassFilter>(lpf_dt, 2*M_PI*lpf_fc);
 }
 
-float PID_Controller::computeCommand(float error_p, float ref_value, float duration) {
+float PID_Controller::computeCommand(float error_p, float ref_value, float duration, bool debug) {
   float ref_d_value;
 
   // Don't return nothing if controller is disabled
@@ -54,27 +54,50 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
   }
 
   float current_value = error_p + ref_value;
-  float error = sat(error_p, min_out_, max_out_);
+  float error = sat(error_p, min_error_, max_error_);
   integral_ += error * duration;
 
   // Compute PID Terms
-  float ffTerm = ff_gain_ * ref_value;
+  float ffTerm = ff_gain_ * std::abs(ref_value) * ref_value;
   float ffDTerm = ff_d_gain_ * ref_d_value;
   float ffDragTerm = ( ff_lin_drag_gain_ + ff_quad_drag_gain_ * std::abs(current_value) ) * current_value;
   float pTerm = p_gain_ * error;
   float iTerm = i_gain_ * integral_;
   float dTerm = d_gain_ * (error - pre_error_) / duration;
 
-
   float out = ffTerm + ffDTerm + ffDragTerm + pTerm + iTerm + dTerm;
 
   // Saturate output
   if (out > max_out_) {
-    out = max_out_;
     integral_ -= error * duration;
   } else if (out < min_out_) {
-    out = min_out_;
     integral_ -= error * duration;
+  }
+
+  if (debug) {
+    msg_debug_.ref = ref_value;
+    msg_debug_.ref_d = (ref_value - prev_ref_value_) / duration;
+    if (has_lpf_) {
+      msg_debug_.ref_d_filtered = ref_d_value;
+    } else {
+      msg_debug_.ref_d_filtered = (ref_value - prev_ref_value_) / duration;
+    }
+    msg_debug_.error = error_p;
+    msg_debug_.error_saturated = error;
+    msg_debug_.ffTerm = ffTerm;
+    msg_debug_.ffDTerm = ffDTerm;
+    msg_debug_.ffDragTerm = ffDragTerm;
+    msg_debug_.pTerm = pTerm;
+    msg_debug_.iTerm = iTerm;
+    msg_debug_.dTerm = dTerm;
+    msg_debug_.output = out;
+  }
+
+  // Saturate output
+  if (out > max_out_) {
+    out = max_out_;
+  } else if (out < min_out_) {
+    out = min_out_;
   }
 
   pre_error_ = error;
@@ -82,6 +105,7 @@ float PID_Controller::computeCommand(float error_p, float ref_value, float durat
 
   return out;
 }
+
 
 void PID_Controller::reset() {
   integral_ = 0;
@@ -115,6 +139,10 @@ std::vector<double> PID_Controller::getGains() const {
 
 std::vector<double> PID_Controller::getLimitBounds() const {
   return std::vector<double>{max_out_, min_out_};
+}
+
+medusa_msgs::mPidDebug PID_Controller::getDebugInfo() const {
+  return msg_debug_;
 }
 
 float PID_Controller::sat(float u, float low, float high) {

@@ -4,7 +4,7 @@ RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
                              std::string refCallback_topic, double *state,
                              double *force_or_torque, double frequency)
     : state_ptr_(state), controller_name_(controller_name),
-      force_or_torque_ptr_(force_or_torque), frequency_(frequency) {
+      force_or_torque_ptr_(force_or_torque),  frequency_(frequency) {
   init(nh, controller_name, refCallback_topic);
 }
 
@@ -30,12 +30,22 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   double min_error = nh.param("controllers/" + controller_name + "/min_err", -max_error);
   max_ref_value_ = nh.param("controllers/" + controller_name + "/max_ref", 0.0);
   min_ref_value_ = nh.param("controllers/" + controller_name + "/min_ref", 0.0);
+  debug_ = nh.param("controllers/" + controller_name + "/debug", false);
 
   // Don't create the controller if no gains were specified
   if (kp == 0.0 && ki == 0.0 && kd == 0.0 && kff == 0.0 && kff_d == 0.0 && kff_lin_drag == 0.0 && kff_quad_drag == 0.0) {
-    ROS_WARN_STREAM("No PID and Feedfoward gains were specified.");
+    ROS_WARN_STREAM("No PID and Feedfoward gains were specified for " + controller_name + " controller.");
     pid_c_ = NULL;
     return;
+  }
+
+  // If we are debugging, create a publisher for debug data related to this controller
+  if (debug_) {
+    ROS_WARN_STREAM("Debugging extra info for " + controller_name + " controller.");
+
+    debug_pub_ = nh.advertise<medusa_msgs::mPidDebug>(
+      MedusaGimmicks::getParameters<std::string>(
+          nh, "topics/publishers/debug/" + controller_name, "/debug/" + controller_name), 1);
   }
 
   // subscribe to relevant topic
@@ -79,8 +89,38 @@ void RosController::refCallback(const std_msgs::Float64 &msg) {
 
 double RosController::computeCommand() {
 
-  if (!validRef())
+  if (!validRef()) {
+    if (debug_) {
+      debug_msg_.ref = 0.0;
+      debug_msg_.ref_d = 0.0;
+      debug_msg_.ref_d_filtered = 0.0;
+      debug_msg_.state = *state_ptr_;
+      debug_msg_.error = 0.0;
+      debug_msg_.error_saturated = 0.0;
+      debug_msg_.ffTerm = 0.0;
+      debug_msg_.ffDTerm = 0.0;
+      debug_msg_.ffDragTerm = 0.0;
+      debug_msg_.pTerm = 0.0;
+      debug_msg_.iTerm = 0.0;
+      debug_msg_.dTerm = 0.0;
+      debug_msg_.output = 0.0;
+    
+      if (circular_units_) {
+        if (debug_msg_.state > 180)
+          debug_msg_.state -= 360;
+
+        if (debug_msg_.state < -180)
+          debug_msg_.state += 360;
+      }
+
+      debug_msg_.header.stamp = ros::Time::now();
+      debug_msg_.controller = controller_name_;
+
+      debug_pub_.publish(debug_msg_);
+    }
+
     return 0.0;
+  }
 
   double error = ref_value_ - *state_ptr_;
   if (isnan(ref_value_)) {
@@ -97,14 +137,31 @@ double RosController::computeCommand() {
       error += 360;
   }
 
-  ros::Time tnow = ros::Time::now();
-
-  // Filter the ref_value through a low pass filter
-  
+  ros::Time tnow = ros::Time::now();  
   
   // Call the controller
-  *force_or_torque_ptr_ += (positive_output_ ? 1 : -1) * pid_c_->computeCommand(error, ref_value_, (tnow - last_cmd_).toSec());
+  *force_or_torque_ptr_ += (positive_output_ ? 1 : -1) * pid_c_->computeCommand(error, ref_value_, (tnow - last_cmd_).toSec(), debug_);
   last_cmd_ = tnow;
+
+  // If debugging info, publish the internal controller variables for analysis
+  if (debug_) {
+    debug_msg_ = pid_c_->getDebugInfo();
+    
+    debug_msg_.state = *state_ptr_;
+    
+    if (circular_units_) {
+      if (debug_msg_.state > 180)
+        debug_msg_.state -= 360;
+
+      if (debug_msg_.state < -180)
+        debug_msg_.state += 360;
+    }
+
+    debug_msg_.header.stamp = tnow;
+    debug_msg_.controller = controller_name_;
+
+    debug_pub_.publish(debug_msg_);
+  }
 
   return *force_or_torque_ptr_;
 }
