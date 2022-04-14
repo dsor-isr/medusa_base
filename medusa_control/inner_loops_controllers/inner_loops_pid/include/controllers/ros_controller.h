@@ -73,11 +73,12 @@ public:
   /**
    * @brief Set the Feedforwar gains P I D object
    * 
-   * @param ff Feedforward gain 
-   * @param ff_d_gain Feedforwad gain (linear drag)
-   * @param ff_dd_gain Feedforwad gain (quadratic drag)
+   * @param kff Feedforward gain (quadratic)
+   * @param kff_d Feedforwad derivative gain
+   * @param kff_lin_drag Feedforward linear drag gain 
+   * @param kff_quad_drag Feedforwad quadratic drag gain
    */
-  void setFFGainsPID(const float &kp, const float &ki, const float &kd) {pid_c_->setGains(kp, ki, kd);}
+  void setFFGainsPID(const float &kff, const float &kff_d, const float &kff_lin_drag, const float kff_quad_drag) {pid_c_->setFFGains(kff, kff_d, kff_lin_drag, kff_quad_drag);}
 
   /**
    * @brief Set the Gains P I D object
