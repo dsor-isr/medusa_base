@@ -244,7 +244,7 @@ bool Innerloops::changeFFGainsService(
                    [](char &c1, char &c2) {
                      return (c1 == c2 || std::toupper(c1) == std::toupper(c2));
                    })) {
-      controller->setFFGainsPID(req.ff_gain, req.ff_d_gain, req.ff_dd_gain);
+      controller->setFFGainsPID(req.kff, req.kff_d, req.kff_lin_drag, req.kff_quad_drag);
       control_changed = true;
       break;
     }
@@ -256,9 +256,10 @@ bool Innerloops::changeFFGainsService(
   } else {
     res.success = true;
     res.message += "New " + req.inner_type + " feedfoward gains are" +
-                   " arbitrary ff: " + std::to_string(req.ff_gain) +
-                   " linear drag ff: " + std::to_string(req.ff_d_gain) +
-                   " quadratic drag ff: " + std::to_string(req.ff_dd_gain);
+                   " Squared Proportional FF: " + std::to_string(req.kff) +
+                   " Derivative Proportional FF: " + std::to_string(req.kff_d) +
+                   " Linear Drag FF: " + std::to_string(req.kff_lin_drag) +
+                   " Quadratic Drag FF: " + std::to_string(req.kff_quad_drag);
   }
 
   return true;

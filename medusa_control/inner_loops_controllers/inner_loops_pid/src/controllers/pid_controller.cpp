@@ -113,11 +113,12 @@ void PID_Controller::reset() {
   prev_ref_value_ = 0;
 }
 
-void PID_Controller::setFFGains(const float &ff_gain, const float &ff_dgain, const float &ff_lin_drag_gain,
-                              const float &ff_quad_drag_gain) {
-  ff_gain_ = ff_gain;
-  ff_lin_drag_gain_ = ff_lin_drag_gain;
-  ff_quad_drag_gain_ = ff_quad_drag_gain;
+void PID_Controller::setFFGains(const float &kff, const float &kff_d, const float &kff_lin_drag,
+                              const float &kff_quad_drag) {
+  ff_gain_ = kff;
+  ff_d_gain_ = kff_d;
+  ff_lin_drag_gain_ = kff_lin_drag;
+  ff_quad_drag_gain_ = kff_quad_drag;
 }
 
 void PID_Controller::setGains(const float &kp, const float &ki,
