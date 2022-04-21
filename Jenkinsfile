@@ -3,7 +3,7 @@ pipeline {
         docker {
             image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa_base_jenkins:latest'
             registryUrl 'harbor.dsor.isr.tecnico.ulisboa.pt'
-            registryCredentialsId 'harbor-token'
+            registryCredentialsId '${harbor-token}'
         }
     }
     stages {
