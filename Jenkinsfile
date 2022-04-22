@@ -24,7 +24,7 @@ pipeline {
                         trackingSubmodules: false]], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[
-                        credentialsId: 'github_app_tokn', 
+                        credentialsId: 'github_token', 
                         url: 'git@github.com:dsor-isr/medusa_base.git']]])
             }
         }
