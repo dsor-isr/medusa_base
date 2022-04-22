@@ -32,7 +32,7 @@ pipeline {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     source ${WORKSPACE}/catkin_ws/devel/setup.bash
-                    catkin test --no-status -j1
+                    catkin test --no-status -j1 --ignore-package flexbe_states
                     '''
                 }
             }
