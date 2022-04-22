@@ -20,7 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir(catkin_ws_medusa_base) {
+                dir('catkin_ws_medusa_base') {
                     sh '''#!/bin/bash
                     ls
                     pwd
