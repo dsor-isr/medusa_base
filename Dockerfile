@@ -45,7 +45,7 @@ RUN rm install_requirements.sh
 # ----------------------------------------------------
 # Get the script to use as entrypoint to the container
 # ----------------------------------------------------
-RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/medusa_docker/scripts/ros_entrypoint.sh
+RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/medusa_docker/scripts/basic_entrypoint.sh
 
 # ----------------------------------
 # Change the User to the medusa user
@@ -70,8 +70,7 @@ EXPOSE 8080
 EXPOSE 9090
 EXPOSE 11311
 
-# --------------------------------------
-# Setup the image entry point to be bash
-# --------------------------------------
-ENTRYPOINT ["/ros_entrypoint.sh"]
-CMD ["bash"]
+# -----------------------------------------------------------------
+# Setup the image entry point to be anything specified as arguments
+# -----------------------------------------------------------------
+ENTRYPOINT ["/basic_entrypoint.sh"]

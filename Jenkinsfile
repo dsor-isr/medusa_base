@@ -33,8 +33,7 @@ pipeline {
             steps {
                 echo 'Build..'
                 dir('catkin_ws/src') {
-                    sh '''#!/bin/bash
-                    git pull && git submodule update --init --recursive
+                    sh '''#!/bin/bashs
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status
                 '''
