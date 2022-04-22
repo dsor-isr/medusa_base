@@ -8,6 +8,9 @@ pipeline {
             reuseNode false
         }
     }
+    environment {
+        ROS_WORKSPACE=${WORKSPACE}/catkin_ws
+    }
     options {
         checkoutToSubdirectory('catkin_ws/src')
     }
@@ -28,11 +31,11 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                // Only test the code inside the medusa meta-packages (ignoring 3rd party code)
                 dir('catkin_ws') {
                     sh '''#!/bin/bash
-                    source /opt/ros/noetic/setup.bash
-                    source ${WORKSPACE}/catkin_ws/devel/setup.bash
-                    catkin test --no-status -j1 --ignore-package flexbe_states
+                    cd test
+                    bash unit_test.sh
                     '''
                 }
             }
