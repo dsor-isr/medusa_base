@@ -24,7 +24,7 @@ pipeline {
                         trackingSubmodules: false]], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[
-                        credentialsId: 'github_token', 
+                        credentialsId: 'github_app_tokn', 
                         url: 'git@github.com:dsor-isr/medusa_base.git']]])
             }
         }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo 'Build..'
                 dir('catkin_ws/src') {
-                    sh '''#!/bin/bashs
+                    sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status
                 '''
