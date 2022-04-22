@@ -31,7 +31,7 @@ pipeline {
                 dir('catkin_ws') {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
-                    source ${ROS_WORKSPACE}/devel/setup.bash
+                    source ${WORKSPACE}/catkin_ws/devel/setup.bash
                     catkin test --no-status -j1
                     '''
                 }
