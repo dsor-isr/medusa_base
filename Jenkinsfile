@@ -9,7 +9,7 @@ pipeline {
         }
     }
     environment {
-        ROS_WORKSPACE = "${HOME}/catkin_ws"
+        ROS_WORKSPACE = "${HOME}/catkin_ws_medusa_base"
     }
     options {
         checkoutToSubdirectory('${ROS_WORKSPACE}')
