@@ -9,7 +9,7 @@ pipeline {
         }
     }
     environment {
-        ROS_WORKSPACE = "${HOME}/catkin_ws"
+        ROS_WORKSPACE = "${HOME}/catkin_ws/src"
     }
     options {
         checkoutToSubdirectory('${ROS_WORKSPACE}')
@@ -22,11 +22,6 @@ pipeline {
                 echo 'Build..'
                 dir(path: "${ROS_WORKSPACE}") {
                     sh '''#!/bin/bash
-                    pwd
-                    ls
-                    cd $WORKSPACE
-                    pwd 
-                    ls
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status'''
                 }
