@@ -8,11 +8,8 @@ pipeline {
             reuseNode false
         }
     }
-    environment {
-        ROS_WORKSPACE = "catkin_ws"
-    }
     options {
-        checkoutToSubdirectory(subdirectory: "${ROS_WORKSPACE}/src")
+        checkoutToSubdirectory('catkin_ws/src')
     }
     // Move all the packages to the default catkin workspace
     stages {
@@ -20,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir(path: "${ROS_WORKSPACE}") {
+                dir('catkin_ws') {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status -j12'''
@@ -31,7 +28,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                dir(path: "${ROS_WORKSPACE}") {
+                dir('catkin_ws') {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     source ${ROS_WORKSPACE}/devel/setup.bash
