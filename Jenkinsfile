@@ -22,6 +22,7 @@ pipeline {
                 dir(path: "${ROS_WORKSPACE}") {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
+                    cd src
                     ls
                     catkin build --no-status'''
                 }
