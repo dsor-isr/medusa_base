@@ -20,7 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir('${ROS_WORKSPACE}') {
+                dir("${ROS_WORKSPACE}") {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status -j12'''
@@ -35,7 +35,7 @@ pipeline {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     source ${ROS_WORKSPACE}/devel/setup.bash
-                    catkin test 
+                    catkin test --no-status -j12
                     '''
                 }
             }
