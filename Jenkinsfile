@@ -12,7 +12,7 @@ pipeline {
         ROS_WORKSPACE = "${HOME}/catkin_ws_medusa_base"
     }
     options {
-        checkoutToSubdirectory('${ROS_WORKSPACE}')
+        checkoutToSubdirectory(path: "${ROS_WORKSPACE}")
     }
     // Move all the packages to the default catkin workspace
     stages {
