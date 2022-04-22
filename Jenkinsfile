@@ -11,10 +11,10 @@ pipeline {
     environment {
         ROS_WORKSPACE = "${HOME}/catkin_ws"
     }
-    // Clone the packages in the default catkin workspace
     options {
         checkoutToSubdirectory('${ROS_WORKSPACE}')
     }
+    // Move all the packages to the default catkin workspace
     stages {
         // Build stage - compile the code
         stage('Build') {
@@ -23,8 +23,6 @@ pipeline {
                 dir(path: "${ROS_WORKSPACE}") {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
-                    cd src
-                    ls
                     catkin build --no-status'''
                 }
             }
@@ -33,9 +31,17 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                dir(path: "${ROS_WORKSPACE}") {
+                    sh '''#!/bin/bash
+                    source /opt/ros/noetic/setup.bash
+                    source ${ROS_WORKSPACE}/devel/setup.bash
+                    catkin test 
+                    '''
+                }
             }
         }
         // Generate Doxygen documentation
+        // only in release tags
         stage('Documentation') {
             when {tag "release-*"}
             steps{
