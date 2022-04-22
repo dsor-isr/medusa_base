@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo 'Build..'
                 dir(path: "${ROS_WORKSPACE}") {
+                    ls
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status'''
