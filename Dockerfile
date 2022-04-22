@@ -42,15 +42,16 @@ RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/install_req
 RUN /bin/bash install_requirements.sh
 RUN rm install_requirements.sh
 
-# ----------------------------------------------------
-# Get the script to use as entrypoint to the container
-# ----------------------------------------------------
-RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/medusa_docker/scripts/basic_entrypoint.sh
-
 # ----------------------------------
 # Change the User to the medusa user
 # ----------------------------------
 USER $USER
+
+# ----------------------------------------------------
+# Get the script to use as entrypoint to the container
+# ----------------------------------------------------
+RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/medusa_docker/scripts/basic_entrypoint.sh
+RUN chmod +x /home/medusa/basic_entrypoint.sh
 
 # ----------------------------------
 # Create a catkin workspace
@@ -73,4 +74,4 @@ EXPOSE 11311
 # -----------------------------------------------------------------
 # Setup the image entry point to be anything specified as arguments
 # -----------------------------------------------------------------
-ENTRYPOINT ["/basic_entrypoint.sh"]
+ENTRYPOINT ["/home/medusa/basic_entrypoint.sh"]

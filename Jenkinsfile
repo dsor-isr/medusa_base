@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa_base_jenkins:latest'
+            image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa_base_jenkins:v0.0.2'
             registryUrl 'https://harbor.dsor.isr.tecnico.ulisboa.pt'
             registryCredentialsId 'harbor-robot-token'
         }
