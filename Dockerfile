@@ -74,8 +74,4 @@ EXPOSE 11311
 # -----------------------------------------------------------------
 # Setup the image entry point to be anything specified as arguments
 # -----------------------------------------------------------------
-<<<<<<< HEAD
 ENTRYPOINT ["/home/medusa/basic_entrypoint.sh"]
-=======
-ENTRYPOINT ["/home/medusa/basic_entrypoint.sh"]
->>>>>>> fafe4d9afadb4c74046c970ffabceac50439e99d
