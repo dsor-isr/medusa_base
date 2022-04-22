@@ -1,6 +1,8 @@
 # Medusa Base
 This repository holds the Medusa Base code stack for underwater marine vehicles of DSOR-ISR (Dynamical Systems for Ocean Robotics - Institute for System Robotics). It contains the base of the control and navigation stack found in the MEDUSA class of marine vehicles.
 
+[![Build Status](https://ci.dsor.isr.tecnico.ulisboa.pt/buildStatus/icon?job=GitHub+DSOR%2Fmedusa_base%2Fmain)](https://ci.dsor.isr.tecnico.ulisboa.pt/job/GitHub%20DSOR/job/medusa_base/job/main/)
+
 ### Requirements
 This code stack was developed with ROS1 in mind. In order to use, you are required to have:
 - Ubuntu 20.04LTS (64-bit)
