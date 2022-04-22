@@ -10,34 +10,19 @@ pipeline {
     environment {
         ROS_WORKSPACE = "${HOME}/catkin_ws"
     }
+    // Clone the packages in the default catkin workspace
     options {
         checkoutToSubdirectory('${ROS_WORKSPACE}')
-        checkout([
-            $class: 'GitSCM', 
-            branches: [[name: '*']], 
-            doGenerateSubmoduleConfigurations: false, 
-            extensions: [[
-                $class: 'SubmoduleOption', 
-                disableSubmodules: false, 
-                parentCredentials: true, 
-                recursiveSubmodules: true, 
-                reference: '', 
-                trackingSubmodules: false]], 
-            submoduleCfg: [], 
-            userRemoteConfigs: [[
-                credentialsId: 'github_app_tokn', 
-                url: 'git@github.com:dsor-isr/medusa_base.git']]])
     }
     stages {
         // Build stage - compile the code
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir('catkin_ws/src') {
+                dir(path: "${ROS_WORKSPACE}") {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
-                    catkin build --no-status
-                '''
+                    catkin build --no-status'''
                 }
             }
         }
@@ -45,11 +30,11 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-
             }
         }
         // Generate Doxygen documentation
         stage('Documentation') {
+            when {tag "release-*"}
             steps{
                 echo 'Generating Doxygen Documentation..'
             }
