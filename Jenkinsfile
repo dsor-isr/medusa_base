@@ -11,17 +11,19 @@ pipeline {
     environment {
         ROS_WORKSPACE = "${HOME}/catkin_ws/src"
     }
-    //options {
-    //    checkoutToSubdirectory('${ROS_WORKSPACE}')
-    //}
+    options {
+        checkoutToSubdirectory('catkin_ws_medusa_base')
+    }
     // Move all the packages to the default catkin workspace
     stages {
         // Build stage - compile the code
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir('$WORKSPACE') {
+                dir(catkin_ws_medusa_base) {
                     sh '''#!/bin/bash
+                    ls
+                    pwd
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status'''
                 }
