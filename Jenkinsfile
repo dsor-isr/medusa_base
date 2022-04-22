@@ -12,7 +12,7 @@ pipeline {
         ROS_WORKSPACE = "catkin_ws"
     }
     options {
-        checkoutToSubdirectory('${ROS_WORKSPACE}/src')
+        checkoutToSubdirectory("${ROS_WORKSPACE}/src")
     }
     // Move all the packages to the default catkin workspace
     stages {
