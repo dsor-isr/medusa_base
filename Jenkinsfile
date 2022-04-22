@@ -32,9 +32,8 @@ pipeline {
             steps {
                 echo 'Testing..'
                 // Only test the code inside the medusa meta-packages (ignoring 3rd party code)
-                dir('catkin_ws') {
+                dir('catkin_ws/src/test') {
                     sh '''#!/bin/bash
-                    cd test
                     bash unit_test.sh
                     '''
                 }
