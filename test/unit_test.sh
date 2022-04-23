@@ -32,7 +32,7 @@ for package in $(catkin list); do
         roscd ${package}
 
         # Run the unit tests for that particular package
-        catkin test ${package} -p12
+        catkin test ${package} -p10
     fi
 done
 
