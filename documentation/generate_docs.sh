@@ -50,22 +50,26 @@ for package in $(catkin list); do
         package_path=${package_abs_path//$workspace_abs_path}
 
         # Remove the medusa_base if still in the path
-        #package_path=${package_path//\/medusa_base}
+        package_path=${package_path//\/medusa_base}
 
         # Check if the package has a doc directory
         if [[ -d "doc" ]] ; then
-
-            #echo "${package_abs_path}/doc"
-            echo "${documentation_directory}${package_path}"
+            # Create a symbolic link for the documentation folders inside the 
             mkdir -p ${documentation_directory}${package_path}
-            #ln -s "${package_abs_path}/doc" "${documentation_directory}${package_path}"
+            ln -s "${package_abs_path}/doc" "${documentation_directory}${package_path}" --force
         fi
 
-        # Create a symbolic link for the documentation folders inside the 
-        
-
+        # Check if the package has a doc directory
+        if [[ -d "docs" ]] ; then
+            # Create a symbolic link for the documentation folders inside the 
+            mkdir -p ${documentation_directory}${package_path}
+            ln -s "${package_abs_path}/docs" "${documentation_directory}${package_path}" --force
+        fiS
     fi
 done
 
 # Go back to the original directory
 cd ${curr_dir}
+
+# Run mkdocs to build the documentation
+mkdocs build
