@@ -23,7 +23,16 @@ curr_dir=$(pwd)
 
 # Get the catkin workspace absolute directory
 workspace_abs_path=$(roscd && cd src && pwd)
-echo $workspace_abs_path
+
+# Get the documentation directory (full path)
+documentation_directory=${workspace_abs_path}/documentation/docs
+
+# Check if the directory exists, otherwise create it
+if ! [[ -d documentation_directory ]]; then
+    mkdir -p ${documentation_directory}
+fi
+
+echo ${documentation_directory}
 
 # Iterate through list of ROS packages in the current workspace
 for package in $(catkin list); do
@@ -38,11 +47,18 @@ for package in $(catkin list); do
         package_abs_path=$(pwd)
 
         # Get the package path relative to the workspace directory
-        package_path=${package_abs_path//$workspace_abs_path/}
+        package_path=${package_abs_path//$workspace_abs_path}
+
+        # Remove the medusa_base if still in the path
+        #package_path=${package_path//\/medusa_base}
 
         # Check if the package has a doc directory
-        if [[ -d "doc" ]] || [[ -d "docs" ]]; then
-            echo "${package}"
+        if [[ -d "doc" ]] ; then
+
+            #echo "${package_abs_path}/doc"
+            echo "${documentation_directory}${package_path}"
+            mkdir -p ${documentation_directory}${package_path}
+            #ln -s "${package_abs_path}/doc" "${documentation_directory}${package_path}"
         fi
 
         # Create a symbolic link for the documentation folders inside the 
