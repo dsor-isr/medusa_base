@@ -1,0 +1,102 @@
+# Site metadata
+site_name: Medusa Documentation
+site_url: https://dsor-isr.github.io/medusa_base/
+repo_url: https://github.com/dsor-isr/medusa_base
+repo_name: DSOR-ISR repository
+site_author: The Medusa Team
+
+# Copyright
+copyright: Copyright &copy 2022 The Medusa Team, Dynamical Systems and Ocean Robotics Laboratory (ISR-Lisboa, LARSyS, Portugal)
+
+# Theme Setup
+theme:
+  name: material
+  language: en
+  logo: Images/icons/dsor.png
+  favicon: Images/icons/dsor.png
+  # Font for text and code
+  font:
+    text: Titillium Web
+    code: Roboto Mono
+  # Enabling light and dark mode
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  # Extra features
+  features:
+    # ---------------------
+    # Navigation
+    # ---------------------
+    # Search index survives navigation
+    - navigation.instant
+    # The URL in the address bar is automatically updated with scroll
+    - navigation.tracking
+    # Top address bar with sections
+    #- navigation.tabs
+    # Bold level 2 sections in left bar
+    - navigation.sections
+    # Allow to expand navigation in left bar
+    - navigation.expand
+    # Documents can be directly attached to sections (see https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages)
+    - navigation.indexes
+    # Automatic left bar scroll
+    - toc.follow
+    # Back to top button
+    - navigation.top
+    # ---------------------
+    # Search
+    # ---------------------
+    # Search suggestions in search button
+    - search.suggest
+    - search.highlight
+    # Allow sharing a search result
+    - search.share
+
+# Plugins Section
+plugins:
+  # ---------------------
+  # Search
+  # ---------------------
+  # Better search-bar plugin
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang: 
+        - en
+        - pt
+
+  # ------------------------------------------
+  # Support for tags in the begining of a page
+  # ------------------------------------------
+  - tags
+  
+
+# Cookies consent (Future proofing if we haver enable Google Analytics)
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+  # ---------------------
+  # Support page versions
+  # ---------------------
+  version:
+    provider: mike
+
+  # ---------------------
+  # Remove the 'made with mkdocs'
+  # ---------------------
+  generator: false
