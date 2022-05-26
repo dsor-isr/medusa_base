@@ -2,7 +2,7 @@
 site_name: Medusa Documentation
 site_url: https://dsor-isr.github.io/medusa_base/
 repo_url: https://github.com/dsor-isr/medusa_base
-repo_name: DSOR-ISR repository
+repo_name: medusa_base
 site_author: The Medusa Team
 
 # Copyright
@@ -64,6 +64,19 @@ theme:
 
 # Plugins Section
 plugins:
+  
+  # -----------------------------------------------------
+  # Used to have the documentation inside its own package
+  # -----------------------------------------------------
+  - monorepo
+
+  - macros:
+      # toggle to true if you are in CD/CI environment
+      on_error_fail: true
+
+  # Include markdown files inside other markdown files
+  - include-markdown
+
   # ---------------------
   # Search
   # ---------------------
@@ -82,14 +95,6 @@ plugins:
 
 # Cookies consent (Future proofing if we haver enable Google Analytics)
 extra:
-  consent:
-    title: Cookie consent
-    description: >- 
-      We use cookies to recognize your repeated visits and preferences, as well
-      as to measure the effectiveness of our documentation and whether users
-      find what they're searching for. With your consent, you're helping us to
-      make our documentation better.
-
   # ---------------------
   # Support page versions
   # ---------------------
@@ -100,3 +105,13 @@ extra:
   # Remove the 'made with mkdocs'
   # ---------------------
   generator: false
+
+# Configure the packages to show documentation of
+nav:
+  - Intro: 'index.md'
+  - Code of Conduct: 'CODE-OF-CONDUCT.md'
+  - Contributing: 'CONTRIBUTING.md'
+  - Changelog: 'CHANGELOG.md'
+  - Packages: 
+    - Path Following: '!include ./medusa_control/outer_loops_controllers/path_following/mkdocs.yml'
+  # Configure the packages to show documentation of
