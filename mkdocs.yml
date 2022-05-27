@@ -3,10 +3,12 @@ site_name: Medusa Documentation
 site_url: https://dsor-isr.github.io/medusa_base/
 repo_url: https://github.com/dsor-isr/medusa_base
 repo_name: medusa_base
+edit_uri: edit/dev_pipeline/docs/
 site_author: The Medusa Team
 
 # Copyright
-copyright: Copyright &copy 2022 The Medusa Team, Dynamical Systems and Ocean Robotics Laboratory (ISR-Lisboa, LARSyS, Portugal)
+copyright: Copyright &copy 2022 The Medusa Team, Dynamical Systems and Ocean Robotics
+  Laboratory (ISR-Lisboa, LARSyS, Portugal)
 
 # Theme Setup
 theme:
@@ -19,17 +21,17 @@ theme:
     text: Titillium Web
     code: Roboto Mono
   # Enabling light and dark mode
-  palette: 
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate 
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
   # Extra features
@@ -38,60 +40,59 @@ theme:
     # Navigation
     # ---------------------
     # Search index survives navigation
-    - navigation.instant
+  - navigation.instant
     # The URL in the address bar is automatically updated with scroll
-    - navigation.tracking
+  - navigation.tracking
     # Top address bar with sections
     #- navigation.tabs
     # Bold level 2 sections in left bar
-    - navigation.sections
+  - navigation.sections
     # Allow to expand navigation in left bar
-    - navigation.expand
+  - navigation.expand
     # Documents can be directly attached to sections (see https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages)
-    - navigation.indexes
+  - navigation.indexes
     # Automatic left bar scroll
-    - toc.follow
+  - toc.follow
     # Back to top button
-    - navigation.top
+  - navigation.top
     # ---------------------
     # Search
     # ---------------------
     # Search suggestions in search button
-    - search.suggest
-    - search.highlight
+  - search.suggest
+  - search.highlight
     # Allow sharing a search result
-    - search.share
+  - search.share
 
 # Plugins Section
 plugins:
-  
   # -----------------------------------------------------
   # Used to have the documentation inside its own package
   # -----------------------------------------------------
-  - monorepo
+- monorepo
 
-  - macros:
+- macros:
       # toggle to true if you are in CD/CI environment
-      on_error_fail: true
+    on_error_fail: true
 
   # Include markdown files inside other markdown files
-  - include-markdown
+- include-markdown
 
   # ---------------------
   # Search
   # ---------------------
   # Better search-bar plugin
-  - search:
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-      lang: 
-        - en
-        - pt
+- search:
+    separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+    lang:
+    - en
+    - pt
 
   # ------------------------------------------
   # Support for tags in the begining of a page
   # ------------------------------------------
-  - tags
-  
+- tags
+
 
 # Cookies consent (Future proofing if we haver enable Google Analytics)
 extra:
@@ -108,10 +109,50 @@ extra:
 
 # Configure the packages to show documentation of
 nav:
-  - Intro: 'index.md'
-  - Code of Conduct: 'CODE-OF-CONDUCT.md'
-  - Contributing: 'CONTRIBUTING.md'
-  - Changelog: 'CHANGELOG.md'
-  - Packages: 
-    - Path Following: '!include ./medusa_control/outer_loops_controllers/path_following/mkdocs.yml'
-  # Configure the packages to show documentation of
+- Intro: index.md
+- Code of Conduct: CODE-OF-CONDUCT.md
+- Contributing: CONTRIBUTING.md
+- Changelog: CHANGELOG.md
+- Packages documentation:
+  - Medusa Comms:
+    - Comms Msgs: '!include ./medusa_comms/comms_msgs/mkdocs.yml'
+    - Comms Radio:
+      - Cpf Gamma: '!include ./medusa_comms/comms_radio/cpf_gamma/mkdocs.yml'
+    - Comms Acoustic:
+      - Data Serializer: '!include ./medusa_comms/comms_acoustic/data_serializer/mkdocs.yml'
+      - Comms State Broadcaster: '!include ./medusa_comms/comms_acoustic/comms_state_broadcaster/mkdocs.yml'
+      - Evo Tools: '!include ./medusa_comms/comms_acoustic/evo_tools/mkdocs.yml'
+      - Interrogation Scheme: '!include ./medusa_comms/comms_acoustic/interrogation_scheme/mkdocs.yml'
+  - Dsor Utils:
+    - Dsor Msgs: '!include ./dsor_utils/dsor_msgs/mkdocs.yml'
+    - Dsor Utils: '!include ./dsor_utils/dsor_utils/mkdocs.yml'
+  - Medusa Sim:
+    - Auv Sim: '!include ./medusa_sim/auv_sim/mkdocs.yml'
+    - Sensor Sim: '!include ./medusa_sim/sensor_sim/mkdocs.yml'
+  - Medusa Addons:
+    - Http Server: '!include ./medusa_addons/http_server/mkdocs.yml'
+    - Libraries:
+      - Medusa Diagnostics Library: '!include ./medusa_addons/libraries/medusa_diagnostics_library/mkdocs.yml'
+      - Medusa Gimmicks Library: '!include ./medusa_addons/libraries/medusa_gimmicks_library/mkdocs.yml'
+    - Medusa Scripts: '!include ./medusa_addons/medusa_scripts/mkdocs.yml'
+    - Remote Controller: '!include ./medusa_addons/remote_controller/mkdocs.yml'
+    - Safety Feature: '!include ./medusa_addons/safety_feature/mkdocs.yml'
+    - Status Aggregator: '!include ./medusa_addons/status_aggregator/mkdocs.yml'
+    - Console Path Parser: '!include ./medusa_addons/console_path_parser/mkdocs.yml'
+  - Medusa Msgs: '!include ./medusa_msgs/mkdocs.yml'
+  - Medusa Bringup: '!include ./medusa_bringup/mkdocs.yml'
+  - Medusa Planning:
+    - Dsor Paths: '!include ./medusa_planning/dsor_paths/mkdocs.yml'
+  - Medusa Control:
+    - Outer Loops Controllers:
+      - Cpf Control: '!include ./medusa_control/outer_loops_controllers/cpf_control/mkdocs.yml'
+      - Waypoint: '!include ./medusa_control/outer_loops_controllers/waypoint/mkdocs.yml'
+      - Path Following: '!include ./medusa_control/outer_loops_controllers/path_following/mkdocs.yml'
+    - Inner Loops Controllers:
+      - Inner Loops Pid: '!include ./medusa_control/inner_loops_controllers/inner_loops_pid/mkdocs.yml'
+      - Open Loop Controller: '!include ./medusa_control/inner_loops_controllers/open_loop_controller/mkdocs.yml'
+    - Static Thruster Allocation: '!include ./medusa_control/static_thruster_allocation/mkdocs.yml'
+    - Vehicle Stabilizer: '!include ./medusa_control/vehicle_stabilizer/mkdocs.yml'
+  - Medusa Nav:
+    - Nav Tools: '!include ./medusa_nav/nav_tools/mkdocs.yml'
+    - Sensor Fusion: '!include ./medusa_nav/sensor_fusion/mkdocs.yml'

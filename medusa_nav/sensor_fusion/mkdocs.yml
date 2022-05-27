@@ -1,0 +1,4 @@
+site_name: Sensor Fusion - Kalman Filter
+
+nav:
+  - Reference: "README.md"
