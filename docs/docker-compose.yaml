@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  medusa_docs:
+    image: documentation:latest
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    volumes: 
+      - ./..:/home/medusa/catkin_ws/src
+    ports:
+      - 8000:8000
+    user: "${UID}:${GID}"
+    working_dir: /home/medusa/catkin_ws/src
+    command: ['python3', 'docs/scripts/generate_documentation.py']
