@@ -11,6 +11,9 @@ config_file = 'mkdocs.yml'
 # Name of the key inside the main mkdocs.yml file where the documentation for each package will be placed
 nav_key = 'Packages documentation'
 
+# File with packages to ignore when generating doxygen
+ignore_doxygen = 'docs/ignore_packages_doxygen.txt'
+
 # --------------------------------------------------
 # Search for packages with docs and mkdocs.yml files
 # --------------------------------------------------
@@ -66,6 +69,18 @@ for package_path in packages_with_docs:
         else:
             current_pkg.append({path_by_sub_strings[i]: '!include .' + package_path + '/mkdocs.yml'})
 
+# ----------------------------------------------------------------
+# Generate the doxygen for the packages with documentation enabled
+# ----------------------------------------------------------------
+
+# Read the packages to ignore when generating the doxygen
+doxy_ignore_packages = []
+with open(ignore_doxygen, 'r') as fp:
+    doxy_ignore_packages = fp.read().split('\n')
+
+doxy_packages = packages_with_docs
+output_doxygen_directory = 'docs/packages/api'
+
 # --------------------------------------------------------------------------------------
 # Update the main mkdocs.yml file with the list of packages and respective documentation
 # --------------------------------------------------------------------------------------
@@ -90,3 +105,9 @@ with open(config_file) as fp:
 # Update the mkdocs yaml file, mainting the comments and order of the yaml data
 with open(config_file, "w") as fp:
     yaml.dump(data, fp)
+
+
+# Build the documentation
+result = subprocess.run(['mkdocs', 'build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+print(result.stdout)
+print(result.stderr)
