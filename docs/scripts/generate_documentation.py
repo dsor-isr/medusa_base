@@ -39,7 +39,7 @@ for package_path in packages_with_docs:
     # Remove the empty string that is generated in the first item of the list
     path_by_sub_strings.pop(0)
 
-    print('Package path: ' + package_path)
+    print('Documentation detected in: ' + package_path)
     
     # Add the packages according to a sub-folder structure to the packages list
     current_pkg = packages

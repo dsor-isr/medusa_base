@@ -47,8 +47,6 @@ theme:
     #- navigation.tabs
     # Bold level 2 sections in left bar
   - navigation.sections
-    # Allow to expand navigation in left bar
-  - navigation.expand
     # Documents can be directly attached to sections (see https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages)
   - navigation.indexes
     # Automatic left bar scroll
@@ -110,9 +108,13 @@ extra:
 # Configure the packages to show documentation of
 nav:
 - Intro: index.md
-- Code of Conduct: CODE-OF-CONDUCT.md
-- Contributing: CONTRIBUTING.md
-- Changelog: CHANGELOG.md
+- Code of Conduct: pages/CODE-OF-CONDUCT.md
+- Contributing: pages/CONTRIBUTING.md
+- Changelog: pages/CHANGELOG.md
+# ---------------------------------------------------------------------------------------------------
+# This section is populted automatically by the CI tool when generating the automatic documentation
+# You can change it, to see how it looks localy, but it well get ovewritten by Jenkins when deploying
+# ---------------------------------------------------------------------------------------------------
 - Packages documentation:
   - Medusa Comms:
     - Comms Msgs: '!include ./medusa_comms/comms_msgs/mkdocs.yml'
