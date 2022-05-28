@@ -127,7 +127,7 @@ for package_path in packages_with_docs:
 
                 # 4. Generate the markdown files from the XML using doxybook
                 result = subprocess.run(
-                    ['doxybook2 --input ' + output_doxygen_directory + path_by_sub_strings_original + '/xml --output ' + output_markdown_dox_directory + path_by_sub_strings_original + ' --config-data \'{"copyImages": false, "foldersToGenerate": ["modules", "classes", "namespaces", "examples"], "baseUrl": "/api/markdown/", "indexInFolders": true, "linkSuffix": "/"}\''],
+                    ['doxybook2 --input ' + output_doxygen_directory + path_by_sub_strings_original + '/xml --output ' + output_markdown_dox_directory + path_by_sub_strings_original + ' --config-data \'{"copyImages": false, "foldersToGenerate": ["modules", "classes", "namespaces", "examples"], "baseUrl": "api/markdown' + path_by_sub_strings_original + '", "indexInFolders": true, "linkSuffix": "/"}\''],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
@@ -137,7 +137,7 @@ for package_path in packages_with_docs:
 
                 # 5. Check if class documentation was generated, and if so, add it to mkdocs
                 if os.path.exists('docs/' + path + '/Classes') and len(os.listdir('docs/' + path + '/Classes')) != 0:
-                    current_pkg.append({path_by_sub_strings[i]: [{'API':  [path + '/Classes/' + cl for cl in os.listdir('docs/' + path + '/Classes')]}]})
+                    current_pkg.append({path_by_sub_strings[i]: [{'Code API':  [path + '/Classes/' + cl for cl in os.listdir('docs/' + path + '/Classes')]}]})
 
 # --------------------------------------------------------------------------------------
 # Update the main mkdocs.yml file with the list of packages and respective documentation

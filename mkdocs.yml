@@ -68,7 +68,7 @@ plugins:
   # Used to have the documentation inside its own package
   # -----------------------------------------------------
 - monorepo
-
+- include_dir_to_nav
 - macros:
       # toggle to true if you are in CD/CI environment
     on_error_fail: true
@@ -107,10 +107,11 @@ extra:
 
 # Configure the packages to show documentation of
 nav:
-- Intro: index.md
-- Code of Conduct: pages/CODE-OF-CONDUCT.md
-- Contributing: pages/CONTRIBUTING.md
-- Changelog: pages/CHANGELOG.md
+- Introduction: index.md
+- Get Started:
+  - pages/get_started/Repository-Structure.md
+  - pages/get_started/Install-Guide.md
+  - pages/get_started/Build-the-Code.md
 # ---------------------------------------------------------------------------------------------------
 # This section is populted automatically by the CI tool when generating the automatic documentation
 # You can change it, to see how it looks localy, but it well get ovewritten by Jenkins when deploying
@@ -119,199 +120,206 @@ nav:
   - Medusa Comms:
     - Comms Radio:
       - Cpf Gamma:
-        - API:
-          - api/markdown/medusa_comms/comms_radio/cpf_gamma/index_classes.md
+        - Code API:
+          - api/markdown/medusa_comms/comms_radio/cpf_gamma/Classes/classcpf__gamma__ros_1_1CpfGammaClientNode_1_1CpfGammaClientNode.md
+          - api/markdown/medusa_comms/comms_radio/cpf_gamma/Classes/classcpf__gamma__ros_1_1CpfGammaServerNode_1_1CpfGammaServerNode.md
+          - api/markdown/medusa_comms/comms_radio/cpf_gamma/Classes/index_classes.md
     - Comms Acoustic:
       - Data Serializer:
-        - API:
+        - Code API:
           - api/markdown/medusa_comms/comms_acoustic/data_serializer/Classes/classdata__serializer__ros_1_1DataSerializerNode_1_1DataSerializerNode.md
           - api/markdown/medusa_comms/comms_acoustic/data_serializer/Classes/index_classes.md
       - Comms State Broadcaster:
-        - API:
+        - Code API:
           - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes/index_classes.md
           - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes/classUsblFix2State.md
-          - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes/classGnss2State.md
           - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes/classState2Gnss.md
+          - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes/classGnss2State.md
       - Evo Tools:
-        - API:
+        - Code API:
+          - api/markdown/medusa_comms/comms_acoustic/evo_tools/Classes/classpos2simmodem_1_1Pos2SimModem.md
           - api/markdown/medusa_comms/comms_acoustic/evo_tools/Classes/classDmacToMedusaNode.md
           - api/markdown/medusa_comms/comms_acoustic/evo_tools/Classes/index_classes.md
-          - api/markdown/medusa_comms/comms_acoustic/evo_tools/Classes/classpos2simmodem_1_1Pos2SimModem.md
       - Interrogation Scheme:
-        - API:
+        - Code API:
           - api/markdown/medusa_comms/comms_acoustic/interrogation_scheme/Classes/index_classes.md
-          - api/markdown/medusa_comms/comms_acoustic/interrogation_scheme/Classes/classAcousticPinger.md
           - api/markdown/medusa_comms/comms_acoustic/interrogation_scheme/Classes/classReplierNode.md
+          - api/markdown/medusa_comms/comms_acoustic/interrogation_scheme/Classes/classAcousticPinger.md
   - Dsor Utils:
     - Dsor Utils:
-      - API:
-        - api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classDigitalFilter.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1iterator.md
+      - Code API:
+        - api/markdown/dsor_utils/dsor_utils/Classes/index_classes.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1reverse__iterator.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter2.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classDifferentiator.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__iterator.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3DiffApprox.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter3.md
         - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay.md
         - api/markdown/dsor_utils/dsor_utils/Classes/classMovingAvarageFilter.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1reverse__iterator.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/index_classes.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__reverse__iterator.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter2.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classDifferentiator.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter3.md
         - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3MatchedZ.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3DiffApprox.md
-        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__iterator.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1iterator.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classDigitalFilter.md
+        - api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__reverse__iterator.md
   - Medusa Sim:
     - Auv Sim:
-      - API:
-        - api/markdown/medusa_sim/auv_sim/Classes/classSimulationNode.md
-        - api/markdown/medusa_sim/auv_sim/Classes/structState.md
+      - Code API:
         - api/markdown/medusa_sim/auv_sim/Classes/classAUV.md
+        - api/markdown/medusa_sim/auv_sim/Classes/structState.md
         - api/markdown/medusa_sim/auv_sim/Classes/index_classes.md
+        - api/markdown/medusa_sim/auv_sim/Classes/classSimulationNode.md
     - Sensor Sim:
-      - API:
-        - api/markdown/medusa_sim/sensor_sim/Classes/structSensorSim_1_1Sensor.md
+      - Code API:
         - api/markdown/medusa_sim/sensor_sim/Classes/index_classes.md
         - api/markdown/medusa_sim/sensor_sim/Classes/classSensorSim.md
+        - api/markdown/medusa_sim/sensor_sim/Classes/structSensorSim_1_1Sensor.md
   - Medusa Addons:
     - Http Server:
-      - API:
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1subscriber__Thread.md
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ROSTopicException.md
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ROSTopicIOException.md
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1Topic__Struct.md
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1HTTP__Handler.md
-        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1CallbackEcho.md
-        - api/markdown/medusa_addons/http_server/Classes/index_classes.md
+      - Code API:
         - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ERROR__Struct.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1CallbackEcho.md
         - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ThreadedHTTPServer.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1HTTP__Handler.md
+        - api/markdown/medusa_addons/http_server/Classes/index_classes.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ROSTopicException.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1Topic__Struct.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1ROSTopicIOException.md
+        - api/markdown/medusa_addons/http_server/Classes/classconsole_1_1subscriber__Thread.md
     - Libraries:
       - Medusa Diagnostics Library:
-        - API:
+        - Code API:
           - api/markdown/medusa_addons/libraries/medusa_diagnostics_library/Classes/index_classes.md
       - Medusa Gimmicks Library:
-        - API:
+        - Code API:
           - api/markdown/medusa_addons/libraries/medusa_gimmicks_library/Classes/index_classes.md
     - Medusa Scripts: '!include ./medusa_addons/medusa_scripts/mkdocs.yml'
     - Remote Controller:
-      - API:
-        - api/markdown/medusa_addons/remote_controller/Classes/index_classes.md
+      - Code API:
         - api/markdown/medusa_addons/remote_controller/Classes/classRemoteControllerNode_1_1RemoteControllerNode.md
+        - api/markdown/medusa_addons/remote_controller/Classes/index_classes.md
     - Safety Feature:
-      - API:
+      - Code API:
         - api/markdown/medusa_addons/safety_feature/Classes/index_classes.md
     - Status Aggregator:
-      - API:
+      - Code API:
         - api/markdown/medusa_addons/status_aggregator/Classes/index_classes.md
         - api/markdown/medusa_addons/status_aggregator/Classes/classdiagnostic__aggregator_1_1StatusAnalyzer.md
     - Console Path Parser:
-      - API:
-        - api/markdown/medusa_addons/console_path_parser/Classes/classFormation.md
-        - api/markdown/medusa_addons/console_path_parser/Classes/index_classes.md
-        - api/markdown/medusa_addons/console_path_parser/Classes/classConsolePathParserNode.md
+      - Code API:
         - api/markdown/medusa_addons/console_path_parser/Classes/classSection.md
+        - api/markdown/medusa_addons/console_path_parser/Classes/classFormation.md
+        - api/markdown/medusa_addons/console_path_parser/Classes/classConsolePathParserNode.md
+        - api/markdown/medusa_addons/console_path_parser/Classes/index_classes.md
   - Medusa Bringup:
-    - API:
-      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup.md
+    - Code API:
+      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode.md
+      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessNotFound.md
       - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process.md
       - api/markdown/medusa_bringup/Classes/index_classes.md
-      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode.md
       - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType.md
-      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessNotFound.md
+      - api/markdown/medusa_bringup/Classes/classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup.md
   - Medusa Planning:
     - Dsor Paths:
-      - API:
-        - api/markdown/medusa_planning/dsor_paths/Classes/index_classes.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classPathSection.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classPolynomial5.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classConstVehicleSpeed.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classBernoulli.md
+      - Code API:
         - api/markdown/medusa_planning/dsor_paths/Classes/classCircle2D.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classPolynomial5.md
         - api/markdown/medusa_planning/dsor_paths/Classes/classConstRabbitSpeed.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classLine.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classPath.md
         - api/markdown/medusa_planning/dsor_paths/Classes/classArc2D.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classSinusoid2D.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classPolinomial5.md
-        - api/markdown/medusa_planning/dsor_paths/Classes/classPathNode.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classPathSection.md
         - api/markdown/medusa_planning/dsor_paths/Classes/classSpeed.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classLine.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classConstVehicleSpeed.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classPath.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classSinusoid2D.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classPathNode.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classPolinomial5.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/index_classes.md
+        - api/markdown/medusa_planning/dsor_paths/Classes/classBernoulli.md
   - Medusa Control:
     - Outer Loops Controllers:
       - Cpf Control:
-        - API:
+        - Code API:
           - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/index_classes.md
-          - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/structVehicleInfo.md
-          - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/classEventTriggered.md
           - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/classCPFControl.md
+          - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/classEventTriggered.md
           - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/classCpfNode.md
+          - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes/structVehicleInfo.md
       - Waypoint:
-        - API:
+        - Code API:
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/structOutput__t.md
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWpHeading.md
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/index_classes.md
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWaypointController.md
           - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWaypointNode.md
           - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/structWPref__t.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWpLoose.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/structOutput__t.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/index_classes.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/structVehicle__t.md
           - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWpStandard.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWaypointController.md
-          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWpHeading.md
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/structVehicle__t.md
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes/classWpLoose.md
       - Path Following:
-        - API:
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/index_classes.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classRomulo.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classFossen.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/structPathState.md
+        - Code API:
           - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classPramod.md
           - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/structVehicleState.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classBrevik.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classLapierre.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classAguiar.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classPathFollowing.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classMarcelo.md
-          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classSamson.md
           - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classRelativeHeading.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classFossen.md
           - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classPathFollowingNode.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classRomulo.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classPathFollowing.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classAguiar.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classBrevik.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classSamson.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/structPathState.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classMarcelo.md
           - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/structPFollowingDebug.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/classLapierre.md
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes/index_classes.md
     - Inner Loops Controllers:
       - Inner Loops Pid:
-        - API:
-          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classPID__Controller.md
-          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classRosController.md
+        - Code API:
           - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classInnerloops.md
-          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/index_classes.md
           - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classSafeties.md
+          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classRosController.md
+          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/index_classes.md
+          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes/classPID__Controller.md
       - Open Loop Controller:
-        - API:
-          - api/markdown/medusa_control/inner_loops_controllers/open_loop_controller/Classes/classsrc_1_1open__loop__controller_1_1OpenLoopNode_1_1OpenLoopNode.md
+        - Code API:
           - api/markdown/medusa_control/inner_loops_controllers/open_loop_controller/Classes/index_classes.md
+          - api/markdown/medusa_control/inner_loops_controllers/open_loop_controller/Classes/classsrc_1_1open__loop__controller_1_1OpenLoopNode_1_1OpenLoopNode.md
     - Static Thruster Allocation:
-      - API:
-        - api/markdown/medusa_control/static_thruster_allocation/Classes/classThrustAllocation.md
+      - Code API:
         - api/markdown/medusa_control/static_thruster_allocation/Classes/index_classes.md
+        - api/markdown/medusa_control/static_thruster_allocation/Classes/classThrustAllocation.md
     - Vehicle Stabilizer:
-      - API:
+      - Code API:
         - api/markdown/medusa_control/vehicle_stabilizer/Classes/index_classes.md
         - api/markdown/medusa_control/vehicle_stabilizer/Classes/classVehicleStabilizerNode.md
   - Medusa Nav:
     - Nav Tools:
-      - API:
-        - api/markdown/medusa_nav/nav_tools/Classes/classAuvState2mState.md
-        - api/markdown/medusa_nav/nav_tools/Classes/classUsblFix2Pos.md
-        - api/markdown/medusa_nav/nav_tools/Classes/classLowPassFilter.md
-        - api/markdown/medusa_nav/nav_tools/Classes/classGnss2Utm.md
+      - Code API:
         - api/markdown/medusa_nav/nav_tools/Classes/classGnss2UtmOutlier.md
         - api/markdown/medusa_nav/nav_tools/Classes/classSmoothState.md
+        - api/markdown/medusa_nav/nav_tools/Classes/classLowPassFilter.md
+        - api/markdown/medusa_nav/nav_tools/Classes/classGnss2Utm.md
+        - api/markdown/medusa_nav/nav_tools/Classes/classAuvState2mState.md
         - api/markdown/medusa_nav/nav_tools/Classes/index_classes.md
+        - api/markdown/medusa_nav/nav_tools/Classes/classUsblFix2Pos.md
     - Sensor Fusion:
-      - API:
-        - api/markdown/medusa_nav/sensor_fusion/Classes/classDeadReckoning.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/classFiltersNode.md
+      - Code API:
+        - api/markdown/medusa_nav/sensor_fusion/Classes/classHorizontalFilter.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/structRotationalFilter_1_1config.md
         - api/markdown/medusa_nav/sensor_fusion/Classes/classVerticalFilter.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/index_classes.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/classRotationalFilter.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/structHorizontalFilter_1_1config.md
         - api/markdown/medusa_nav/sensor_fusion/Classes/structVerticalFilter_1_1config.md
         - api/markdown/medusa_nav/sensor_fusion/Classes/structFilterGimmicks_1_1predicate__frame__id.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/structRotationalFilter_1_1config.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/classDeadReckoning.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/classRotationalFilter.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/classFiltersNode.md
+        - api/markdown/medusa_nav/sensor_fusion/Classes/index_classes.md
         - api/markdown/medusa_nav/sensor_fusion/Classes/structFilterGimmicks_1_1measurement.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/structHorizontalFilter_1_1config.md
-        - api/markdown/medusa_nav/sensor_fusion/Classes/classHorizontalFilter.md
+- Contributing:
+  - Code of Conduct: pages/CODE-OF-CONDUCT.md
+  - Contributing: pages/CONTRIBUTING.md
+  - Changelog: pages/CHANGELOG.md
+  - Acknowledgments: pages/Acknowledgments.md
