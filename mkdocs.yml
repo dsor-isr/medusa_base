@@ -90,6 +90,9 @@ plugins:
   # Support for tags in the begining of a page
   # ------------------------------------------
 - tags
+- git-revision-date-localized:
+    type: date
+    fallback_to_build_date: true
 
 
 # Cookies consent (Future proofing if we haver enable Google Analytics)

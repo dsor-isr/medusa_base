@@ -36,9 +36,13 @@ with open(ignore_doxygen, 'r') as fp:
 # --------------------------------------------------------------------------------
 # Perform catkin build to guarantee that all packages are indexed in the workspace
 # --------------------------------------------------------------------------------
-#result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-#print(result.stdout)
-#print(result.stderr)
+result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+print(result.stdout)
+print(result.stderr)
+
+# Check if there was any error, and if so, just return the same error code
+if result.returncode != 0:
+    sys.exit(result.returncode)
 
 # --------------------------------------------------
 # Search for packages with docs and mkdocs.yml files
@@ -199,3 +203,7 @@ result = subprocess.run(
                     shell=True)
 print(result.stdout)
 print(result.stderr)
+
+# Check if there was any error, and if so, just return the same error code
+if result.returncode != 0:
+    sys.exit(result.returncode)
