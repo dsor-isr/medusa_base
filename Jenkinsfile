@@ -50,13 +50,15 @@ pipeline {
             }
             steps{
                 echo 'Generating Doxygen Documentation..'
-                withCredentials([GitUsernamePassword(
-                    credentialsId: 'github_app_tokn',
-                    gitToolName: 'Default')])
                 dir('catkin_ws/src') {
-                    sh '''#!/bin/bash
-                    python3 docs/scripts/generate_documentation.py deploy
-                    '''
+                    withCredentials([GitUsernamePassword(
+                    credentialsId: 'github_app_tokn',
+                    gitToolName: 'Default')]) 
+                    {
+                        sh '''#!/bin/bash
+                        python3 docs/scripts/generate_documentation.py deploy
+                        '''
+                    }
                 }
             }
         }
