@@ -3,7 +3,8 @@ import shutil
 import subprocess
 import ruamel.yaml
 
-shutil.rmtree('docs/api/packages', ignore_errors=True)
+# Cleanup the directory where the doxygen output will be stored
+shutil.rmtree('docs/api', ignore_errors=True)
 
 # Script which dynamically searches for the packages that exist in the workspace and that have documentation (and are not excluded from the search)
 script_name = 'docs/scripts/get_packages_with_docs.sh'
@@ -127,7 +128,11 @@ for package_path in packages_with_docs:
 
                 # 4. Generate the markdown files from the XML using doxybook
                 result = subprocess.run(
-                    ['doxybook2 --input ' + output_doxygen_directory + path_by_sub_strings_original + '/xml --output ' + output_markdown_dox_directory + path_by_sub_strings_original + ' --config-data \'{"copyImages": false, "foldersToGenerate": ["modules", "classes", "namespaces", "examples"], "baseUrl": "api/markdown' + path_by_sub_strings_original + '", "indexInFolders": true, "linkSuffix": "/"}\''],
+                    ['doxybook2 \
+                    --input ' + output_doxygen_directory + path_by_sub_strings_original + '/xml \
+                    --output ' + output_markdown_dox_directory + path_by_sub_strings_original + ' \
+                    --config docs/scripts/doxybook_conf.json \
+                    --config-data \'{"baseUrl": ""}\''],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
@@ -135,10 +140,27 @@ for package_path in packages_with_docs:
                 
                 path = output_markdown_dox_relative + package_path
 
-                # 5. Check if class documentation was generated, and if so, add it to mkdocs
-                if os.path.exists('docs/' + path + '/Classes') and len(os.listdir('docs/' + path + '/Classes')) != 0:
-                    current_pkg.append({path_by_sub_strings[i]: [{'Code API':  [path + '/Classes/' + cl for cl in os.listdir('docs/' + path + '/Classes')]}]})
+                # Add an empty dictionary to the package
+                current_pkg.append({path_by_sub_strings[i]: []})
 
+                # 5. Add the manual documentation from the package that inside contains the docs folder and the mkdocs.yml file
+                current_pkg[-1][path_by_sub_strings[i]].append({'Documentation': '!include .' + package_path + '/mkdocs.yml'})
+
+                # 5. Check if class documentation was generated, and if so, add it to mkdocs
+                if os.path.exists('docs/' + path + '/Classes') and (len(os.listdir('docs/' + path + '/Classes')) != 0 and len(os.listdir('docs/' + path + '/Classes')) != 1):                
+                    current_pkg[-1][path_by_sub_strings[i]].append({'Classes': [path + '/Classes']})
+
+                # 5. Check if class documentation was generated, and if so, add it to mkdocs
+                if os.path.exists('docs/' + path + '/Namespaces') and (len(os.listdir('docs/' + path + '/Namespaces')) != 0 and len(os.listdir('docs/' + path + '/Namespaces')) != 1):                
+                    current_pkg[-1][path_by_sub_strings[i]].append({'Namespaces': [path + '/Namespaces']})
+                
+                if os.path.exists('docs/' + path + '/Modules') and (len(os.listdir('docs/' + path + '/Modules')) != 0 and len(os.listdir('docs/' + path + '/Modules')) != 1):                
+                    current_pkg[-1][path_by_sub_strings[i]].append({'Modules': [path + '/Modules']})
+                
+                if os.path.exists('docs/' + path + '/Examples') and (len(os.listdir('docs/' + path + '/Examples')) != 0 and len(os.listdir('docs/' + path + '/Examples')) != 1):                
+                    current_pkg[-1][path_by_sub_strings[i]].append({'Examples': [path + '/Examples']})
+        
+                    
 # --------------------------------------------------------------------------------------
 # Update the main mkdocs.yml file with the list of packages and respective documentation
 # --------------------------------------------------------------------------------------
@@ -163,6 +185,18 @@ with open(config_file) as fp:
 # Update the mkdocs yaml file, mainting the comments and order of the yaml data
 with open(config_file, "w") as fp:
     yaml.dump(data, fp)
+
+# ------------------------------
+# Build the website using mkdocs
+# ------------------------------
+result = subprocess.run(
+                    ['mkdocs build'],
+                    stdout=subprocess.PIPE, 
+                    stderr=subprocess.PIPE, 
+                    text=True,
+                    shell=True)
+print(result.stdout)
+print(result.stderr)
 
 sys.exit(0)
 # ----------------------------------------------------------------
