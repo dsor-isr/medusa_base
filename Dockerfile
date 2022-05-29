@@ -46,9 +46,13 @@ RUN apt-get update && \
 # -------------------------------
 # Install the Medusa requirements
 # -------------------------------
-RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/install_requirements.sh 
+COPY install_requirements.sh install_requirements.sh
 RUN /bin/bash install_requirements.sh
 RUN rm install_requirements.sh
+
+#RUN wget https://raw.githubusercontent.com/dsor-isr/medusa_base/main/install_requirements.sh 
+#RUN /bin/bash install_requirements.sh
+#RUN rm install_requirements.sh
 
 # -------------------------------------------------
 # Install the documentation generation requrirement

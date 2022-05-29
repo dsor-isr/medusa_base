@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa_base_jenkins:v0.0.3'
+            image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa:latest'
             registryUrl 'https://harbor.dsor.isr.tecnico.ulisboa.pt'
             registryCredentialsId 'harbor-robot-token'
             args '--entrypoint=""'
@@ -42,9 +42,14 @@ pipeline {
         // Generate Doxygen documentation
         // only in release tags
         stage('Documentation') {
-            when {tag "release-*"}
+            when {env.BRANCH_NAME == "dev_pipeline"}
             steps{
                 echo 'Generating Doxygen Documentation..'
+                dir('catkin_ws/src') {
+                    sh '''#!/bin/bash
+                    python3 docs/scripts/generate_documentation.py
+                    '''
+                }
             }
         }
     }
