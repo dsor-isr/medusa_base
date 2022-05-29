@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="StatusAnalyzer_8h" kind="file" language="C++">
+    <compoundname>StatusAnalyzer.h</compoundname>
+    <includes local="no">diagnostic_aggregator/analyzer_group.h</includes>
+    <includes local="no">std_msgs/Int8.h</includes>
+    <includes local="no">std_msgs/String.h</includes>
+    <includes local="no">std_srvs/Trigger.h</includes>
+    <includedby refid="StatusAnalyzer_8cpp" local="yes">src/status_aggregator_ros/StatusAnalyzer.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/status_aggregator_ros/StatusAnalyzer.h</label>
+        <link refid="StatusAnalyzer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>diagnostic_aggregator/analyzer_group.h</label>
+      </node>
+      <node id="4">
+        <label>std_msgs/String.h</label>
+      </node>
+      <node id="5">
+        <label>std_srvs/Trigger.h</label>
+      </node>
+      <node id="3">
+        <label>std_msgs/Int8.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classdiagnostic__aggregator_1_1StatusAnalyzer" prot="public">diagnostic_aggregator::StatusAnalyzer</innerclass>
+    <innernamespace refid="namespacediagnostic__aggregator">diagnostic_aggregator</innernamespace>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="StatusAnalyzer_8h_1a19f337f6b249cf764eaa0fa25ec27696" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* status_str[]</definition>
+        <argsstring>[]</argsstring>
+        <name>status_str</name>
+        <initializer>= { &quot;Running&quot;, &quot;Warn - Check messages&quot;, &quot;Error - Something is wrong ABORT&quot;, &quot;Not Running&quot; }</initializer>
+        <briefdescription>
+<para>Status levels: 0-Running, 1-Warn, 2-Error, 3-Not Running. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/status_aggregator_ros/StatusAnalyzer.h" line="19" column="19" bodyfile="include/status_aggregator_ros/StatusAnalyzer.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">Developers:<sp/>DSOR<sp/>Team<sp/>-&gt;<sp/>@isr.ist.pt<sp/>Instituto<sp/>Superior<sp/>Tecnico</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">Description:<sp/>Please<sp/>check<sp/>the<sp/>documentation<sp/>of<sp/>this<sp/>package<sp/>for<sp/>more<sp/>info.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment">Don&apos;t<sp/>you<sp/>miss<sp/>the<sp/>danger</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STATUS_ANALYZER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATUS_ANALYZER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;diagnostic_aggregator/analyzer_group.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Int8.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/String.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_srvs/Trigger.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*status_str[]<sp/>=<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;Running&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Warn<sp/>-<sp/>Check<sp/>messages&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>-<sp/>Something<sp/>is<sp/>wrong<sp/>ABORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Not<sp/>Running&quot;</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="namespacediagnostic__aggregator" refkind="compound"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacediagnostic__aggregator" kindref="compound">diagnostic_aggregator</ref><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classdiagnostic__aggregator_1_1StatusAnalyzer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classdiagnostic__aggregator_1_1StatusAnalyzer" kindref="compound">StatusAnalyzer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>AnalyzerGroup<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1ac77bb955fd467ed9b07651b286b125b4" kindref="member">StatusAnalyzer</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1a4ad61f83ef5aea2f78c8eabbf6318f7a" kindref="member">init</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>base_path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ros::NodeHandle<sp/>&amp;n)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::vector&lt;diagnostic_msgs::DiagnosticStatusPtr&gt;<sp/><ref refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1ac1cff5fcd4f980b452b34c6b9ef18bf0" kindref="member">report</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>ros::Publisher<sp/>status_publisher_;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>int8_t<sp/>level_;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>ros::ServiceServer<sp/>service_print_;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>statusPrintService(std_srvs::Trigger::Request<sp/>&amp;req,<sp/>std_srvs::Trigger::Response<sp/>&amp;res);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>diagnostic_aggregator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/>//<sp/>STATUS_ANALYZER_H</highlight></codeline>
+    </programlisting>
+    <location file="include/status_aggregator_ros/StatusAnalyzer.h"/>
+  </compounddef>
+</doxygen>

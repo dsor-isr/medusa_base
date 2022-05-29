@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacediagnostic__aggregator" kind="namespace" language="C++">
+    <compoundname>diagnostic_aggregator</compoundname>
+    <innerclass refid="classdiagnostic__aggregator_1_1StatusAnalyzer" prot="public">diagnostic_aggregator::StatusAnalyzer</innerclass>
+    <briefdescription>
+<para>Construct a new pluginlib export class object. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/status_aggregator_ros/StatusAnalyzer.h" line="25" column="31"/>
+  </compounddef>
+</doxygen>

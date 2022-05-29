@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="classdiagnostic__aggregator_1_1StatusAnalyzer" kind="class"><name>diagnostic_aggregator::StatusAnalyzer</name>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1a356f177134c6ef73ffae6d43f577f464" kind="variable"><name>status_publisher_</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1a902ddabca3ab72b6400c9df5bd451510" kind="variable"><name>level_</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1a74ef7cc74853a2f9cc7232d063fb345a" kind="variable"><name>service_print_</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1ac77bb955fd467ed9b07651b286b125b4" kind="function"><name>StatusAnalyzer</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1a4ad61f83ef5aea2f78c8eabbf6318f7a" kind="function"><name>init</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1ac1cff5fcd4f980b452b34c6b9ef18bf0" kind="function"><name>report</name></member>
+    <member refid="classdiagnostic__aggregator_1_1StatusAnalyzer_1ad3fdfb61e7b33f9bb5197a1df2a6704e" kind="function"><name>statusPrintService</name></member>
+  </compound>
+  <compound refid="namespacediagnostic__aggregator" kind="namespace"><name>diagnostic_aggregator</name>
+  </compound>
+  <compound refid="StatusAnalyzer_8h" kind="file"><name>StatusAnalyzer.h</name>
+    <member refid="StatusAnalyzer_8h_1a19f337f6b249cf764eaa0fa25ec27696" kind="variable"><name>status_str</name></member>
+  </compound>
+  <compound refid="StatusAnalyzer_8cpp" kind="file"><name>StatusAnalyzer.cpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_1884b180563f2621eaf2925f18a5e45a" kind="dir"><name>src/status_aggregator_ros</name>
+  </compound>
+  <compound refid="dir_35e521b408736669a871ea84a1192d1c" kind="dir"><name>include/status_aggregator_ros</name>
+  </compound>
+</doxygenindex>

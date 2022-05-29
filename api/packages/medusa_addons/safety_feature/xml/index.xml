@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="Client_8c" kind="file"><name>Client.c</name>
+    <member refid="Client_8c_1aa47fa1d9ffcd981f4e1642e84e79c90d" kind="define"><name>DEFAULT_COUNT</name></member>
+    <member refid="Client_8c_1a16b710f592bf8f7900666392adc444dc" kind="define"><name>DEFAULT_PORT</name></member>
+    <member refid="Client_8c_1aed2c05db05cd0ca020863c12d94a3bb4" kind="define"><name>DEFAULT_BUFFER</name></member>
+    <member refid="Client_8c_1ac46c02ddaeb52d59401da1ee1f504c3d" kind="define"><name>DEFAULT_MESSAGE</name></member>
+    <member refid="Client_8c_1a16b710f592bf8f7900666392adc444dc" kind="define"><name>DEFAULT_PORT</name></member>
+    <member refid="Client_8c_1aed2c05db05cd0ca020863c12d94a3bb4" kind="define"><name>DEFAULT_BUFFER</name></member>
+    <member refid="Client_8c_1a903e4859e0bf7d1164f82701ba3136ef" kind="variable"><name>szServer</name></member>
+    <member refid="Client_8c_1aebbedbe9363c96fa90a04e046251e9ce" kind="variable"><name>szMessage</name></member>
+    <member refid="Client_8c_1a5a21f35230dd7ae3c594ff1ad4aa9f99" kind="variable"><name>iPort</name></member>
+    <member refid="Client_8c_1a7c9a9ea505dba4c3297498a2f4f81748" kind="variable"><name>dwCount</name></member>
+    <member refid="Client_8c_1ab424766c2356e162ba0b574a0337b103" kind="variable"><name>bSendOnly</name></member>
+    <member refid="Client_8c_1a8a844a7524bfdb52cc398474eaf01e22" kind="variable"><name>bInterface</name></member>
+    <member refid="Client_8c_1a5060d4306362f1b5123a4ded19920a0c" kind="variable"><name>bRecvOnly</name></member>
+    <member refid="Client_8c_1a8a53ea85ea615fc229a7b644c17f357e" kind="variable"><name>szAddress</name></member>
+    <member refid="Client_8c_1a2ef30c42cbc289d899a8be5d2d8f77d0" kind="function"><name>usage</name></member>
+    <member refid="Client_8c_1aaa0a1cdf02f737389b643f18ea6efe93" kind="function"><name>ValidateArgs</name></member>
+    <member refid="Client_8c_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+    <member refid="Client_8c_1aa01232bd21a049b5c18208be99d436fb" kind="function"><name>ClientThread</name></member>
+  </compound>
+  <compound refid="clientLin_8c" kind="file"><name>clientLin.c</name>
+    <member refid="clientLin_8c_1a4866b2d37ffc80c5ba705d3fcd1e0ecf" kind="function"><name>error</name></member>
+    <member refid="clientLin_8c_1ac24723de98f1f8694b7e67e27c7f0d95" kind="function"><name>Connect2Server</name></member>
+    <member refid="clientLin_8c_1a840291bc02cba5474a4cb46a9b9566fe" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="SafetyFeatureCLT_8c" kind="file"><name>SafetyFeatureCLT.c</name>
+    <member refid="SafetyFeatureCLT_8c_1a4866b2d37ffc80c5ba705d3fcd1e0ecf" kind="function"><name>error</name></member>
+    <member refid="SafetyFeatureCLT_8c_1ac24723de98f1f8694b7e67e27c7f0d95" kind="function"><name>Connect2Server</name></member>
+    <member refid="SafetyFeatureCLT_8c_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="Safety__Feature_8cpp" kind="file"><name>Safety_Feature.cpp</name>
+    <member refid="Safety__Feature_8cpp_1a6dd19d5f3c4d95cf681ec6cfefc08371" kind="variable"><name>g_request_shutdown</name></member>
+    <member refid="Safety__Feature_8cpp_1a15665854e91264f31f047af3958dfc84" kind="variable"><name>id_sck</name></member>
+    <member refid="Safety__Feature_8cpp_1a6b2d9126b78342424490e063f4a4c626" kind="variable"><name>sckClient</name></member>
+    <member refid="Safety__Feature_8cpp_1a61644cce33b779a1c3822d37fb54a164" kind="variable"><name>SAFETY_PORT</name></member>
+    <member refid="Safety__Feature_8cpp_1ad3ea63510e9013bd2cf450b74efbce9e" kind="variable"><name>RATE</name></member>
+    <member refid="Safety__Feature_8cpp_1a4a150884e4ea36350f1bf057db3bd841" kind="variable"><name>Client</name></member>
+    <member refid="Safety__Feature_8cpp_1acbb2daa3537b8ecc8eb4fca0d9ba5e74" kind="variable"><name>RELAY_WIFI</name></member>
+    <member refid="Safety__Feature_8cpp_1a2a87f4f076fc161032610fb88d54e75e" kind="function"><name>mySigIntHandler</name></member>
+    <member refid="Safety__Feature_8cpp_1a5b16408c97b92243fbc622a49f720ba0" kind="function"><name>MakeServer</name></member>
+    <member refid="Safety__Feature_8cpp_1a31d080f16dca3eae2198ced2bb4279b8" kind="function"><name>AcceptClient</name></member>
+    <member refid="Safety__Feature_8cpp_1aec381dd07bcce6bb337ec4c4b28dd72e" kind="function"><name>ReadACK</name></member>
+    <member refid="Safety__Feature_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="wifi__acoustic__safety_8cpp" kind="file"><name>wifi_acoustic_safety.cpp</name>
+    <member refid="wifi__acoustic__safety_8cpp_1ad3ea63510e9013bd2cf450b74efbce9e" kind="variable"><name>RATE</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a9664c8a0bc2b679c3b4758d83b7dde28" kind="variable"><name>watchdog_time</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1aa9ffc30a503142039fb0e409170004f9" kind="variable"><name>wifi_timeout</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1aeb69578d78867400381f1c339a751ef9" kind="variable"><name>lastDepth</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1ae6047baddd47ffa61caa800a8fc22200" kind="variable"><name>surface_vehicle</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a3eb027cdfda48db01fd652b6faa0b2b3" kind="variable"><name>vehicle_name</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a282cd0a1b76cbff87edcb2c9187dc848" kind="variable"><name>lastRoles</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a034f45de4823a42d3e9556615c3dbc58" kind="variable"><name>lastping</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a363556b0e7a51bfc28e5be45519a909c" kind="variable"><name>lastRoles_time</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a429073b3109f0ba838d8821e6476d7eb" kind="variable"><name>acoustic_abort</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a15665854e91264f31f047af3958dfc84" kind="variable"><name>id_sck</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a6b2d9126b78342424490e063f4a4c626" kind="variable"><name>sckClient</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a61644cce33b779a1c3822d37fb54a164" kind="variable"><name>SAFETY_PORT</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a4a150884e4ea36350f1bf057db3bd841" kind="variable"><name>Client</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1acbb2daa3537b8ecc8eb4fca0d9ba5e74" kind="variable"><name>RELAY_WIFI</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1ae688ce221de0de53500e130618d12b75" kind="variable"><name>master</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a19238a6905e03f2baf05c0d43f6b4188" kind="variable"><name>read_fds</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a582ad83322acbc5ec4bad57b78cb6d8d" kind="variable"><name>fdmax</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a6dd19d5f3c4d95cf681ec6cfefc08371" kind="variable"><name>g_request_shutdown</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a2a87f4f076fc161032610fb88d54e75e" kind="function"><name>mySigIntHandler</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a5b16408c97b92243fbc622a49f720ba0" kind="function"><name>MakeServer</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a31d080f16dca3eae2198ced2bb4279b8" kind="function"><name>AcceptClient</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1aec381dd07bcce6bb337ec4c4b28dd72e" kind="function"><name>ReadACK</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a975c95cc68167f0a7ceb83be7eaddb30" kind="function"><name>range_Callback</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a11e0dce807777bdd5cdabfe82b77bfff" kind="function"><name>ownOdomCallback</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a86c3098f0beb19e1fec0dabb50dcad02" kind="function"><name>safetyabort_Callback</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a68e2667feeef1d615a564c4c44d68dac" kind="function"><name>surfacename_Callback</name></member>
+    <member refid="wifi__acoustic__safety_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_133b3cdd880ca9e91a51b18f00995eeb" kind="dir"><name>src/Client</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

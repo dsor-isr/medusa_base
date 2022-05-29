@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="namespaceMedusaDiagnostics" kind="namespace"><name>MedusaDiagnostics</name>
+    <member refid="namespaceMedusaDiagnostics_1a23f067ba52167e48fa526bda013ec06a" kind="function"><name>setDiagnosisMsg</name></member>
+    <member refid="namespaceMedusaDiagnostics_1ae9b093bce14545f5cf7f8b23ec2faa9e" kind="function"><name>addKeyValue</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a4318dff9c2ae1e5412c30d5b999457f0" kind="function"><name>checkLowerBound</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a390bf63939537ba1bd353203b8ecc91e" kind="function"><name>checkUpperBound</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a8b90d7cd8233b0cd8b79d81c43572739" kind="function"><name>warnLevel</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a27c0d7c166aaeb3643e49d7efc2cf5a4" kind="function"><name>errorLevel</name></member>
+  </compound>
+  <compound refid="MedusaDiagnostics_8h" kind="file"><name>MedusaDiagnostics.h</name>
+    <member refid="namespaceMedusaDiagnostics_1a23f067ba52167e48fa526bda013ec06a" kind="function"><name>setDiagnosisMsg</name></member>
+    <member refid="namespaceMedusaDiagnostics_1ae9b093bce14545f5cf7f8b23ec2faa9e" kind="function"><name>addKeyValue</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a4318dff9c2ae1e5412c30d5b999457f0" kind="function"><name>checkLowerBound</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a390bf63939537ba1bd353203b8ecc91e" kind="function"><name>checkUpperBound</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a8b90d7cd8233b0cd8b79d81c43572739" kind="function"><name>warnLevel</name></member>
+    <member refid="namespaceMedusaDiagnostics_1a27c0d7c166aaeb3643e49d7efc2cf5a4" kind="function"><name>errorLevel</name></member>
+  </compound>
+  <compound refid="MedusaDiagnostics_8cpp" kind="file"><name>MedusaDiagnostics.cpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_32c7fbd8f42fc50ffb472f7a6b26ece1" kind="dir"><name>include/medusa_diagnostics_library</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

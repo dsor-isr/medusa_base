@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType" kind="class" language="Python" prot="public">
+    <compoundname>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1af64d85735572efb967bbce0caeec8cf1" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::START</definition>
+        <argsstring></argsstring>
+        <name>START</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="40" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1ae3a4a3d54204ad4c7128a1c2c81d2f4a" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::STOP</definition>
+        <argsstring></argsstring>
+        <name>STOP</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="41" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a0f3e39b1687fd41e4176a361ea62e3a2" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::RESTART</definition>
+        <argsstring></argsstring>
+        <name>RESTART</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="42" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a9a6bb54432f307a2b089984bbddb575d" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::KILL</definition>
+        <argsstring></argsstring>
+        <name>KILL</name>
+        <initializer>=  4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="43" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a20ae1ef011b5bedd7a6d31e3c7242f6e" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::START_ALL</definition>
+        <argsstring></argsstring>
+        <name>START_ALL</name>
+        <initializer>=  5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="44" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a2af089c438c7308b67ad2f2ab93d817e" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int medusa_bringup_algorithms.MedusaSetup.ProcessActionType::STOP_ALL</definition>
+        <argsstring></argsstring>
+        <name>STOP_ALL</name>
+        <initializer>=  6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="45" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>medusa_bringup_algorithms.MedusaSetup.ProcessActionType</label>
+        <link refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>medusa_bringup_algorithms.MedusaSetup.ProcessActionType</label>
+        <link refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/medusa_bringup_algorithms/MedusaSetup.py" line="39" column="1" bodyfile="src/medusa_bringup_algorithms/MedusaSetup.py" bodystart="39" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a9a6bb54432f307a2b089984bbddb575d" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>KILL</name></member>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a0f3e39b1687fd41e4176a361ea62e3a2" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>RESTART</name></member>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1af64d85735572efb967bbce0caeec8cf1" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>START</name></member>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a20ae1ef011b5bedd7a6d31e3c7242f6e" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>START_ALL</name></member>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1ae3a4a3d54204ad4c7128a1c2c81d2f4a" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>STOP</name></member>
+      <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a2af089c438c7308b67ad2f2ab93d817e" prot="public" virt="non-virtual"><scope>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</scope><name>STOP_ALL</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

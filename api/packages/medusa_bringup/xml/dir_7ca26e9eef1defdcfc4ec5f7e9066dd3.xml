@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_7ca26e9eef1defdcfc4ec5f7e9066dd3" kind="dir">
+    <compoundname>src/medusa_bringup_algorithms</compoundname>
+    <innerfile refid="medusa__bringup__algorithms_2____init_____8py">__init__.py</innerfile>
+    <innerfile refid="MedusaSetup_8py">MedusaSetup.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/medusa_bringup_algorithms/"/>
+  </compounddef>
+</doxygen>
