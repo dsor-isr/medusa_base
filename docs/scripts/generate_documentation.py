@@ -214,18 +214,21 @@ print(result.stderr)
 # Deploy the website to github pages
 # ----------------------------------
 
-# Start by performing a git fetch and git pull of the branch gh-pages to the most up-to-date version
-result = subprocess.run(
+# Perform the deployment
+if args.command == 'deploy':
+
+    # Start by performing a git fetch and git pull of the branch gh-pages to the most up-to-date version
+    result = subprocess.run(
                     ['git fetch; git checkout gh-pages; git pull'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
                     shell=True)
+    print(result.stdout)
+    print(result.stderr)
 
-# Perform the deployment
-if args.command == 'deploy':
     result = subprocess.run(
-                    ['mkdocs gh-deploy'],
+                    ['git config --global push.default tracking; mkdocs gh-deploy'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
