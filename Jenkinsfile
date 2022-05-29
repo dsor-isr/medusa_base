@@ -42,7 +42,9 @@ pipeline {
         // Generate Doxygen documentation
         // only in release tags
         stage('Documentation') {
-            when {env.BRANCH_NAME == "dev_pipeline"}
+            when {
+                expression {env.BRANCH_NAME == "dev_pipeline"}
+            }
             steps{
                 echo 'Generating Doxygen Documentation..'
                 dir('catkin_ws/src') {
