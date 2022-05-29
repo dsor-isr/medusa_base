@@ -23,11 +23,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build..'
-                dir('catkin_ws') {
+                /*dir('catkin_ws') {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status -j10'''
-                }
+                }*/
             }
         }
         // Test stage - test the code
@@ -35,11 +35,11 @@ pipeline {
             steps {
                 echo 'Testing..'
                 // Only test the code inside the medusa meta-packages (ignoring 3rd party code)
-                dir('catkin_ws/src/test') {
+                /*dir('catkin_ws/src/test') {
                     sh '''#!/bin/bash
                     bash unit_test.sh
                     '''
-                }
+                }*/
             }
         }
         // Generate Doxygen documentation
@@ -50,6 +50,9 @@ pipeline {
             }
             steps{
                 echo 'Generating Doxygen Documentation..'
+                withCredentials([GitUsernamePassword(
+                    credentialsId: 'github_app_tokn',
+                    gitToolName: 'Default')])
                 dir('catkin_ws/src') {
                     sh '''#!/bin/bash
                     python3 docs/scripts/generate_documentation.py deploy
