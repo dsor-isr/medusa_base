@@ -60,7 +60,7 @@ pipeline {
         // Update the docker image on the cloud if the docker file has changed
         stage('Update Docker Image') {
             when {
-                when { changeset "Dockerfile" }
+                changeset "Dockerfile"
             }
             steps {
                 echo 'Generating the new docker image'
