@@ -1,3 +1,5 @@
+// Developed by: Marcelo Jacinto
+// Date: 29/05/2022
 pipeline {
     agent {
         docker {
@@ -50,10 +52,22 @@ pipeline {
                 echo 'Generating Doxygen Documentation..'
                 dir('catkin_ws/src') {
                     sh '''#!/bin/bash
-                    python3 docs/scripts/generate_documentation.py
+                    python3 docs/scripts/generate_documentation.py deploy
                     '''
                 }
             }
+        }
+    }
+    // Update the docker image on the cloud if the docker file has changed
+    stage('Update Docker Image') {
+        when {
+            when { changeset "Dockerfile" }
+        }
+        steps {
+            echo 'Generating the new docker image'
+            // TODO
+            echo 'Uploading the new image to online hub'
+            // TODO
         }
     }
     // Cleanup the jenkins environment after running

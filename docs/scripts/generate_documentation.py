@@ -2,6 +2,12 @@ import os, sys
 import shutil
 import subprocess
 import ruamel.yaml
+import argparse
+
+# Get the arguments from the execution (and check if we want to deploy to github pages)
+parser = argparse.ArgumentParser(description='Documentation Generation')
+deploy = parser.add_subparsers(dest='command').add_parser('deploy', help='Deploy the documentation to Github Pages')
+args = parser.parse_args()
 
 # Cleanup the directory where the doxygen output will be stored
 shutil.rmtree('docs/api', ignore_errors=True)
@@ -203,6 +209,19 @@ result = subprocess.run(
                     shell=True)
 print(result.stdout)
 print(result.stderr)
+
+# ----------------------------------
+# Deploy the website to github pages
+# ----------------------------------
+if args.command == 'deploy':
+    result = subprocess.run(
+                    ['mkdocs gh-deploy'],
+                    stdout=subprocess.PIPE, 
+                    stderr=subprocess.PIPE, 
+                    text=True,
+                    shell=True)
+    print(result.stdout)
+    print(result.stderr)
 
 # Check if there was any error, and if so, just return the same error code
 if result.returncode != 0:
