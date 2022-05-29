@@ -67,6 +67,7 @@ RUN pip3 install --no-cache-dir \
     mkdocs-macros-plugin \
     mkdocs-include-markdown-plugin \
     mkdocs-git-revision-date-localized-plugin \
+    mkdocs-include-dir-to-nav \
     mike \
     ruamel.yaml
 
