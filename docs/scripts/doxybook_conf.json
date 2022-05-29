@@ -1,6 +1,6 @@
 {
   "copyImages": false,
-  "baseUrl": "api/markdown",
+  "baseUrl": "",
   "indexInFolders": true,
   "linkSuffix": "/",
   "foldersToGenerate": ["modules", "classes", "namespaces", "examples"],
