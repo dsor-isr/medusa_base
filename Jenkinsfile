@@ -23,11 +23,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build..'
-                /*dir('catkin_ws') {
+                dir('catkin_ws') {
                     sh '''#!/bin/bash
                     source /opt/ros/noetic/setup.bash
                     catkin build --no-status -j10'''
-                }*/
+                }
             }
         }
         // Test stage - test the code
