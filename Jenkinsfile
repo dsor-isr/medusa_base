@@ -56,6 +56,7 @@ pipeline {
                     gitToolName: 'Default')]) 
                     {
                         sh '''#!/bin/bash
+                        git config --global push.default tracking
                         python3 docs/scripts/generate_documentation.py deploy
                         '''
                     }
