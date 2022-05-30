@@ -39,6 +39,9 @@
       <node id="4">
         <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
       </node>
+      <node id="18">
+        <label>GeographicLib/UTMUPS.hpp</label>
+      </node>
       <node id="1">
         <label>include/SensorSim.h</label>
         <link refid="SensorSim_8h"/>
@@ -76,9 +79,6 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-      </node>
-      <node id="18">
-        <label>GeographicLib/UTMUPS.hpp</label>
       </node>
       <node id="12">
         <label>geometry_msgs/TransformStamped.h</label>

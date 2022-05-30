@@ -14,6 +14,9 @@
       <node id="4">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
+      <node id="6">
+        <label>std_msgs/Float64.h</label>
+      </node>
       <node id="1">
         <label>include/waypoint_algorithms/wp_controller.h</label>
         <link refid="wp__controller_8h"/>
@@ -28,9 +31,6 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>std_msgs/Float64.h</label>
-      </node>
       <node id="5">
         <label>ros/ros.h</label>
       </node>
@@ -42,15 +42,15 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
-        <label>include/waypoint_algorithms/wp_loose.h</label>
-        <link refid="wp__loose_8h_source"/>
+      <node id="5">
+        <label>include/waypoint_algorithms/wp_standard.h</label>
+        <link refid="wp__standard_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>include/waypoint_algorithms/wp_heading.h</label>
-        <link refid="wp__heading_8h_source"/>
+      <node id="4">
+        <label>include/waypoint_algorithms/wp_loose.h</label>
+        <link refid="wp__loose_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -64,9 +64,9 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>include/waypoint_algorithms/wp_standard.h</label>
-        <link refid="wp__standard_8h_source"/>
+      <node id="2">
+        <label>include/waypoint_algorithms/wp_heading.h</label>
+        <link refid="wp__heading_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>

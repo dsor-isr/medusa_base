@@ -4,14 +4,14 @@
     <compoundname>MedusaDiagnostics.cpp</compoundname>
     <includes refid="MedusaDiagnostics_8h" local="yes">medusa_diagnostics_library/MedusaDiagnostics.h</includes>
     <incdepgraph>
-      <node id="4">
-        <label>diagnostic_msgs/DiagnosticArray.h</label>
-      </node>
       <node id="1">
         <label>src/MedusaDiagnostics.cpp</label>
         <link refid="MedusaDiagnostics_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="4">
+        <label>diagnostic_msgs/DiagnosticArray.h</label>
       </node>
       <node id="2">
         <label>medusa_diagnostics_library/MedusaDiagnostics.h</label>

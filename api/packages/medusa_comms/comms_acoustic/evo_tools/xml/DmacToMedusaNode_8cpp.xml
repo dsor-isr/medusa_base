@@ -4,11 +4,8 @@
     <compoundname>DmacToMedusaNode.cpp</compoundname>
     <includes refid="DmacToMedusaNode_8h" local="yes">DmacToMedusaNode.h</includes>
     <incdepgraph>
-      <node id="1">
-        <label>src/DmacToMedusaNode.cpp</label>
-        <link refid="DmacToMedusaNode_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+      <node id="13">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
       <node id="2">
         <label>DmacToMedusaNode.h</label>
@@ -43,9 +40,6 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-      </node>
-      <node id="13">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
       <node id="11">
         <label>dmac/mUSBLFix.h</label>
@@ -85,6 +79,12 @@
       </node>
       <node id="12">
         <label>medusa_msgs/mUSBLFix.h</label>
+      </node>
+      <node id="1">
+        <label>src/DmacToMedusaNode.cpp</label>
+        <link refid="DmacToMedusaNode_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="14">
         <label>memory</label>

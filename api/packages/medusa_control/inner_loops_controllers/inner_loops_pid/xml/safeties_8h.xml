@@ -9,18 +9,6 @@
     <includedby refid="innerloops__node_8cpp" local="yes">src/ros/innerloops_node.cpp</includedby>
     <includedby refid="safeties_8cpp" local="yes">src/ros/safeties.cpp</includedby>
     <incdepgraph>
-      <node id="1">
-        <label>include/ros/safeties.h</label>
-        <link refid="safeties_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
       <node id="3">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
@@ -32,6 +20,18 @@
       </node>
       <node id="4">
         <label>ros/ros.h</label>
+      </node>
+      <node id="1">
+        <label>include/ros/safeties.h</label>
+        <link refid="safeties_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classSafeties" prot="public">Safeties</innerclass>

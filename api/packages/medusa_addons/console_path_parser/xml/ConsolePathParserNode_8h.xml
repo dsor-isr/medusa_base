@@ -50,64 +50,8 @@
       <node id="25">
         <label>std_msgs/Bool.h</label>
       </node>
-      <node id="10">
-        <label>Section.h</label>
-        <link refid="Section_8h_source"/>
-      </node>
       <node id="12">
         <label>dsor_paths/ResetPath.h</label>
-      </node>
-      <node id="11">
-        <label>Formation.h</label>
-        <link refid="Formation_8h_source"/>
-      </node>
-      <node id="24">
-        <label>medusa_msgs/Section.h</label>
-      </node>
-      <node id="14">
-        <label>dsor_paths/SpawnLine.h</label>
-      </node>
-      <node id="23">
-        <label>medusa_msgs/MultiSection.h</label>
-      </node>
-      <node id="3">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="18">
-        <label>auv_msgs/NavigationStatus.h</label>
-      </node>
-      <node id="19">
-        <label>geometry_msgs/Point.h</label>
-      </node>
-      <node id="5">
-        <label>fstream</label>
-      </node>
-      <node id="27">
-        <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="15">
-        <label>dsor_paths/SetConstSpeed.h</label>
-      </node>
-      <node id="21">
-        <label>geometry_msgs/Vector3Stamped.h</label>
-      </node>
-      <node id="8">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="2">
-        <label>math.h</label>
-      </node>
-      <node id="29">
-        <label>std_msgs/String.h</label>
-      </node>
-      <node id="6">
-        <label>iostream</label>
-      </node>
-      <node id="16">
-        <label>path_following/StartPF.h</label>
-      </node>
-      <node id="26">
-        <label>std_msgs/Float32.h</label>
       </node>
       <node id="1">
         <label>include/ros/ConsolePathParserNode.h</label>
@@ -168,6 +112,62 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
+      </node>
+      <node id="24">
+        <label>medusa_msgs/Section.h</label>
+      </node>
+      <node id="14">
+        <label>dsor_paths/SpawnLine.h</label>
+      </node>
+      <node id="23">
+        <label>medusa_msgs/MultiSection.h</label>
+      </node>
+      <node id="3">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="18">
+        <label>auv_msgs/NavigationStatus.h</label>
+      </node>
+      <node id="19">
+        <label>geometry_msgs/Point.h</label>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="10">
+        <label>Section.h</label>
+        <link refid="Section_8h_source"/>
+      </node>
+      <node id="27">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="15">
+        <label>dsor_paths/SetConstSpeed.h</label>
+      </node>
+      <node id="21">
+        <label>geometry_msgs/Vector3Stamped.h</label>
+      </node>
+      <node id="8">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="29">
+        <label>std_msgs/String.h</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="11">
+        <label>Formation.h</label>
+        <link refid="Formation_8h_source"/>
+      </node>
+      <node id="16">
+        <label>path_following/StartPF.h</label>
+      </node>
+      <node id="26">
+        <label>std_msgs/Float32.h</label>
       </node>
       <node id="17">
         <label>path_following/StopPF.h</label>

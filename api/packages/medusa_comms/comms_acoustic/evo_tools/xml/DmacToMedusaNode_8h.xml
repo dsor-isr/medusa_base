@@ -19,6 +19,9 @@
     <includes local="no">math.h</includes>
     <includedby refid="DmacToMedusaNode_8cpp" local="yes">src/DmacToMedusaNode.cpp</includedby>
     <incdepgraph>
+      <node id="12">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
       <node id="1">
         <label>include/DmacToMedusaNode.h</label>
         <link refid="DmacToMedusaNode_8h"/>
@@ -52,9 +55,6 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
       <node id="10">
         <label>dmac/mUSBLFix.h</label>

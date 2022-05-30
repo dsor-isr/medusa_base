@@ -7,21 +7,6 @@
       <node id="9">
         <label>functional</label>
       </node>
-      <node id="13">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
-      </node>
-      <node id="4">
-        <label>stdlib.h</label>
-      </node>
-      <node id="11">
-        <label>auv_msgs/NavigationStatus.h</label>
-      </node>
-      <node id="5">
-        <label>string</label>
-      </node>
-      <node id="17">
-        <label>tf2_ros/message_filter.h</label>
-      </node>
       <node id="2">
         <label>SmoothState.h</label>
         <link refid="SmoothState_8h_source"/>
@@ -58,6 +43,21 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
+      <node id="13">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="11">
+        <label>auv_msgs/NavigationStatus.h</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="17">
+        <label>tf2_ros/message_filter.h</label>
+      </node>
       <node id="18">
         <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
       </node>
@@ -66,6 +66,12 @@
       </node>
       <node id="14">
         <label>GeographicLib/UTMUPS.hpp</label>
+      </node>
+      <node id="1">
+        <label>src/SmoothState.cpp</label>
+        <link refid="SmoothState_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="12">
         <label>geometry_msgs/PoseStamped.h</label>
@@ -87,12 +93,6 @@
       </node>
       <node id="8">
         <label>algorithm</label>
-      </node>
-      <node id="1">
-        <label>src/SmoothState.cpp</label>
-        <link refid="SmoothState_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
       <sectiondef kind="func">

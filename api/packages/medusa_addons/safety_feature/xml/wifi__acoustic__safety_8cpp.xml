@@ -54,12 +54,6 @@
       <node id="5">
         <label>std_msgs/UInt8.h</label>
       </node>
-      <node id="16">
-        <label>sys/socket.h</label>
-      </node>
-      <node id="8">
-        <label>medusa_msgs/mUSBLFix.h</label>
-      </node>
       <node id="1">
         <label>src/wifi_acoustic_safety.cpp</label>
         <link refid="wifi__acoustic__safety_8cpp"/>
@@ -93,6 +87,12 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
+      </node>
+      <node id="16">
+        <label>sys/socket.h</label>
+      </node>
+      <node id="8">
+        <label>medusa_msgs/mUSBLFix.h</label>
       </node>
       <node id="3">
         <label>std_msgs/Int8.h</label>

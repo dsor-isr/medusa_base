@@ -21,9 +21,6 @@
       <node id="2">
         <label>Eigen/Dense</label>
       </node>
-      <node id="6">
-        <label>ros/ros.h</label>
-      </node>
       <node id="1">
         <label>include/thruster_allocation.h</label>
         <link refid="thruster__allocation_8h"/>
@@ -37,6 +34,9 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+      </node>
+      <node id="6">
+        <label>ros/ros.h</label>
       </node>
     </incdepgraph>
     <innerclass refid="classThrustAllocation" prot="public">ThrustAllocation</innerclass>

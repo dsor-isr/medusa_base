@@ -10,24 +10,22 @@
       <node id="12">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
-      <node id="4">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="6">
-        <label>States.h</label>
-        <link refid="States_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>std_msgs/Float64.h</label>
-      </node>
       <node id="1">
         <label>src/algorithms/Fossen.cpp</label>
         <link refid="Fossen_8cpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="10">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="2">
+        <label>Fossen.h</label>
+        <link refid="Fossen_8h_source"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -62,10 +60,12 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>Fossen.h</label>
-        <link refid="Fossen_8h_source"/>
-        <childnode refid="3" relation="include">
+      <node id="6">
+        <label>States.h</label>
+        <link refid="States_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
     </incdepgraph>

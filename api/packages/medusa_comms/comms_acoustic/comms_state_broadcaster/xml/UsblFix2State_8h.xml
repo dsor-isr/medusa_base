@@ -17,33 +17,6 @@
     <includes local="yes">tf2_geometry_msgs/tf2_geometry_msgs.h</includes>
     <includes local="no">GeographicLib/UTMUPS.hpp</includes>
     <incdepgraph>
-      <node id="10">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
-      </node>
-      <node id="3">
-        <label>stdlib.h</label>
-      </node>
-      <node id="8">
-        <label>nav_msgs/Odometry.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
-      <node id="13">
-        <label>tf2_ros/message_filter.h</label>
-      </node>
-      <node id="14">
-        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
-      </node>
-      <node id="6">
-        <label>exception</label>
-      </node>
-      <node id="15">
-        <label>GeographicLib/UTMUPS.hpp</label>
-      </node>
-      <node id="5">
-        <label>vector</label>
-      </node>
       <node id="1">
         <label>include/UsblFix2State.h</label>
         <link refid="UsblFix2State_8h"/>
@@ -75,6 +48,33 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+      </node>
+      <node id="10">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="8">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>tf2_ros/message_filter.h</label>
+      </node>
+      <node id="14">
+        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
+      </node>
+      <node id="6">
+        <label>exception</label>
+      </node>
+      <node id="15">
+        <label>GeographicLib/UTMUPS.hpp</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
       </node>
       <node id="7">
         <label>ros/ros.h</label>

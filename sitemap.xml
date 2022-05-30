@@ -1206,6 +1206,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://dsor-isr.github.io/medusa_base/medusa-navigation/overview/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://dsor-isr.github.io/medusa_base/medusa-ros-messages/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
@@ -1216,7 +1221,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dsor-isr.github.io/medusa_base/nav-tools/</loc>
+         <loc>https://dsor-isr.github.io/medusa_base/nav-tools/nav_tools/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1236,7 +1241,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dsor-isr.github.io/medusa_base/pages/CODE-OF-CONDUCT/</loc>
+         <loc>https://dsor-isr.github.io/medusa_base/pages/CODE_OF_CONDUCT/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1271,7 +1276,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dsor-isr.github.io/medusa_base/pid-inner-loops/</loc>
+         <loc>https://dsor-isr.github.io/medusa_base/pid-inner-loops/innerloops/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1291,12 +1296,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dsor-isr.github.io/medusa_base/sensor-fusion-kalman-filter/</loc>
+         <loc>https://dsor-isr.github.io/medusa_base/sensor-fusion-kalman-filter/developer_notes/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dsor-isr.github.io/medusa_base/sensors-simulation/</loc>
+         <loc>https://dsor-isr.github.io/medusa_base/sensor-fusion-kalman-filter/theory/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/sensor-fusion-kalman-filter/user_guide/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/sensors-simulation/sensor_sim/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>

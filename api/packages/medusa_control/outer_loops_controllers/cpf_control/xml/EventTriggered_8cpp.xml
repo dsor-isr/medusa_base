@@ -22,6 +22,9 @@
       <node id="5">
         <label>vector</label>
       </node>
+      <node id="6">
+        <label>array</label>
+      </node>
       <node id="2">
         <label>EventTriggered.h</label>
         <link refid="EventTriggered_8h_source"/>
@@ -31,9 +34,6 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="6">
-        <label>array</label>
       </node>
       <node id="3">
         <label>CPFControl.h</label>

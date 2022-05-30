@@ -7,6 +7,16 @@
     <includes local="no">medusa_gimmicks_library/MedusaGimmicks.h</includes>
     <includes local="no">stdexcept</includes>
     <incdepgraph>
+      <node id="3">
+        <label>PathSection.h</label>
+        <link refid="PathSection_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
       <node id="6">
         <label>limits</label>
       </node>
@@ -31,24 +41,14 @@
       <node id="4">
         <label>Eigen/Core</label>
       </node>
+      <node id="5">
+        <label>math.h</label>
+      </node>
       <node id="2">
         <label>Arc2D.h</label>
         <link refid="Arc2D_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>PathSection.h</label>
-        <link refid="PathSection_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>math.h</label>
       </node>
     </incdepgraph>
     <briefdescription>

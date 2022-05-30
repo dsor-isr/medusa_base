@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import ruamel.yaml
 import argparse
-from git import Repo
 
 # Get the arguments from the execution (and check if we want to deploy to github pages)
 parser = argparse.ArgumentParser(description='Documentation Generation')
@@ -30,7 +29,6 @@ output_doxygen_directory = os.getcwd() + '/docs/api/packages'
 output_markdown_dox_relative = 'api/markdown'
 output_markdown_dox_directory = os.getcwd() + '/docs/' + output_markdown_dox_relative
 
-
 # Setup the location for the Doxyfile template and specifity the output location for the generated files
 doxyfile_location = os.getcwd() + '/docs/scripts/Doxyfile'
 output_location = os.getcwd() + '/docs/xml_doxygen'
@@ -43,13 +41,13 @@ with open(ignore_doxygen, 'r') as fp:
 # --------------------------------------------------------------------------------
 # Perform catkin build to guarantee that all packages are indexed in the workspace
 # --------------------------------------------------------------------------------
-#result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-#print(result.stdout)
-#print(result.stderr)
+result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+print(result.stdout)
+print(result.stderr)
 
 # Check if there was any error, and if so, just return the same error code
-#if result.returncode != 0:
-#    sys.exit(result.returncode)
+if result.returncode != 0:
+    sys.exit(result.returncode)
 
 # --------------------------------------------------
 # Search for packages with docs and mkdocs.yml files
@@ -173,7 +171,7 @@ for package_path in packages_with_docs:
                 if os.path.exists('docs/' + path + '/Examples') and (len(os.listdir('docs/' + path + '/Examples')) != 0 and len(os.listdir('docs/' + path + '/Examples')) != 1):                
                     current_pkg[-1][path_by_sub_strings[i]].append({'Examples': [path + '/Examples']})
         
-                    
+
 # --------------------------------------------------------------------------------------
 # Update the main mkdocs.yml file with the list of packages and respective documentation
 # --------------------------------------------------------------------------------------
@@ -199,17 +197,20 @@ with open(config_file) as fp:
 with open(config_file, "w") as fp:
     yaml.dump(data, fp)
 
-# ------------------------------
-# Build the website using mkdocs
-# ------------------------------
-result = subprocess.run(
+# ------------------------------------------------------
+# Build the website using mkdocs if we are not deploying
+# ------------------------------------------------------
+
+# Perform only the build command if not deploying to github pages
+if args.command != 'deploy':
+    result = subprocess.run(
                     ['mkdocs build'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
                     shell=True)
-print(result.stdout)
-print(result.stderr)
+    print(result.stdout)
+    print(result.stderr)
 
 # ----------------------------------
 # Deploy the website to github pages
@@ -221,7 +222,6 @@ if args.command == 'deploy':
     # Update the 
     result = subprocess.run(
                     ['git fetch origin gh-pages:gh-pages; mkdocs gh-deploy --force --verbose'],
-                    #['git fetch -a; git checkout gh-pages; git pull -f; git checkout main; mkdocs gh-deploy --force --verbose --shell'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,

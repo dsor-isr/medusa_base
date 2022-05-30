@@ -6,14 +6,11 @@
     <includedby refid="waypoint_8h" local="no">include/waypoint_ros/waypoint.h</includedby>
     <includedby refid="wp__heading_8cpp" local="yes">src/waypoint_algorithms/wp_heading.cpp</includedby>
     <incdepgraph>
-      <node id="1">
-        <label>include/waypoint_algorithms/wp_heading.h</label>
-        <link refid="wp__heading_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="5">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
+      <node id="7">
+        <label>std_msgs/Float64.h</label>
       </node>
       <node id="2">
         <label>wp_controller.h</label>
@@ -29,8 +26,11 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>std_msgs/Float64.h</label>
+      <node id="1">
+        <label>include/waypoint_algorithms/wp_heading.h</label>
+        <link refid="wp__heading_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="6">
         <label>ros/ros.h</label>

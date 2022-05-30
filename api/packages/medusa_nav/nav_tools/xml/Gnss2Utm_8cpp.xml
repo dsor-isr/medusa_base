@@ -13,6 +13,12 @@
       <node id="4">
         <label>stdlib.h</label>
       </node>
+      <node id="1">
+        <label>src/Gnss2Utm.cpp</label>
+        <link refid="Gnss2Utm_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="12">
         <label>nav_msgs/Odometry.h</label>
       </node>
@@ -91,12 +97,6 @@
       </node>
       <node id="13">
         <label>std_msgs/String.h</label>
-      </node>
-      <node id="1">
-        <label>src/Gnss2Utm.cpp</label>
-        <link refid="Gnss2Utm_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="16">
         <label>tf2_ros/transform_listener.h</label>

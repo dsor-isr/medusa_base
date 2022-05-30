@@ -18,10 +18,6 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>include/ros/CpfNode.h</label>
-        <link refid="CpfNode_8h_source"/>
-      </node>
       <node id="2">
         <label>include/algorithms/EventTriggered.h</label>
         <link refid="EventTriggered_8h_source"/>
@@ -35,6 +31,10 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>include/ros/CpfNode.h</label>
+        <link refid="CpfNode_8h_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classCPFControl" prot="public">CPFControl</innerclass>
