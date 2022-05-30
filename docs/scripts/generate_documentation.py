@@ -110,7 +110,7 @@ for package_path in packages_with_docs:
 
             # Check if the package is in the ignore packages, just skip
             for ignore_package in doxy_ignore_packages:
-                if ignore_package in path_by_sub_strings_original:
+                if ignore_package != '' and ignore_package in path_by_sub_strings_original:
                     dox_skip_package = True
 
             # Only add the directory to the manual documentation (docs folder) inside the corresponding package
