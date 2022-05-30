@@ -16,24 +16,16 @@ ignore_packages_file='docs/ignore_packages.txt'
 ignore_packages=()
 
 # Read the packages to ignore to a list
-while read line; do
+while IFS= read -r line || [[ -n "$line" ]]; do
     # reading each line
     ignore_packages+=($line)
-done < $ignore_packages_file
+done < "$ignore_packages_file"
 
 # Save the current directory
 curr_dir=$(pwd)
 
 # Get the catkin workspace absolute directory
 workspace_abs_path=$(roscd && cd src && pwd)
-
-# Get the documentation directory (full path)
-documentation_directory=${workspace_abs_path}/documentation/docs
-
-# Check if the directory exists, otherwise create it
-if ! [[ -d documentation_directory ]]; then
-    mkdir -p ${documentation_directory}
-fi
 
 # Iterate through list of ROS packages in the current workspace
 for package in $(catkin list); do
