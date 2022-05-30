@@ -14,6 +14,21 @@
       <node id="3">
         <label>cmath</label>
       </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="7">
+        <label>medusa_msgs/mPidDebug.h</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>dsor_utils/filters/lowpass_filter.hpp</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
       <node id="1">
         <label>include/controllers/pid_controller.h</label>
         <link refid="pid__controller_8h"/>
@@ -30,32 +45,17 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>vector</label>
-      </node>
-      <node id="7">
-        <label>medusa_msgs/mPidDebug.h</label>
-      </node>
-      <node id="2">
-        <label>iostream</label>
-      </node>
-      <node id="6">
-        <label>dsor_utils/filters/lowpass_filter.hpp</label>
-      </node>
-      <node id="5">
-        <label>memory</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="3">
+        <label>include/ros/innerloops.h</label>
+        <link refid="innerloops_8h_source"/>
+      </node>
       <node id="2">
         <label>include/controllers/ros_controller.h</label>
         <link refid="ros__controller_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>include/ros/innerloops.h</label>
-        <link refid="innerloops_8h_source"/>
       </node>
       <node id="1">
         <label>include/controllers/pid_controller.h</label>

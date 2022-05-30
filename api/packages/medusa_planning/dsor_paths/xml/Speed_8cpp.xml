@@ -4,15 +4,15 @@
     <compoundname>Speed.cpp</compoundname>
     <includes refid="Speed_8h" local="yes">Speed.h</includes>
     <incdepgraph>
-      <node id="2">
-        <label>Speed.h</label>
-        <link refid="Speed_8h_source"/>
-      </node>
       <node id="1">
         <label>src/algorithms/speed_profiles/Speed.cpp</label>
         <link refid="Speed_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>Speed.h</label>
+        <link refid="Speed_8h_source"/>
       </node>
     </incdepgraph>
     <briefdescription>

@@ -14,6 +14,18 @@
       <node id="8">
         <label>netinet/in.h</label>
       </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="9">
+        <label>netdb.h</label>
+      </node>
+      <node id="6">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
       <node id="1">
         <label>src/Client/clientLin.c</label>
         <link refid="clientLin_8c"/>
@@ -33,18 +45,6 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>stdlib.h</label>
-      </node>
-      <node id="9">
-        <label>netdb.h</label>
-      </node>
-      <node id="6">
-        <label>sys/types.h</label>
-      </node>
-      <node id="5">
-        <label>string.h</label>
       </node>
       <node id="4">
         <label>unistd.h</label>

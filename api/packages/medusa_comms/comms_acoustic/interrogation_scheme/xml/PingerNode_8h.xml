@@ -29,6 +29,9 @@
       <node id="2">
         <label>cmath</label>
       </node>
+      <node id="6">
+        <label>std_msgs/Empty.h</label>
+      </node>
       <node id="1">
         <label>include/pinger_ros/PingerNode.h</label>
         <link refid="PingerNode_8h"/>
@@ -52,9 +55,6 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-      </node>
-      <node id="6">
-        <label>std_msgs/Empty.h</label>
       </node>
       <node id="5">
         <label>ros/ros.h</label>

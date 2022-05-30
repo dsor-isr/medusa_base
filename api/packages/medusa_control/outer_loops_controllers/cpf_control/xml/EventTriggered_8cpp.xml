@@ -5,11 +5,11 @@
     <includes refid="EventTriggered_8h" local="yes">EventTriggered.h</includes>
     <includes local="no">cmath</includes>
     <incdepgraph>
-      <node id="3">
-        <label>CPFControl.h</label>
-        <link refid="CPFControl_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
+      <node id="7">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>Eigen/Core</label>
       </node>
       <node id="1">
         <label>src/algorithms/EventTriggered.cpp</label>
@@ -19,11 +19,8 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>cmath</label>
-      </node>
-      <node id="4">
-        <label>Eigen/Core</label>
+      <node id="5">
+        <label>vector</label>
       </node>
       <node id="2">
         <label>EventTriggered.h</label>
@@ -35,11 +32,14 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>vector</label>
-      </node>
       <node id="6">
         <label>array</label>
+      </node>
+      <node id="3">
+        <label>CPFControl.h</label>
+        <link refid="CPFControl_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <briefdescription>

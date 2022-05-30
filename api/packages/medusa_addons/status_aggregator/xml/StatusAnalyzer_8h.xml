@@ -8,12 +8,6 @@
     <includes local="no">std_srvs/Trigger.h</includes>
     <includedby refid="StatusAnalyzer_8cpp" local="yes">src/status_aggregator_ros/StatusAnalyzer.cpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>diagnostic_aggregator/analyzer_group.h</label>
-      </node>
-      <node id="4">
-        <label>std_msgs/String.h</label>
-      </node>
       <node id="1">
         <label>include/status_aggregator_ros/StatusAnalyzer.h</label>
         <link refid="StatusAnalyzer_8h"/>
@@ -25,6 +19,12 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>diagnostic_aggregator/analyzer_group.h</label>
+      </node>
+      <node id="4">
+        <label>std_msgs/String.h</label>
       </node>
       <node id="5">
         <label>std_srvs/Trigger.h</label>

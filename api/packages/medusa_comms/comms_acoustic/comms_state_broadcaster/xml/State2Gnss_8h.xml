@@ -26,9 +26,6 @@
       <node id="4">
         <label>string</label>
       </node>
-      <node id="6">
-        <label>exception</label>
-      </node>
       <node id="1">
         <label>include/State2Gnss.h</label>
         <link refid="State2Gnss_8h"/>
@@ -52,6 +49,9 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+      </node>
+      <node id="6">
+        <label>exception</label>
       </node>
       <node id="11">
         <label>GeographicLib/UTMUPS.hpp</label>

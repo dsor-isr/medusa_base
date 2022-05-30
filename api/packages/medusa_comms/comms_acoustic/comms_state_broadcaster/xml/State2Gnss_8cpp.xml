@@ -4,26 +4,23 @@
     <compoundname>State2Gnss.cpp</compoundname>
     <includes refid="State2Gnss_8h" local="yes">State2Gnss.h</includes>
     <incdepgraph>
-      <node id="11">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
-      </node>
-      <node id="4">
-        <label>stdlib.h</label>
-      </node>
       <node id="1">
         <label>src/State2Gnss.cpp</label>
         <link refid="State2Gnss_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="11">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
       <node id="10">
         <label>auv_msgs/NavigationStatus.h</label>
       </node>
       <node id="5">
         <label>string</label>
-      </node>
-      <node id="7">
-        <label>exception</label>
       </node>
       <node id="2">
         <label>State2Gnss.h</label>
@@ -48,6 +45,9 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="7">
+        <label>exception</label>
       </node>
       <node id="12">
         <label>GeographicLib/UTMUPS.hpp</label>

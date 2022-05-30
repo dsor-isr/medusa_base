@@ -31,6 +31,24 @@
       <node id="3">
         <label>stdlib.h</label>
       </node>
+      <node id="11">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="17">
+        <label>tf2_ros/message_filter.h</label>
+      </node>
+      <node id="18">
+        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
+      </node>
+      <node id="6">
+        <label>exception</label>
+      </node>
+      <node id="19">
+        <label>GeographicLib/UTMUPS.hpp</label>
+      </node>
       <node id="1">
         <label>include/Gnss2Utm.h</label>
         <link refid="Gnss2Utm_8h"/>
@@ -70,24 +88,6 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-      </node>
-      <node id="11">
-        <label>nav_msgs/Odometry.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
-      <node id="17">
-        <label>tf2_ros/message_filter.h</label>
-      </node>
-      <node id="18">
-        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
-      </node>
-      <node id="6">
-        <label>exception</label>
-      </node>
-      <node id="19">
-        <label>GeographicLib/UTMUPS.hpp</label>
       </node>
       <node id="13">
         <label>std_srvs/SetBool.h</label>

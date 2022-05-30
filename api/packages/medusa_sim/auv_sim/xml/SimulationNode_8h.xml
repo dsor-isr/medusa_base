@@ -18,38 +18,6 @@
       <node id="7">
         <label>Eigen/Core</label>
       </node>
-      <node id="1">
-        <label>include/ros/SimulationNode.h</label>
-        <link refid="SimulationNode_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="8">
-        <label>random</label>
-      </node>
-      <node id="10">
-        <label>tuple</label>
-      </node>
-      <node id="9">
-        <label>vector</label>
-      </node>
-      <node id="5">
-        <label>auv_sim/StartPause.h</label>
-      </node>
-      <node id="3">
-        <label>ros/ros.h</label>
-      </node>
       <node id="6">
         <label>AUV.h</label>
         <link refid="AUV_8h_source"/>
@@ -64,14 +32,46 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>memory</label>
+      <node id="12">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="8">
+        <label>random</label>
+      </node>
+      <node id="10">
+        <label>tuple</label>
       </node>
       <node id="11">
         <label>State.h</label>
         <link refid="State_8h_source"/>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="5">
+        <label>auv_sim/StartPause.h</label>
+      </node>
+      <node id="3">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1">
+        <label>include/ros/SimulationNode.h</label>
+        <link refid="SimulationNode_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <innerclass refid="classSimulationNode" prot="public">SimulationNode</innerclass>

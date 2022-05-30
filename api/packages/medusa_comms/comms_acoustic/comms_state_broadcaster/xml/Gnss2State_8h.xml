@@ -15,6 +15,32 @@
     <includes local="no">GeographicLib/UTMUPS.hpp</includes>
     <includedby refid="Gnss2State_8cpp" local="yes">src/Gnss2State.cpp</includedby>
     <incdepgraph>
+      <node id="1">
+        <label>include/Gnss2State.h</label>
+        <link refid="Gnss2State_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
       <node id="11">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
@@ -47,32 +73,6 @@
       </node>
       <node id="10">
         <label>std_msgs/String.h</label>
-      </node>
-      <node id="1">
-        <label>include/Gnss2State.h</label>
-        <link refid="Gnss2State_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classGnss2State" prot="public">Gnss2State</innerclass>
