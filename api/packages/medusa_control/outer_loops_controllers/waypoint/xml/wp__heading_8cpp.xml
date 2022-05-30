@@ -4,14 +4,32 @@
     <compoundname>wp_heading.cpp</compoundname>
     <includes refid="wp__heading_8h" local="yes">wp_heading.h</includes>
     <incdepgraph>
+      <node id="1">
+        <label>src/waypoint_algorithms/wp_heading.cpp</label>
+        <link refid="wp__heading_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
       <node id="2">
         <label>wp_heading.h</label>
         <link refid="wp__heading_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      <node id="8">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="7">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="5">
+        <label>math.h</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
       </node>
       <node id="3">
         <label>wp_controller.h</label>
@@ -26,24 +44,6 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-      </node>
-      <node id="1">
-        <label>src/waypoint_algorithms/wp_heading.cpp</label>
-        <link refid="wp__heading_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="7">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="5">
-        <label>math.h</label>
-      </node>
-      <node id="4">
-        <label>iostream</label>
       </node>
     </incdepgraph>
     <briefdescription>

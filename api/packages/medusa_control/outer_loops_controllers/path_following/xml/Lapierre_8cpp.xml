@@ -22,19 +22,8 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>src/algorithms/Lapierre.cpp</label>
-        <link refid="Lapierre_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
       <node id="10">
         <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="9">
-        <label>dsor_paths/SetMode.h</label>
       </node>
       <node id="2">
         <label>Lapierre.h</label>
@@ -42,14 +31,13 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>vector</label>
-      </node>
-      <node id="8">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="11">
-        <label>medusa_msgs/mPFollowingDebug.h</label>
+      <node id="1">
+        <label>src/algorithms/Lapierre.cpp</label>
+        <link refid="Lapierre_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>PathFollowing.h</label>
@@ -70,6 +58,18 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="9">
+        <label>dsor_paths/SetMode.h</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="8">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="11">
+        <label>medusa_msgs/mPFollowingDebug.h</label>
       </node>
     </incdepgraph>
     <briefdescription>

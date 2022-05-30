@@ -7,20 +7,24 @@
     <includedby refid="CpfNode_8h" local="yes">include/ros/CpfNode.h</includedby>
     <includedby refid="CPFControl_8cpp" local="yes">src/algorithms/CPFControl.cpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>Eigen/Core</label>
-      </node>
       <node id="1">
         <label>include/algorithms/CPFControl.h</label>
         <link refid="CPFControl_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>Eigen/Core</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>include/ros/CpfNode.h</label>
-        <link refid="CpfNode_8h_source"/>
+      <node id="1">
+        <label>include/algorithms/CPFControl.h</label>
+        <link refid="CPFControl_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>include/algorithms/EventTriggered.h</label>
@@ -28,13 +32,9 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>include/algorithms/CPFControl.h</label>
-        <link refid="CPFControl_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="3">
+        <label>include/ros/CpfNode.h</label>
+        <link refid="CpfNode_8h_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classCPFControl" prot="public">CPFControl</innerclass>

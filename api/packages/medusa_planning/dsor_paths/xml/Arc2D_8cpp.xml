@@ -25,6 +25,16 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>PathSection.h</label>
+        <link refid="PathSection_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
       <node id="8">
         <label>stdexcept</label>
       </node>
@@ -35,16 +45,6 @@
         <label>Arc2D.h</label>
         <link refid="Arc2D_8h_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>PathSection.h</label>
-        <link refid="PathSection_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="5">

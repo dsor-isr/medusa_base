@@ -12,6 +12,12 @@
       <node id="11">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
+      <node id="1">
+        <label>include/algorithms/Romulo.h</label>
+        <link refid="Romulo_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="3">
         <label>Eigen/Core</label>
       </node>
@@ -25,24 +31,6 @@
       </node>
       <node id="9">
         <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="8">
-        <label>dsor_paths/SetMode.h</label>
-      </node>
-      <node id="4">
-        <label>vector</label>
-      </node>
-      <node id="7">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="10">
-        <label>medusa_msgs/mPFollowingDebug.h</label>
-      </node>
-      <node id="1">
-        <label>include/algorithms/Romulo.h</label>
-        <link refid="Romulo_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="2">
         <label>PathFollowing.h</label>
@@ -64,17 +52,29 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
+      <node id="8">
+        <label>dsor_paths/SetMode.h</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="7">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="10">
+        <label>medusa_msgs/mPFollowingDebug.h</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>include/ros/PathFollowingNode.h</label>
-        <link refid="PathFollowingNode_8h_source"/>
-      </node>
       <node id="1">
         <label>include/algorithms/Romulo.h</label>
         <link refid="Romulo_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>include/ros/PathFollowingNode.h</label>
+        <link refid="PathFollowingNode_8h_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classRomulo" prot="public">Romulo</innerclass>

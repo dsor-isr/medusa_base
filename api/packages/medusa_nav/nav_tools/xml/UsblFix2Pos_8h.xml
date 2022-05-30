@@ -16,6 +16,27 @@
     <includes local="no">GeographicLib/UTMUPS.hpp</includes>
     <includedby refid="UsblFix2Pos_8cpp" local="yes">src/UsblFix2Pos.cpp</includedby>
     <incdepgraph>
+      <node id="12">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
+      </node>
+      <node id="11">
+        <label>dsor_msgs/Measurement.h</label>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="8">
+        <label>auv_msgs/NavigationStatus.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>exception</label>
+      </node>
+      <node id="13">
+        <label>GeographicLib/UTMUPS.hpp</label>
+      </node>
       <node id="1">
         <label>include/UsblFix2Pos.h</label>
         <link refid="UsblFix2Pos_8h"/>
@@ -43,27 +64,6 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
-      </node>
-      <node id="11">
-        <label>dsor_msgs/Measurement.h</label>
-      </node>
-      <node id="3">
-        <label>stdlib.h</label>
-      </node>
-      <node id="8">
-        <label>auv_msgs/NavigationStatus.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
-      <node id="6">
-        <label>exception</label>
-      </node>
-      <node id="13">
-        <label>GeographicLib/UTMUPS.hpp</label>
       </node>
       <node id="5">
         <label>vector</label>

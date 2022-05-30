@@ -8,9 +8,6 @@
       <node id="5">
         <label>limits</label>
       </node>
-      <node id="3">
-        <label>Eigen/Core</label>
-      </node>
       <node id="2">
         <label>PathSection.h</label>
         <link refid="PathSection_8h_source"/>
@@ -20,6 +17,9 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Core</label>
       </node>
       <node id="1">
         <label>include/algorithms/path_sections/Sinusoid2D.h</label>

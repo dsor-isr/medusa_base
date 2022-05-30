@@ -4,6 +4,18 @@
     <compoundname>StatusAnalyzer.cpp</compoundname>
     <includes refid="StatusAnalyzer_8h" local="yes">StatusAnalyzer.h</includes>
     <incdepgraph>
+      <node id="1">
+        <label>src/status_aggregator_ros/StatusAnalyzer.cpp</label>
+        <link refid="StatusAnalyzer_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>diagnostic_aggregator/analyzer_group.h</label>
+      </node>
+      <node id="5">
+        <label>std_msgs/String.h</label>
+      </node>
       <node id="2">
         <label>StatusAnalyzer.h</label>
         <link refid="StatusAnalyzer_8h_source"/>
@@ -16,20 +28,8 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>diagnostic_aggregator/analyzer_group.h</label>
-      </node>
-      <node id="5">
-        <label>std_msgs/String.h</label>
-      </node>
       <node id="6">
         <label>std_srvs/Trigger.h</label>
-      </node>
-      <node id="1">
-        <label>src/status_aggregator_ros/StatusAnalyzer.cpp</label>
-        <link refid="StatusAnalyzer_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="4">
         <label>std_msgs/Int8.h</label>

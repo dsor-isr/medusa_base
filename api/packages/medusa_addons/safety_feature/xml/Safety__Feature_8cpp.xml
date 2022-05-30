@@ -24,6 +24,12 @@
       <node id="7">
         <label>netdb.h</label>
       </node>
+      <node id="6">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5">
+        <label>signal.h</label>
+      </node>
       <node id="1">
         <label>src/Safety_Feature.cpp</label>
         <link refid="Safety__Feature_8cpp"/>
@@ -45,12 +51,6 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-      </node>
-      <node id="6">
-        <label>sys/types.h</label>
-      </node>
-      <node id="5">
-        <label>signal.h</label>
       </node>
       <node id="2">
         <label>ros/ros.h</label>

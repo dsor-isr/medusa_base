@@ -4,17 +4,17 @@
     <compoundname>ReplierNode.cpp</compoundname>
     <includes refid="ReplierNode_8h" local="yes">ReplierNode.h</includes>
     <incdepgraph>
-      <node id="5">
-        <label>queue</label>
-      </node>
-      <node id="12">
-        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
-      </node>
       <node id="1">
         <label>src/replier_ros/ReplierNode.cpp</label>
         <link refid="ReplierNode_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="5">
+        <label>queue</label>
+      </node>
+      <node id="12">
+        <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
       <node id="4">
         <label>stdlib.h</label>
@@ -24,18 +24,6 @@
       </node>
       <node id="6">
         <label>map</label>
-      </node>
-      <node id="13">
-        <label>ctime</label>
-      </node>
-      <node id="8">
-        <label>std_msgs/Empty.h</label>
-      </node>
-      <node id="7">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="9">
-        <label>std_msgs/String.h</label>
       </node>
       <node id="2">
         <label>ReplierNode.h</label>
@@ -62,6 +50,18 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+      </node>
+      <node id="13">
+        <label>ctime</label>
+      </node>
+      <node id="8">
+        <label>std_msgs/Empty.h</label>
+      </node>
+      <node id="7">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="9">
+        <label>std_msgs/String.h</label>
       </node>
       <node id="11">
         <label>medusa_msgs/mUSBLFix.h</label>

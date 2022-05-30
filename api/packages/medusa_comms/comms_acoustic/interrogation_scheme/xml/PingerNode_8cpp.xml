@@ -25,9 +25,6 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>std_msgs/Empty.h</label>
-      </node>
       <node id="2">
         <label>PingerNode.h</label>
         <link refid="PingerNode_8h_source"/>
@@ -51,6 +48,9 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="7">
+        <label>std_msgs/Empty.h</label>
       </node>
       <node id="6">
         <label>ros/ros.h</label>

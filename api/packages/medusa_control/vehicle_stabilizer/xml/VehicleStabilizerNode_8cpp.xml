@@ -4,6 +4,18 @@
     <compoundname>VehicleStabilizerNode.cpp</compoundname>
     <includes refid="VehicleStabilizerNode_8hpp" local="yes">VehicleStabilizerNode.hpp</includes>
     <incdepgraph>
+      <node id="2">
+        <label>VehicleStabilizerNode.hpp</label>
+        <link refid="VehicleStabilizerNode_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
       <node id="5">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
@@ -17,18 +29,6 @@
         <label>src/VehicleStabilizerNode.cpp</label>
         <link refid="VehicleStabilizerNode_8cpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>VehicleStabilizerNode.hpp</label>
-        <link refid="VehicleStabilizerNode_8hpp_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="3">

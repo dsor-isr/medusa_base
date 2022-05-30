@@ -10,6 +10,42 @@
       <node id="16">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
+      <node id="22">
+        <label>dsor_msgs/Measurement.h</label>
+      </node>
+      <node id="10">
+        <label>std_msgs/Bool.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="11">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="23">
+        <label>Eigen/Eigen</label>
+      </node>
+      <node id="17">
+        <label>auv_msgs/NavigationStatus.h</label>
+      </node>
+      <node id="19">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>tf2_ros/message_filter.h</label>
+      </node>
+      <node id="9">
+        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
+      </node>
+      <node id="21">
+        <label>eigen3/Eigen/Eigen</label>
+      </node>
+      <node id="15">
+        <label>geometry_msgs/TransformStamped.h</label>
+      </node>
+      <node id="13">
+        <label>geometry_msgs/PoseWithCovarianceStamped.h</label>
+      </node>
       <node id="2">
         <label>VerticalFilter.h</label>
         <link refid="VerticalFilter_8h_source"/>
@@ -48,29 +84,29 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="22">
-        <label>dsor_msgs/Measurement.h</label>
+      <node id="20">
+        <label>vector</label>
       </node>
-      <node id="10">
-        <label>std_msgs/Bool.h</label>
+      <node id="12">
+        <label>geometry_msgs/Vector3Stamped.h</label>
       </node>
-      <node id="4">
-        <label>stdlib.h</label>
+      <node id="5">
+        <label>ros/ros.h</label>
       </node>
-      <node id="11">
-        <label>nav_msgs/Odometry.h</label>
+      <node id="6">
+        <label>tf2_ros/transform_listener.h</label>
       </node>
-      <node id="23">
-        <label>Eigen/Eigen</label>
+      <node id="7">
+        <label>tf2_ros/transform_broadcaster.h</label>
       </node>
-      <node id="17">
-        <label>auv_msgs/NavigationStatus.h</label>
+      <node id="3">
+        <label>algorithm</label>
       </node>
-      <node id="19">
-        <label>string</label>
-      </node>
-      <node id="8">
-        <label>tf2_ros/message_filter.h</label>
+      <node id="1">
+        <label>src/algorithms/VerticalFilter.cpp</label>
+        <link refid="VerticalFilter_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="18">
         <label>FilterGimmicks.h</label>
@@ -93,42 +129,6 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-      </node>
-      <node id="9">
-        <label>tf2_geometry_msgs/tf2_geometry_msgs.h</label>
-      </node>
-      <node id="21">
-        <label>eigen3/Eigen/Eigen</label>
-      </node>
-      <node id="15">
-        <label>geometry_msgs/TransformStamped.h</label>
-      </node>
-      <node id="13">
-        <label>geometry_msgs/PoseWithCovarianceStamped.h</label>
-      </node>
-      <node id="20">
-        <label>vector</label>
-      </node>
-      <node id="12">
-        <label>geometry_msgs/Vector3Stamped.h</label>
-      </node>
-      <node id="5">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="6">
-        <label>tf2_ros/transform_listener.h</label>
-      </node>
-      <node id="7">
-        <label>tf2_ros/transform_broadcaster.h</label>
-      </node>
-      <node id="1">
-        <label>src/algorithms/VerticalFilter.cpp</label>
-        <link refid="VerticalFilter_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>algorithm</label>
       </node>
     </incdepgraph>
     <briefdescription>

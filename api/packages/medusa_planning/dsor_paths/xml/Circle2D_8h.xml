@@ -9,9 +9,6 @@
       <node id="5">
         <label>limits</label>
       </node>
-      <node id="3">
-        <label>Eigen/Core</label>
-      </node>
       <node id="2">
         <label>PathSection.h</label>
         <link refid="PathSection_8h_source"/>
@@ -22,26 +19,29 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="1">
+        <label>include/algorithms/path_sections/Circle2D.h</label>
+        <link refid="Circle2D_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="4">
         <label>math.h</label>
       </node>
+    </incdepgraph>
+    <invincdepgraph>
       <node id="1">
         <label>include/algorithms/path_sections/Circle2D.h</label>
         <link refid="Circle2D_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="2">
         <label>include/ros/PathNode.h</label>
         <link refid="PathNode_8h_source"/>
-      </node>
-      <node id="1">
-        <label>include/algorithms/path_sections/Circle2D.h</label>
-        <link refid="Circle2D_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="classCircle2D" prot="public">Circle2D</innerclass>

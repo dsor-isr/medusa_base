@@ -5,15 +5,6 @@
     <includes refid="Circle2D_8h" local="yes">Circle2D.h</includes>
     <includes local="no">stdexcept</includes>
     <incdepgraph>
-      <node id="6">
-        <label>limits</label>
-      </node>
-      <node id="7">
-        <label>stdexcept</label>
-      </node>
-      <node id="4">
-        <label>Eigen/Core</label>
-      </node>
       <node id="1">
         <label>src/algorithms/path_sections/Circle2D.cpp</label>
         <link refid="Circle2D_8cpp"/>
@@ -21,6 +12,9 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+      </node>
+      <node id="6">
+        <label>limits</label>
       </node>
       <node id="3">
         <label>PathSection.h</label>
@@ -32,14 +26,20 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>math.h</label>
+      <node id="7">
+        <label>stdexcept</label>
+      </node>
+      <node id="4">
+        <label>Eigen/Core</label>
       </node>
       <node id="2">
         <label>Circle2D.h</label>
         <link refid="Circle2D_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="5">
+        <label>math.h</label>
       </node>
     </incdepgraph>
     <briefdescription>

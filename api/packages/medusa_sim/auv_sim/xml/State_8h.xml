@@ -16,6 +16,10 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="3">
+        <label>include/ros/SimulationNode.h</label>
+        <link refid="SimulationNode_8h_source"/>
+      </node>
       <node id="2">
         <label>include/algorithms/AUV.h</label>
         <link refid="AUV_8h_source"/>
@@ -27,10 +31,6 @@
         <link refid="State_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>include/ros/SimulationNode.h</label>
-        <link refid="SimulationNode_8h_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structState" prot="public">State</innerclass>

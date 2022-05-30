@@ -19,9 +19,6 @@
       <node id="4">
         <label>limits</label>
       </node>
-      <node id="2">
-        <label>Eigen/Core</label>
-      </node>
       <node id="1">
         <label>include/algorithms/path_sections/PathSection.h</label>
         <link refid="PathSection_8h"/>
@@ -32,34 +29,23 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>Eigen/Core</label>
+      </node>
       <node id="3">
         <label>math.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>include/ros/PathNode.h</label>
-        <link refid="PathNode_8h_source"/>
-      </node>
-      <node id="2">
-        <label>include/algorithms/Path.h</label>
-        <link refid="Path_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>include/algorithms/path_sections/Arc2D.h</label>
-        <link refid="Arc2D_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>include/algorithms/path_sections/Polynomial5.h</label>
-        <link refid="Polynomial5_8h_source"/>
-      </node>
       <node id="8">
         <label>include/algorithms/path_sections/Polinomial5.h</label>
         <link refid="Polinomial5_8h_source"/>
+      </node>
+      <node id="5">
+        <label>include/algorithms/path_sections/Bernoulli.h</label>
+        <link refid="Bernoulli_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>include/algorithms/path_sections/PathSection.h</label>
@@ -83,16 +69,6 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>include/algorithms/path_sections/Sinusoid2D.h</label>
-        <link refid="Sinusoid2D_8h_source"/>
-      </node>
-      <node id="5">
-        <label>include/algorithms/path_sections/Bernoulli.h</label>
-        <link refid="Bernoulli_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="6">
         <label>include/algorithms/path_sections/Circle2D.h</label>
         <link refid="Circle2D_8h_source"/>
@@ -104,6 +80,30 @@
         <link refid="Line_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="4">
+        <label>include/algorithms/path_sections/Arc2D.h</label>
+        <link refid="Arc2D_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/algorithms/Path.h</label>
+        <link refid="Path_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>include/algorithms/path_sections/Sinusoid2D.h</label>
+        <link refid="Sinusoid2D_8h_source"/>
+      </node>
+      <node id="3">
+        <label>include/ros/PathNode.h</label>
+        <link refid="PathNode_8h_source"/>
+      </node>
+      <node id="9">
+        <label>include/algorithms/path_sections/Polynomial5.h</label>
+        <link refid="Polynomial5_8h_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classPathSection" prot="public">PathSection</innerclass>

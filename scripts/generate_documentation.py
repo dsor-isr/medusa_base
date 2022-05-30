@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import ruamel.yaml
 import argparse
+from git import Repo
 
 # Get the arguments from the execution (and check if we want to deploy to github pages)
 parser = argparse.ArgumentParser(description='Documentation Generation')
@@ -217,8 +218,12 @@ print(result.stderr)
 # Perform the deployment
 if args.command == 'deploy':
 
+    # Get the current local branch
+    local_repo = Repo(path='.')
+    local_branch = local_repo.active_branch.name
+
     result = subprocess.run(
-                    ['mkdocs gh-deploy --force'],
+                    ['git fetch -a; git checkout gh-pages; git pull; git checkout ' + local_branch + '; mkdocs gh-deploy'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,

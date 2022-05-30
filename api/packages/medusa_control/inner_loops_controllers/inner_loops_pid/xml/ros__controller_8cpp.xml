@@ -7,11 +7,11 @@
       <node id="10">
         <label>medusa_gimmicks_library/MedusaGimmicks.h</label>
       </node>
-      <node id="5">
-        <label>cmath</label>
-      </node>
-      <node id="12">
-        <label>std_msgs/Float64.h</label>
+      <node id="1">
+        <label>src/controllers/ros_controller.cpp</label>
+        <link refid="ros__controller_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>ros_controller.h</label>
@@ -27,29 +27,8 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>vector</label>
-      </node>
-      <node id="9">
-        <label>medusa_msgs/mPidDebug.h</label>
-      </node>
-      <node id="11">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="4">
-        <label>iostream</label>
-      </node>
-      <node id="1">
-        <label>src/controllers/ros_controller.cpp</label>
-        <link refid="ros__controller_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>dsor_utils/filters/lowpass_filter.hpp</label>
-      </node>
-      <node id="7">
-        <label>memory</label>
+      <node id="5">
+        <label>cmath</label>
       </node>
       <node id="3">
         <label>pid_controller.h</label>
@@ -66,6 +45,27 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="12">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+      <node id="9">
+        <label>medusa_msgs/mPidDebug.h</label>
+      </node>
+      <node id="11">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>dsor_utils/filters/lowpass_filter.hpp</label>
+      </node>
+      <node id="7">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <briefdescription>
