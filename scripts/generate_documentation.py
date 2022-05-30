@@ -43,13 +43,13 @@ with open(ignore_doxygen, 'r') as fp:
 # --------------------------------------------------------------------------------
 # Perform catkin build to guarantee that all packages are indexed in the workspace
 # --------------------------------------------------------------------------------
-result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-print(result.stdout)
-print(result.stderr)
+#result = subprocess.run(['cd ..; catkin build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+#print(result.stdout)
+#print(result.stderr)
 
 # Check if there was any error, and if so, just return the same error code
-if result.returncode != 0:
-    sys.exit(result.returncode)
+#if result.returncode != 0:
+#    sys.exit(result.returncode)
 
 # --------------------------------------------------
 # Search for packages with docs and mkdocs.yml files
@@ -218,12 +218,10 @@ print(result.stderr)
 # Perform the deployment
 if args.command == 'deploy':
 
-    # Get the current local branch
-    local_repo = Repo(path='.')
-    local_branch = local_repo.active_branch.name
-
+    # Update the 
     result = subprocess.run(
-                    ['git fetch -a; git checkout gh-pages; git pull; git checkout ' + local_branch + '; mkdocs gh-deploy'],
+                    ['git fetch origin gh-pages:gh-pages; mkdocs gh-deploy --force --verbose'],
+                    #['git fetch -a; git checkout gh-pages; git pull -f; git checkout main; mkdocs gh-deploy --force --verbose --shell'],
                     stdout=subprocess.PIPE, 
                     stderr=subprocess.PIPE, 
                     text=True,
