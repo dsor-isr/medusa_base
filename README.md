@@ -72,8 +72,8 @@ If you use Medusa Base in a scientific publication, please cite:
 TODO
 ```
 
-### Help and Support
-Documentation TODO
+### Documentation
+https://dsor-isr.github.io/medusa_base/
 
 ### Active Developers
 - João Quintas <jquintas@gmail.com>
