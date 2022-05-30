@@ -35,18 +35,18 @@ pipeline {
             steps {
                 echo 'Testing..'
                 // Only test the code inside the medusa meta-packages (ignoring 3rd party code)
-                /*dir('catkin_ws/src/test') {
+                dir('catkin_ws/src/test') {
                     sh '''#!/bin/bash
                     bash unit_test.sh
                     '''
-                }*/
+                }
             }
         }
         // Generate Doxygen documentation
         // only in release tags
         stage('Documentation') {
             when {
-                expression {env.BRANCH_NAME == "dev_pipeline"}
+                expression {env.BRANCH_NAME == "main"}
             }
             steps{
                 echo 'Generating Doxygen Documentation..'

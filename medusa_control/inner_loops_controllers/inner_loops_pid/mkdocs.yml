@@ -1,4 +1,4 @@
 site_name: PID Inner-loops
 
 nav:
-  - Reference: "README.md"
+  - Overview: "innerloops.md"

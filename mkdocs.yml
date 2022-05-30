@@ -3,7 +3,7 @@ site_name: Medusa Documentation
 site_url: https://dsor-isr.github.io/medusa_base/
 repo_url: https://github.com/dsor-isr/medusa_base
 repo_name: medusa_base
-edit_uri: edit/dev_pipeline/docs/
+edit_uri: edit/main/docs/
 site_author: The Medusa Team
 
 # Copyright
@@ -251,6 +251,8 @@ nav:
       - Classes:
         - api/markdown/medusa_control/vehicle_stabilizer/Classes
   - Medusa Nav:
+    - Medusa Nav:
+      - Documentation: '!include ./medusa_nav/medusa_nav/mkdocs.yml'
     - Nav Tools:
       - Documentation: '!include ./medusa_nav/nav_tools/mkdocs.yml'
       - Classes:
@@ -262,7 +264,7 @@ nav:
       - Namespaces:
         - api/markdown/medusa_nav/sensor_fusion/Namespaces
 - Contributing:
-  - Code of Conduct: pages/CODE-OF-CONDUCT.md
+  - Code of Conduct: pages/CODE_OF_CONDUCT.md
   - Contributing: pages/CONTRIBUTING.md
   - Changelog: pages/CHANGELOG.md
   - Acknowledgments: pages/Acknowledgments.md
