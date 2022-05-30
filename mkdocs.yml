@@ -1,0 +1,271 @@
+# Site metadata
+site_name: Medusa Documentation
+site_url: https://dsor-isr.github.io/medusa_base/
+repo_url: https://github.com/dsor-isr/medusa_base
+repo_name: medusa_base
+edit_uri: edit/main/docs/
+site_author: The Medusa Team
+
+# Copyright
+copyright: Copyright &copy 2022 The Medusa Team, Dynamical Systems and Ocean Robotics
+  Laboratory (ISR-Lisboa, LARSyS, Portugal)
+
+# Theme Setup
+theme:
+  name: material
+  language: en
+  logo: Images/icons/dsor.png
+  favicon: Images/icons/dsor.png
+  # Font for text and code
+  font:
+    text: Titillium Web
+    code: Roboto Mono
+  # Enabling light and dark mode
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  # Extra features
+  features:
+    # ---------------------
+    # Navigation
+    # ---------------------
+    # Search index survives navigation
+  - navigation.instant
+    # The URL in the address bar is automatically updated with scroll
+  - navigation.tracking
+    # Top address bar with sections
+    #- navigation.tabs
+    # Bold level 2 sections in left bar
+  - navigation.sections
+    # Documents can be directly attached to sections (see https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages)
+  - navigation.indexes
+    # Automatic left bar scroll
+  - toc.follow
+    # Back to top button
+  - navigation.top
+    # ---------------------
+    # Search
+    # ---------------------
+    # Search suggestions in search button
+  - search.suggest
+  - search.highlight
+    # Allow sharing a search result
+  - search.share
+
+# Plugins Section
+plugins:
+  # -----------------------------------------------------
+  # Used to have the documentation inside its own package
+  # -----------------------------------------------------
+- monorepo
+- include_dir_to_nav
+- macros:
+      # toggle to true if you are in CD/CI environment
+    on_error_fail: true
+
+  # Include markdown files inside other markdown files
+- include-markdown
+
+  # ---------------------
+  # Search
+  # ---------------------
+  # Better search-bar plugin
+- search:
+    separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+    lang:
+    - en
+    - pt
+
+  # ------------------------------------------
+  # Support for tags in the begining of a page
+  # ------------------------------------------
+- tags
+- git-revision-date-localized:
+    type: date
+    fallback_to_build_date: true
+
+
+# Cookies consent (Future proofing if we haver enable Google Analytics)
+extra:
+  # ---------------------
+  # Support page versions
+  # ---------------------
+  version:
+    provider: mike
+
+  # ---------------------
+  # Remove the 'made with mkdocs'
+  # ---------------------
+  generator: false
+
+# Configure the packages to show documentation of
+nav:
+- Introduction: index.md
+- Get Started:
+  - pages/get_started/Repository-Structure.md
+  - pages/get_started/Install-Guide.md
+  - pages/get_started/Build-the-Code.md
+# ---------------------------------------------------------------------------------------------------
+# This section is populted automatically by the CI tool when generating the automatic documentation
+# You can change it, to see how it looks localy, but it well get ovewritten by Jenkins when deploying
+# ---------------------------------------------------------------------------------------------------
+- Packages documentation:
+  - Medusa Comms:
+    - Comms Msgs:
+      - Documentation: '!include ./medusa_comms/comms_msgs/mkdocs.yml'
+    - Comms Radio:
+      - Cpf Gamma:
+        - Documentation: '!include ./medusa_comms/comms_radio/cpf_gamma/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_comms/comms_radio/cpf_gamma/Classes
+        - Namespaces:
+          - api/markdown/medusa_comms/comms_radio/cpf_gamma/Namespaces
+    - Comms Acoustic:
+      - Data Serializer:
+        - Documentation: '!include ./medusa_comms/comms_acoustic/data_serializer/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_comms/comms_acoustic/data_serializer/Classes
+        - Namespaces:
+          - api/markdown/medusa_comms/comms_acoustic/data_serializer/Namespaces
+      - Comms State Broadcaster:
+        - Documentation: '!include ./medusa_comms/comms_acoustic/comms_state_broadcaster/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_comms/comms_acoustic/comms_state_broadcaster/Classes
+      - Evo Tools:
+        - Documentation: '!include ./medusa_comms/comms_acoustic/evo_tools/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_comms/comms_acoustic/evo_tools/Classes
+        - Namespaces:
+          - api/markdown/medusa_comms/comms_acoustic/evo_tools/Namespaces
+      - Interrogation Scheme:
+        - Documentation: '!include ./medusa_comms/comms_acoustic/interrogation_scheme/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_comms/comms_acoustic/interrogation_scheme/Classes
+  - Dsor Utils:
+    - Dsor Msgs:
+      - Documentation: '!include ./dsor_utils/dsor_msgs/mkdocs.yml'
+    - Dsor Utils:
+      - Documentation: '!include ./dsor_utils/dsor_utils/mkdocs.yml'
+      - Classes:
+        - api/markdown/dsor_utils/dsor_utils/Classes
+      - Namespaces:
+        - api/markdown/dsor_utils/dsor_utils/Namespaces
+  - Medusa Sim:
+    - Auv Sim:
+      - Documentation: '!include ./medusa_sim/auv_sim/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_sim/auv_sim/Classes
+    - Sensor Sim:
+      - Documentation: '!include ./medusa_sim/sensor_sim/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_sim/sensor_sim/Classes
+  - Medusa Addons:
+    - Http Server:
+      - Documentation: '!include ./medusa_addons/http_server/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_addons/http_server/Classes
+      - Namespaces:
+        - api/markdown/medusa_addons/http_server/Namespaces
+    - Libraries:
+      - Medusa Diagnostics Library:
+        - Documentation: '!include ./medusa_addons/libraries/medusa_diagnostics_library/mkdocs.yml'
+        - Namespaces:
+          - api/markdown/medusa_addons/libraries/medusa_diagnostics_library/Namespaces
+      - Medusa Gimmicks Library:
+        - Documentation: '!include ./medusa_addons/libraries/medusa_gimmicks_library/mkdocs.yml'
+        - Namespaces:
+          - api/markdown/medusa_addons/libraries/medusa_gimmicks_library/Namespaces
+    - Medusa Scripts: '!include ./medusa_addons/medusa_scripts/mkdocs.yml'
+    - Remote Controller:
+      - Documentation: '!include ./medusa_addons/remote_controller/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_addons/remote_controller/Classes
+      - Namespaces:
+        - api/markdown/medusa_addons/remote_controller/Namespaces
+    - Safety Feature:
+      - Documentation: '!include ./medusa_addons/safety_feature/mkdocs.yml'
+    - Status Aggregator:
+      - Documentation: '!include ./medusa_addons/status_aggregator/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_addons/status_aggregator/Classes
+      - Namespaces:
+        - api/markdown/medusa_addons/status_aggregator/Namespaces
+    - Console Path Parser:
+      - Documentation: '!include ./medusa_addons/console_path_parser/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_addons/console_path_parser/Classes
+  - Medusa Msgs:
+    - Documentation: '!include ./medusa_msgs/mkdocs.yml'
+  - Medusa Bringup:
+    - Documentation: '!include ./medusa_bringup/mkdocs.yml'
+    - Classes:
+      - api/markdown/medusa_bringup/Classes
+    - Namespaces:
+      - api/markdown/medusa_bringup/Namespaces
+  - Medusa Planning:
+    - Dsor Paths:
+      - Documentation: '!include ./medusa_planning/dsor_paths/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_planning/dsor_paths/Classes
+  - Medusa Control:
+    - Outer Loops Controllers:
+      - Cpf Control:
+        - Documentation: '!include ./medusa_control/outer_loops_controllers/cpf_control/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_control/outer_loops_controllers/cpf_control/Classes
+      - Waypoint:
+        - Documentation: '!include ./medusa_control/outer_loops_controllers/waypoint/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_control/outer_loops_controllers/waypoint/Classes
+      - Path Following:
+        - Documentation: '!include ./medusa_control/outer_loops_controllers/path_following/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_control/outer_loops_controllers/path_following/Classes
+    - Inner Loops Controllers:
+      - Inner Loops Pid:
+        - Documentation: '!include ./medusa_control/inner_loops_controllers/inner_loops_pid/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_control/inner_loops_controllers/inner_loops_pid/Classes
+      - Open Loop Controller:
+        - Documentation: '!include ./medusa_control/inner_loops_controllers/open_loop_controller/mkdocs.yml'
+        - Classes:
+          - api/markdown/medusa_control/inner_loops_controllers/open_loop_controller/Classes
+        - Namespaces:
+          - api/markdown/medusa_control/inner_loops_controllers/open_loop_controller/Namespaces
+    - Static Thruster Allocation:
+      - Documentation: '!include ./medusa_control/static_thruster_allocation/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_control/static_thruster_allocation/Classes
+    - Vehicle Stabilizer:
+      - Documentation: '!include ./medusa_control/vehicle_stabilizer/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_control/vehicle_stabilizer/Classes
+  - Medusa Nav:
+    - Medusa Nav:
+      - Documentation: '!include ./medusa_nav/medusa_nav/mkdocs.yml'
+    - Nav Tools:
+      - Documentation: '!include ./medusa_nav/nav_tools/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_nav/nav_tools/Classes
+    - Sensor Fusion:
+      - Documentation: '!include ./medusa_nav/sensor_fusion/mkdocs.yml'
+      - Classes:
+        - api/markdown/medusa_nav/sensor_fusion/Classes
+      - Namespaces:
+        - api/markdown/medusa_nav/sensor_fusion/Namespaces
+- Contributing:
+  - Code of Conduct: pages/CODE_OF_CONDUCT.md
+  - Contributing: pages/CONTRIBUTING.md
+  - Changelog: pages/CHANGELOG.md
+  - Acknowledgments: pages/Acknowledgments.md
+  - License: pages/LICENSE.md

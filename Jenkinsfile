@@ -1,9 +1,12 @@
+// Developed by: Marcelo Jacinto
+// Date: 29/05/2022
 pipeline {
     agent {
         docker {
-            image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa_base_jenkins:v0.0.3'
-            registryUrl 'https://harbor.dsor.isr.tecnico.ulisboa.pt'
-            registryCredentialsId 'harbor-robot-token'
+            image 'docker.io/dsorisr/medusa:v0.0.1'
+            //image 'harbor.dsor.isr.tecnico.ulisboa.pt/medusa/medusa:latest'
+            //registryUrl 'https://harbor.dsor.isr.tecnico.ulisboa.pt'
+            //registryCredentialsId 'harbor-robot-token'
             args '--entrypoint=""'
             reuseNode false
         }
@@ -42,9 +45,34 @@ pipeline {
         // Generate Doxygen documentation
         // only in release tags
         stage('Documentation') {
-            when {tag "release-*"}
+            when {
+                expression {env.BRANCH_NAME == "main"}
+            }
             steps{
                 echo 'Generating Doxygen Documentation..'
+                dir('catkin_ws/src') {
+                    withCredentials([GitUsernamePassword(
+                    credentialsId: 'github_app_tokn',
+                    gitToolName: 'Default')]) 
+                    {
+                        sh '''#!/bin/bash
+                        git config --global push.default tracking
+                        python3 docs/scripts/generate_documentation.py deploy
+                        '''
+                    }
+                }
+            }
+        }
+        // Update the docker image on the cloud if the docker file has changed
+        stage('Update Docker Image') {
+            when {
+                changeset "Dockerfile"
+            }
+            steps {
+                echo 'Generating the new docker image'
+                // TODO
+                echo 'Uploading the new image to online hub'
+                // TODO
             }
         }
     }

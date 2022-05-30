@@ -15,7 +15,27 @@ sudo apt-get update && \
      ros-noetic-geographic-msgs \
      librosconsole-dev \
      ros-noetic-geodesy \
+     ros-noetic-rosbridge-suite \
+     libudev-dev \
+     libusb-1.0-0-dev \
      && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------
+# Requirements for medusa_gazebo to work properly
+# -----------------------------------------------
+sudo apt-get update && \
+     apt-get install -y --no-install-recommends \
+     ros-noetic-web-video-server \
+     gstreamer-1.0 \
+     gstreamer1.0-plugins-base \
+     gstreamer1.0-plugins-good \
+     gstreamer1.0-plugins-bad \
+     gstreamer1.0-plugins-ugly \
+     libgstreamer-plugins-base1.0-dev \
+     libgstrtspserver-1.0-dev \
+     && rm -rf /var/lib/apt/lists/*
+
+pip3 install toml 
 
 # -------------------------------
 # Install the Python requirements
