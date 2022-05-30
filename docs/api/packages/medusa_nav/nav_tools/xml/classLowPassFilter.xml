@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classLowPassFilter" kind="class" language="C++" prot="public">
+    <compoundname>LowPassFilter</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classLowPassFilter_1aed0cc63a36d775d098e4262c6d56e011" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool LowPassFilter::initialized</definition>
+        <argsstring></argsstring>
+        <name>initialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="12" column="6" bodyfile="include/LowPassFilter.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classLowPassFilter_1a3c5ece3d98a0b3c33b5debceedfe57ff" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double LowPassFilter::wn</definition>
+        <argsstring></argsstring>
+        <name>wn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="106" column="8" bodyfile="include/LowPassFilter.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLowPassFilter_1abe1843d348af2843287b85447fce6530" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double LowPassFilter::qsi</definition>
+        <argsstring></argsstring>
+        <name>qsi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="106" column="11" bodyfile="include/LowPassFilter.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLowPassFilter_1a697f7b435c53c5bb57b6fb35acf94d69" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double LowPassFilter::K1</definition>
+        <argsstring></argsstring>
+        <name>K1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="107" column="8" bodyfile="include/LowPassFilter.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLowPassFilter_1a9c377923805f8651168b28e21eba6b15" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double LowPassFilter::K2</definition>
+        <argsstring></argsstring>
+        <name>K2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="107" column="11" bodyfile="include/LowPassFilter.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLowPassFilter_1a750ccfb5716fd75fa0697e215f5ebcaf" prot="protected" static="no" mutable="no">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt;double,double&gt; LowPassFilter::estimate</definition>
+        <argsstring></argsstring>
+        <name>estimate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="110" column="11" bodyfile="include/LowPassFilter.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLowPassFilter_1a08e6b6dce9e18f7ec8dafd7686430f8a" prot="protected" static="no" mutable="no">
+        <type>ros::Time</type>
+        <definition>ros::Time LowPassFilter::last_Update</definition>
+        <argsstring></argsstring>
+        <name>last_Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="111" column="11" bodyfile="include/LowPassFilter.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classLowPassFilter_1a6d6538d3dfe603cce18711c990b85a03" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LowPassFilter::LowPassFilter</definition>
+        <argsstring>()</argsstring>
+        <name>LowPassFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="19" column="5" bodyfile="include/LowPassFilter.h" bodystart="19" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1a3316b78086d4a6a45aa88fb42b5d05c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LowPassFilter::LowPassFilter</definition>
+        <argsstring>(double wn, double qsi)</argsstring>
+        <name>LowPassFilter</name>
+        <param>
+          <type>double</type>
+          <declname>wn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qsi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="33" column="1" bodyfile="include/LowPassFilter.h" bodystart="33" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1aba6ddf5e08a5a0dd8cef115b78532a89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LowPassFilter::LowPassFilter</definition>
+        <argsstring>(double wn, double qsi, bool initialize_on_first)</argsstring>
+        <name>LowPassFilter</name>
+        <param>
+          <type>double</type>
+          <declname>wn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qsi</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize_on_first</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="43" column="1" bodyfile="include/LowPassFilter.h" bodystart="43" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1a43cba80b2150a2fccb91bbb69465cfac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LowPassFilter::LowPassFilter</definition>
+        <argsstring>(double wn, double qsi, double var_init, double var_dot_init)</argsstring>
+        <name>LowPassFilter</name>
+        <param>
+          <type>double</type>
+          <declname>wn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qsi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>var_init</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>var_dot_init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="53" column="1" bodyfile="include/LowPassFilter.h" bodystart="53" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1a0c3f3acc5df212a1e702252af9cb27ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LowPassFilter::~LowPassFilter</definition>
+        <argsstring>()</argsstring>
+        <name>~LowPassFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="65" column="1" bodyfile="include/LowPassFilter.h" bodystart="65" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1a139d77a86c0d3be87eac55301061dfe3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt;double,double&gt; LowPassFilter::update</definition>
+        <argsstring>(double measurement)</argsstring>
+        <name>update</name>
+        <param>
+          <type>double</type>
+          <declname>measurement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="68" column="11" bodyfile="include/LowPassFilter.h" bodystart="68" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classLowPassFilter_1a8c7dafc4ac712f19ae0f4ff947566fb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt;double,double&gt; LowPassFilter::predict</definition>
+        <argsstring>()</argsstring>
+        <name>predict</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/LowPassFilter.h" line="88" column="11" bodyfile="include/LowPassFilter.h" bodystart="88" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/LowPassFilter.h" line="9" column="1" bodyfile="include/LowPassFilter.h" bodystart="8" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classLowPassFilter_1a750ccfb5716fd75fa0697e215f5ebcaf" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>estimate</name></member>
+      <member refid="classLowPassFilter_1aed0cc63a36d775d098e4262c6d56e011" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>initialized</name></member>
+      <member refid="classLowPassFilter_1a697f7b435c53c5bb57b6fb35acf94d69" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>K1</name></member>
+      <member refid="classLowPassFilter_1a9c377923805f8651168b28e21eba6b15" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>K2</name></member>
+      <member refid="classLowPassFilter_1a08e6b6dce9e18f7ec8dafd7686430f8a" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>last_Update</name></member>
+      <member refid="classLowPassFilter_1a6d6538d3dfe603cce18711c990b85a03" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>LowPassFilter</name></member>
+      <member refid="classLowPassFilter_1a3316b78086d4a6a45aa88fb42b5d05c5" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>LowPassFilter</name></member>
+      <member refid="classLowPassFilter_1aba6ddf5e08a5a0dd8cef115b78532a89" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>LowPassFilter</name></member>
+      <member refid="classLowPassFilter_1a43cba80b2150a2fccb91bbb69465cfac" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>LowPassFilter</name></member>
+      <member refid="classLowPassFilter_1a8c7dafc4ac712f19ae0f4ff947566fb2" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>predict</name></member>
+      <member refid="classLowPassFilter_1abe1843d348af2843287b85447fce6530" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>qsi</name></member>
+      <member refid="classLowPassFilter_1a139d77a86c0d3be87eac55301061dfe3" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>update</name></member>
+      <member refid="classLowPassFilter_1a3c5ece3d98a0b3c33b5debceedfe57ff" prot="protected" virt="non-virtual"><scope>LowPassFilter</scope><name>wn</name></member>
+      <member refid="classLowPassFilter_1a0c3f3acc5df212a1e702252af9cb27ef" prot="public" virt="non-virtual"><scope>LowPassFilter</scope><name>~LowPassFilter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

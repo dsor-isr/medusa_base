@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode" kind="class"><name>medusa_bringup_ros::MedusaBringupVxNode::MedusaBringupVxNode</name>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ad3be65ca71cf8ac3d42e1408437dc439" kind="variable"><name>name</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a582dde662b0eb89679223a04a40bb470" kind="variable"><name>config_package_path</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a75f2d9d0913e3f70be7a06de59f30cd8" kind="variable"><name>folder</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ab83549b2e70b9faef3b8dbb75e7449b4" kind="variable"><name>namespace</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a849ee9bdc5774c97e17107c34916e5f6" kind="variable"><name>vehicle_configuration</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a0f8d2bc540fffe6eaea36e13fa4633be" kind="function"><name>__init__</name></member>
+    <member refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a62ffdd50e9220e1d3d88b060e8579d56" kind="function"><name>loadParams</name></member>
+  </compound>
+  <compound refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup" kind="class"><name>medusa_bringup_algorithms::MedusaSetup::MedusaSetup</name>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a88488a65df1b92e526da6735d24ec025" kind="variable"><name>vehicle_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a8aa919437fa62dbaa6b0ac894ddcb44c" kind="variable"><name>config_package_path</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1aa8de2e3eb35a475f875214c712e71051" kind="variable"><name>folder</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a1118714868a65b1351686103a46af82b" kind="variable"><name>namespace</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a95cbc14a9bea4a5a61ff87f1a9d3e662" kind="variable"><name>vehicle_configuration</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1acab56fea0c116313f431133299a575bf" kind="variable"><name>process_list</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a25e17ac0b98ab0d6bc99e4d7f36b6595" kind="variable"><name>process_config</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1ae3bcb45a457602794f59e06bf024cf34" kind="variable"><name>process_state_publish_rate</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a0144f19cfe03b9ebea9a67a89952f547" kind="variable"><name>process_state_publisher</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a6d2f64c3087bd23b6593bd452df687aa" kind="variable"><name>manage_process_server</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a26d2f9db9aa0c695237fecc3c461ccca" kind="function"><name>__init__</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1ab853dcd7929997b1667e3d1e848fd87b" kind="function"><name>publish_process_state</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a6f5bf1745eb0aec061925ad80fb52b4f" kind="function"><name>callback_manage_process</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1af1f99cc7fdfff6155e423a844becc22b" kind="function"><name>clean_ros_processes</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1adb9eb3dc865ea11bc72f1126c46ecf0f" kind="function"><name>create_processes</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a783c339cf86e173ecee14fe3e9c0f7d5" kind="function"><name>start_init_processes</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a23d4c59ab4b61090f59c2dcec8d95093" kind="function"><name>start_all_processes</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a775717aac63b646a828f9f3bdbca3cb9" kind="function"><name>stop_all_processes</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1acc0b40e8c80f4137740d019bdbe477c3" kind="function"><name>get_process_from_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a7c871425720cd59a52db8241b5dcd7bd" kind="function"><name>get_dependency_process_list</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a37158c72386c1e1088a101450a5631b0" kind="function"><name>are_dependencies_met</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1afb3d692b979ae673354d325a170e0037" kind="function"><name>check_and_start_dependencies</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1ae5f4a75d271dfffa916da34b209f2a21" kind="function"><name>start_process</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a4d72e2ac196233c2caf183d7fcec8fb1" kind="function"><name>start_process_from_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a9c1defa007023938b706f29f57451334" kind="function"><name>stop_process_from_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1adbcd7e8b16e25edacef1bcd338695993" kind="function"><name>restart_process_from_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a531850726fae96ffadbd0b1ebb710725" kind="function"><name>kill_process_from_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1ac1eecc93c474654553a6be1899e5aac7" kind="function"><name>create_response</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1ada8600b1c08af5191fcecac6296885ec" kind="function"><name>stop_process</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a4eb844ba5c3843f9473679af1c9106c4" kind="function"><name>restart_process</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup_1a97611f4ab3ea8dc8cc56b296fbfa3a73" kind="function"><name>kill_process</name></member>
+  </compound>
+  <compound refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process" kind="class"><name>medusa_bringup_algorithms::MedusaSetup::Process</name>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a74ee15de3aeb60f3396a2ad4a9555136" kind="variable"><name>name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1afe8aa9790d1ac2ad25b66f37aa0e588c" kind="variable"><name>config_package_path</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a0e0d8e08b6aeceae123ac31345cfc344" kind="variable"><name>cmd</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a91f122f06971f0c305121b3718c30423" kind="variable"><name>folder</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1aceb8edc7c9e3408cd45af78cb9735c86" kind="variable"><name>namespace</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1ab2a5c1743e28e01b3dfc1d6bac162600" kind="variable"><name>vehicle_configuration</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1aa880000675c3efc9bc222fac75b0323c" kind="variable"><name>args</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1aceb00df1858ac99e52378ae1701609e8" kind="variable"><name>dependencies</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a10f0c2e2b105b73027e6738b85d32d03" kind="variable"><name>launch_on_startup</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a33c854f0365503bee490f03bbef7e31a" kind="variable"><name>delay_before_start</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1ad8d00941b0ed1667e3eb71ae7cc0d2e4" kind="variable"><name>process</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1afb1682d30d2c75f8382c45191c1e8b5c" kind="variable"><name>vehicle_name</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a0159c8bc255aa92202ec950b2e1e2e57" kind="function"><name>__init__</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a3ef5f93b652b09449ff23ef462aa3a0a" kind="function"><name>start</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a2a3a4eafcb7df38572c38c16eff64b9e" kind="function"><name>restart</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1ae77a6ef7087c3e251eda6478560a0e5a" kind="function"><name>stop</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1ae1e40cec9e4ac15c5fe5bff4dc4c0edb" kind="function"><name>kill</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1Process_1a66d44b44fbd0a1af89c341778b8c1164" kind="function"><name>is_active</name></member>
+  </compound>
+  <compound refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType" kind="class"><name>medusa_bringup_algorithms::MedusaSetup::ProcessActionType</name>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1af64d85735572efb967bbce0caeec8cf1" kind="variable"><name>START</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1ae3a4a3d54204ad4c7128a1c2c81d2f4a" kind="variable"><name>STOP</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a0f3e39b1687fd41e4176a361ea62e3a2" kind="variable"><name>RESTART</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a9a6bb54432f307a2b089984bbddb575d" kind="variable"><name>KILL</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a20ae1ef011b5bedd7a6d31e3c7242f6e" kind="variable"><name>START_ALL</name></member>
+    <member refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessActionType_1a2af089c438c7308b67ad2f2ab93d817e" kind="variable"><name>STOP_ALL</name></member>
+  </compound>
+  <compound refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1ProcessNotFound" kind="class"><name>medusa_bringup_algorithms::MedusaSetup::ProcessNotFound</name>
+  </compound>
+  <compound refid="namespacemedusa__bringup__algorithms" kind="namespace"><name>medusa_bringup_algorithms</name>
+  </compound>
+  <compound refid="namespacemedusa__bringup__algorithms_1_1MedusaSetup" kind="namespace"><name>medusa_bringup_algorithms::MedusaSetup</name>
+    <member refid="MedusaSetup_8py_1a69f8ab033ed6a96c6c5b26d9c31dec42" kind="variable"><name>PROCESS_TIMEOUT_RESTART</name></member>
+    <member refid="MedusaSetup_8py_1a36970341c973ce3923fe7c0638c20af2" kind="function"><name>kill_rosmaster</name></member>
+  </compound>
+  <compound refid="namespacemedusa__bringup__ros" kind="namespace"><name>medusa_bringup_ros</name>
+  </compound>
+  <compound refid="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode" kind="namespace"><name>medusa_bringup_ros::MedusaBringupVxNode</name>
+    <member refid="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode_1aace22bd64fdec5a9019157c80182f104" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="namespacesetup" kind="namespace"><name>setup</name>
+    <member refid="setup_8py_1aa2586b6c4dd84a0aaaf49cb1565cee6e" kind="variable"><name>d</name></member>
+  </compound>
+  <compound refid="setup_8py" kind="file"><name>setup.py</name>
+    <member refid="setup_8py_1aa2586b6c4dd84a0aaaf49cb1565cee6e" kind="variable"><name>d</name></member>
+  </compound>
+  <compound refid="medusa__bringup__algorithms_2____init_____8py" kind="file"><name>__init__.py</name>
+  </compound>
+  <compound refid="medusa__bringup__ros_2____init_____8py" kind="file"><name>__init__.py</name>
+  </compound>
+  <compound refid="MedusaSetup_8py" kind="file"><name>MedusaSetup.py</name>
+    <member refid="MedusaSetup_8py_1a69f8ab033ed6a96c6c5b26d9c31dec42" kind="variable"><name>PROCESS_TIMEOUT_RESTART</name></member>
+    <member refid="MedusaSetup_8py_1a36970341c973ce3923fe7c0638c20af2" kind="function"><name>kill_rosmaster</name></member>
+  </compound>
+  <compound refid="MedusaBringupVxNode_8py" kind="file"><name>MedusaBringupVxNode.py</name>
+    <member refid="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode_1aace22bd64fdec5a9019157c80182f104" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_7ca26e9eef1defdcfc4ec5f7e9066dd3" kind="dir"><name>src/medusa_bringup_algorithms</name>
+  </compound>
+  <compound refid="dir_1e14d5474b945195d6c47cb30026efd3" kind="dir"><name>src/medusa_bringup_ros</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

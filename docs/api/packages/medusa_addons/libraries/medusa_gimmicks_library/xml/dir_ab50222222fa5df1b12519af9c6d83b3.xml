@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_ab50222222fa5df1b12519af9c6d83b3" kind="dir">
+    <compoundname>include/medusa_gimmicks_library</compoundname>
+    <innerfile refid="MedusaGimmicks_8h">MedusaGimmicks.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/medusa_gimmicks_library/"/>
+  </compounddef>
+</doxygen>

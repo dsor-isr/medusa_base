@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="MedusaBringupVxNode_8py" kind="file" language="Python">
+    <compoundname>MedusaBringupVxNode.py</compoundname>
+    <innerclass refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode" prot="public">medusa_bringup_ros::MedusaBringupVxNode::MedusaBringupVxNode</innerclass>
+    <innernamespace refid="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode">medusa_bringup_ros::MedusaBringupVxNode</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode_1aace22bd64fdec5a9019157c80182f104" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def medusa_bringup_ros.MedusaBringupVxNode.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/medusa_bringup_ros/MedusaBringupVxNode.py" line="54" column="1" bodyfile="src/medusa_bringup_ros/MedusaBringupVxNode.py" bodystart="54" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacemedusa__bringup__ros_1_1MedusaBringupVxNode" refkind="compound"><highlight class="comment">#!/usr/bin/env<sp/>python</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="stringliteral">&quot;&quot;&quot;<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">Developers:<sp/>DSOR<sp/>Team<sp/>-&gt;<sp/>@isr.ist.pt<sp/>Instituto<sp/>Superior<sp/>Tecnico</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">Description:<sp/>Please<sp/>check<sp/>the<sp/>documentation<sp/>of<sp/>this<sp/>package<sp/>for<sp/>more<sp/>info.</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>rospy</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/><ref refid="namespacemedusa__bringup__algorithms_1_1MedusaSetup" kindref="compound">medusa_bringup_algorithms.MedusaSetup</ref><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MedusaSetup</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>std_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Int8,<sp/>Bool</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode" kindref="compound">MedusaBringupVxNode</ref>():</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a0f8d2bc540fffe6eaea36e13fa4633be" kindref="member">__init__</ref>(self):</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Constructor<sp/>for<sp/>ros<sp/>node</highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>@.@<sp/>Init<sp/>node</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rospy.init_node(</highlight><highlight class="stringliteral">&apos;medusa_bringup_vx_node&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>@.@<sp/>Handy<sp/>Variables</highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Declare<sp/>here<sp/>some<sp/>variables<sp/>you<sp/>might<sp/>think<sp/>usefull<sp/>-&gt;<sp/>example:<sp/>self.fiic<sp/>=<sp/>true</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a62ffdd50e9220e1d3d88b060e8579d56" kindref="member">loadParams</ref>()</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classmedusa__bringup__algorithms_1_1MedusaSetup_1_1MedusaSetup" kindref="compound">MedusaSetup</ref>(self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ad3be65ca71cf8ac3d42e1408437dc439" kindref="member">name</ref>,<sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a582dde662b0eb89679223a04a40bb470" kindref="member">config_package_path</ref>,<sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a75f2d9d0913e3f70be7a06de59f30cd8" kindref="member">folder</ref>,<sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ab83549b2e70b9faef3b8dbb75e7449b4" kindref="member">namespace</ref>,<sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a849ee9bdc5774c97e17107c34916e5f6" kindref="member">vehicle_configuration</ref>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="37"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>@.@<sp/>Member<sp/>Helper<sp/>function<sp/>to<sp/>set<sp/>up<sp/>parameters;<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>###########################################################################################</highlight></codeline>
+<codeline lineno="39"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">loadParams(self):</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>self.node_frequency<sp/>=<sp/>rospy.get_param(&apos;~node_frequency&apos;,<sp/>10)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>self.real<sp/>=<sp/>rospy.get_param(&apos;~real&apos;,<sp/>False)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ad3be65ca71cf8ac3d42e1408437dc439" kindref="member">name</ref><sp/>=<sp/>rospy.get_param(</highlight><highlight class="stringliteral">&apos;~name&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;mred&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a582dde662b0eb89679223a04a40bb470" kindref="member">config_package_path</ref><sp/>=<sp/>rospy.get_param(</highlight><highlight class="stringliteral">&apos;~config_package_path&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;~/catkin_ws/medusa_simulation/medusa_base/medusa_bringup&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a75f2d9d0913e3f70be7a06de59f30cd8" kindref="member">folder</ref><sp/>=<sp/>rospy.get_param(</highlight><highlight class="stringliteral">&apos;~folder&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;simulation&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1ab83549b2e70b9faef3b8dbb75e7449b4" kindref="member">namespace</ref><sp/>=<sp/>rospy.get_param(</highlight><highlight class="stringliteral">&apos;~namespace&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;false&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode_1a849ee9bdc5774c97e17107c34916e5f6" kindref="member">vehicle_configuration</ref><sp/>=<sp/>rospy.get_param(</highlight><highlight class="stringliteral">&apos;~vehicle_configuration&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#self.bags<sp/>=<sp/>rospy.get_param(&apos;~bags&apos;,<sp/>False)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#self.pf_controller<sp/>=<sp/>rospy.get_param(&apos;~path_following&apos;,<sp/>&quot;Lapierre&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#self.waypoint<sp/>=<sp/>rospy.get_param(&apos;~waypoint&apos;,<sp/>&quot;standard&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">main():</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>medusaBringupVx<sp/>=<sp/><ref refid="classmedusa__bringup__ros_1_1MedusaBringupVxNode_1_1MedusaBringupVxNode" kindref="compound">MedusaBringupVxNode</ref>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>+.+<sp/>Added<sp/>to<sp/>work<sp/>with<sp/>timer<sp/>-&gt;<sp/>going<sp/>into<sp/>spin;<sp/>let<sp/>the<sp/>callbacks<sp/>do<sp/>all<sp/>the<sp/>work</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>rospy.spin()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>__name__<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;__main__&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>main()</highlight></codeline>
+    </programlisting>
+    <location file="src/medusa_bringup_ros/MedusaBringupVxNode.py"/>
+  </compounddef>
+</doxygen>
