@@ -16,6 +16,116 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__iterator/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1const__reverse__iterator/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1iterator/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classCircularDelay_1_1reverse__iterator/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classDifferentiator/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classDigitalFilter/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classHighPassFilter3/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter2/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3DiffApprox/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classLowPassFilter3MatchedZ/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/classMovingAvarageFilter/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Classes/structDSOR_1_1VehicleState/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Examples/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Modules/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Namespaces/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Namespaces/namespaceDSOR/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/api/markdown/dsor_utils/dsor_utils/Namespaces/namespacetps/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://dsor-isr.github.io/medusa_base/api/markdown/medusa_addons/console_path_parser/Classes/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
@@ -1172,6 +1282,16 @@
     </url>
     <url>
          <loc>https://dsor-isr.github.io/medusa_base/dsor-paths/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/dsor-ros-messages/</loc>
+         <lastmod>2022-05-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dsor-isr.github.io/medusa_base/dsor-utility-functions/</loc>
          <lastmod>2022-05-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
