@@ -38,32 +38,32 @@ function topic(name)
  *****************************************************/
 
 // Topics name list
-var varstoaks = ["ThrusterR/Status", "ThrusterL/Status", "can/motor_port", "can/motor_stbd", 
-								 "can/battery_port", "can/battery_stbd", "gps/data", "imu/data", 
-								 "leaks/port/1", "leaks/port/2", "leaks/stbd/1", "leaks/stbd/2"];
+var varstoaks = ["drivers/can/thrusters/stbd/mStatus", "drivers/can/thrusters/port/mStatus", "drivers/can/thrusters/stbd/dStatus", "drivers/can/thrusters/port/dStatus", 
+								 "can/battery_port", "can/battery_stbd", "drivers/gps/data", "drivers/imu/data", 
+								 "drivers/can/leaks/port/1", "drivers/can/leaks/port/2", "drivers/can/leaks/stbd/1", "drivers/can/leaks/stbd/2"];
 
 // Topics list object
 var topics_list = new topics_list();
 
 // Add port can topic to list
-var can_port = new topic("can_motor_port");
+var can_port = new topic("drivers_can_thrusters_port_dStatus");
 can_port.addSubTopic('voltage',"pport_voltage");
 topics_list.addTopic(can_port);
 
 // Add stbd can topic to list
-var can_stbd = new topic("can_motor_stbd");
+var can_stbd = new topic("drivers_can_thrusters_stbd_dStatus");
 can_stbd.addSubTopic('voltage',"pstbd_voltage");
 topics_list.addTopic(can_stbd);
 
 // Add left thruster topic to list
-var thl = new topic("ThrusterL_Status");
+var thl = new topic("drivers_can_thrusters_port_mStatus");
 thl.addSubTopic('Speed',"plm_speed");
 thl.addSubTopic('Current',"plm_curr");
 thl.addSubTopic('Errors',"plm_errors");
 topics_list.addTopic(thl);
 
 // Add right thruster topic to list
-var thr = new topic("ThrusterR_Status");
+var thr = new topic("drivers_can_thrusters_stbd_mStatus");
 thr.addSubTopic('Speed',"prm_speed");
 thr.addSubTopic('Current',"prm_curr");
 thr.addSubTopic('Errors',"prm_errors");
@@ -88,25 +88,25 @@ bat_stbd.addSubTopic('temperature',"bs_temp");
 topics_list.addTopic(bat_stbd);
 
 // Add IMU topic to list
-var imu = new topic("imu_data");
+var imu = new topic("drivers_imu_data");
 imu.addSubTopic('Yaw',"pheading");
 imu.addSubTopic('Gz',"pheading_rate");
 topics_list.addTopic(imu);
 
 // Add GPS topic to list
-var gps = new topic("gps_data");
+var gps = new topic("drivers_gps_data");
 gps.addSubTopic('satellites',"psats");
 gps.addSubTopic('latitude',"plat");
 gps.addSubTopic('longitude',"plon");
 topics_list.addTopic(gps);
 
 // Add leaks port 1 topic to list
-var leaks_port_1 = new topic("leaks_port_1");
+var leaks_port_1 = new topic("drivers_can_leaks_port_1");
 leaks_port_1.addSubTopic('data',"lp1");
 topics_list.addTopic(leaks_port_1);
 
 // Add leaks port 2 topic to list
-var leaks_port_2 = new topic("leaks_port_2");
+var leaks_port_2 = new topic("drivers_can_leaks_port_2");
 leaks_port_2.addSubTopic('data',"lp2");
 topics_list.addTopic(leaks_port_2);
 
@@ -249,7 +249,7 @@ function buttonAction()
  */
 function testThrusters()
 {
-	window.location.href = "/action.html?action=./RSET Thruster_Test std_msgs/Bool true";
+	window.location.href = "/action.html?action=./RSET /thrusters/test std_msgs/Bool true";
 }
 
 /**
@@ -258,7 +258,7 @@ function testThrusters()
 function pcDown()
 {
 	// Open page to send request and display response
-	window.location.href = "/action.html?action=./RSET bat_monit/pc_shutdown std_msgs/Bool true";
+	window.location.href = "/action.html?action=./RSET /drivers/batmonit/pc_shutdown std_msgs/Bool true";
 }
 
 /**
@@ -312,8 +312,8 @@ function updateFields(topic, subtopic, text)
 
 				value = [min, max];
 				break;
-			case "gps_data_longitude":
-			case "gps_data_latitude":
+			case "drivers_gps_data_longitude":
+			case "drivers_gps_data_latitude":
 				value[0] = parseFloat(text).toFixed(6)+'';
 				break;
 			case "ThrusterL_Status_Errors":
@@ -329,8 +329,8 @@ function updateFields(topic, subtopic, text)
 					if (value[0] == "") value[0] = "unknown";
 				}
 				break;
-			case "leaks_port_1_data":
-			case "leaks_port_2_data":
+			case "drivers_can_leaks_port_1_data":
+			case "drivers_can_leaks_port_2_data":
 			case "leaks_stbd_1_data":
 			case "leaks_stbd_2_data":
 				if (text == "False")

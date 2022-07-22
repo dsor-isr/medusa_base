@@ -36,9 +36,9 @@ from _socket import error as SocketError
 
 import array
 NAME='Console'
-MISSION_PATH ="/home/cog/cog-sw/Missions_FOLDER" # TODO: Change this to a PARAMETER
+MISSION_PATH ="" # TODO: Change this to a PARAMETER
 #MISSION_PATH ="/home/jorge/Medusa_CODE/Missions_FOLDER" # TODO: Change this to a PARAMETER
-pages_folder = ""
+pages_folder = "/home/delfim/catkin_ws_delfim/src/medusa_base/medusa_addons/http_server/pages"
 NFILE=0 # Temp filename
 
 from operator import itemgetter
@@ -126,6 +126,7 @@ class Topic_Struct(object):
         for i in self.topics:
             msg += i + "\n"
         return msg
+
 ALL_TOPICS = Topic_Struct()
 SUBSCRIBED_TOPICS = Topic_Struct()
 UNKNOWN_TOPICS = Topic_Struct()
@@ -1034,6 +1035,7 @@ class HTTP_Handler(BaseHTTPRequestHandler):
             elif (self.path.endswith(".html") or self.path.endswith(".jpg") or self.path.endswith(".png") or self.path.endswith(".gif")): # Path Files
                 #self.path has /test.html
                 f = open(pages_folder+ "." + self.path)
+                print(pages_folder+ "." + self.path)
                 #print "Getting "+pages_folder+ "." + self.path
                 #note that this potentially makes every file on your computer readable by the internet
                 self.send_response(200)
@@ -1130,7 +1132,7 @@ if __name__ == '__main__':
     # variable not to rostopic list for every request
     g_list_topic_stamp = rospy.Time.now()-rospy.Duration(g_list_topic_thrsh*2)
     MISSION_PATH = rospy.get_param('~Mission_Folder','/home/medusa/medusa-sw/Missions_FOLDER').replace('//','/') # solve the issue when the path is something like /home/cog/cog-sw//../Missions_FOLDER
-    pages_folder = rospy.get_param('~pages_folder',"/home/medusa/medusa-sw/medusa_common/http_server/pages/")
+    pages_folder = rospy.get_param('~pages_folder',"/home/delfim/catkin_ws_delfim/src/medusa_base/medusa_addons/http_server/pages")
     server_port = rospy.get_param('~PORT',7080)
 
     ROOT_NAMESPACE = rospy.get_param('~ROOT_NAMESPACE',True)
@@ -1140,7 +1142,7 @@ if __name__ == '__main__':
     else:
         _namespace=""
     
-    _Ask_Topics("VAR rosout gps/data imu/data bat_monit/data ThrusterR/Status ThrusterL/Status Safety_Feature Leak1 Leak2 Pressure");
+    _Ask_Topics("VAR rosout /drivers/gps/data /drivers/imu/data /drivers/batmonit/data /drivers/can/thrusters/stdb/mStatus /drivers/can/thrusters/port/mStatus /safety   Leak1 Leak2 Pressure");
     try:
         command = argv[1]
         if command == 'echo':

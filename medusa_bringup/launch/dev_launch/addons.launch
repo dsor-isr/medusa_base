@@ -50,7 +50,7 @@
         <group if="$(arg console_server)">
             <node pkg="http_server" type="console.py" name="console_server" args="console" output="screen">
                 <param name="type_Folder" value="$(find http_server)/../../types_FOLDER" />
-                <param name="pages_folder"   value="$(find http_server)/pages/" />
+                <param name="pages_folder"   value="$(find http_server)/pages/delfim/" />
             </node>
         </group>
 
