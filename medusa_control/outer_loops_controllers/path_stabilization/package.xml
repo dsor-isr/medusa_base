@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package format="2">
+   <name>path_stabilization</name>
+   <version>1.0.0</version>
+   <description>Package that implements path stabilization controllers for AUVs. 
+      This follows a similar strcuture to the Path Following package created by Marcelo Jacinto.
+   </description>
+
+   <license>MIT</license>
+
+   <author email="andre.potes@gmail.com">André Potes</author>
+   <maintainer email="andre.potes@gmail.com">André Potes</maintainer>
+
+   <buildtool_depend>catkin</buildtool_depend>
+   <depend>std_msgs</depend>
+   <depend>roscpp</depend>   
+   <depend>medusa_msgs</depend>
+   <depend>waypoint</depend>
+
+   <!--DSOR utilities library to compute rotations and skew symmetryc matrices-->
+   <depend>dsor_utils</depend>
+
+   <!-- Medusa Gimmicks is used for parameter loading -->
+   <depend>medusa_gimmicks_library</depend>
+
+   <!-- Eigen library is required -->
+   <depend>eigen</depend>
+
+   <!-- Libraries to generate the messages and services -->
+   <build_depend>message_generation</build_depend>
+   <exec_depend>message_runtime</exec_depend>
+
+</package>

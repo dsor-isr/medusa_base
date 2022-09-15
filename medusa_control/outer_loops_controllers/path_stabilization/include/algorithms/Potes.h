@@ -1,8 +1,6 @@
 #pragma once
 
-#include "PathFollowing.h"
-#include "dsor_paths/SpawnCircle2D.h"
-#include "dsor_paths/ResetPath.h"
+#include "PathStabilization.h"
 
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Point.h>
@@ -10,7 +8,7 @@
 #include <Eigen/Geometry>
 
 /**
- * @brief Path following algorithm used to track a target around a circular path center in it.
+ * @brief Path stabilization algorithm used to track a target around a circular path center in it.
  * This algorithm support:
  *    Controls:
  *      - surge
@@ -20,30 +18,27 @@
  *      - pitch rate
  *      - yaw rate
  *      - virtual target velocity (gamma dot)
- *    Supports Cooperative Path Following - False
+ *    Supports Cooperative Path Stabilization - False
  *    Contains Currents Observers - False
  *
- * @author    Andre Potes
- * @author    Francisco Rego
+ * @author    André Potes
  * @author    Marcelo Jacinto
  * @version   1.0a
  * @date      2021
  * @copyright MIT
  */
-class Potes : public PathFollowing {
+class Potes : public PathStabilization {
 
 public:
 
     /**
-     * @brief  Constructor method for the Path Following class
+     * @brief  Constructor method for the Path Stabilization class
      *position
      * @param kp Positive proportional linear velocity control scalar gain. Represents the transition steepness in saturation function
      * @param lambda_p Positive linear velocity controller gain. Represents the max/min limits of the saturation function
      * @param k_gamma Positive parameter gain for virtual particle controller.
      * @param k_gamma_e Positive parameter gain for virtual particle controller.
      * @param rho_gamma_e Positive parameter gain for virtual particle controller.
-     * @param sigma_m Positive parameter for attitude control. Denotes the maximum distance in which the change in the desired yaw angle occurs.
-     * @param kpsi Positive parameter for attitude control. Represents the change steepness curve.
      * @param Kp_omega Positive proportional definite gain matrix for attitude control.
      * @param Q Arbitrary matrix such that all singular values are distinct.
      * @param circle_radius Positive parameter related with the circle radius of the path.
@@ -56,7 +51,7 @@ public:
      * @param rabbit_pub The ROS rabbit publisher
      */
     Potes(double kp, double lambda_p, double k_gamma, double k_gamma_e, double rho_gamma_e,
-          double k_psi, double sigma_m, Eigen::Vector3d &Kp_omega, Eigen::Matrix3d &Q, double circle_radius,
+          Eigen::Vector3d &Kp_omega, Eigen::Matrix3d &Q, double circle_radius,
           ros::Publisher surge_pub, ros::Publisher sway_pub, ros::Publisher heave_pub, 
           ros::Publisher roll_rate_pub, ros::Publisher pitch_rate_pub, ros::Publisher yaw_rate_pub,
           ros::Publisher rabbit_pub);
@@ -64,17 +59,7 @@ public:
     /**
         * @brief Method that receives a message from ROS with the center point of circular path in the inertial frame
      */
-    void updateMissionLocation(const geometry_msgs::Point &msg);
-
-    /**
-     * @brief Method that receives a message from ROS with the target velocity
-     */
-    void updateTargetPosition(const geometry_msgs::Point &msg);
-    /**
-     * @brief Method that receives a message from ROS with the target velocity
-     */
-    void updateTargetVelocity(const geometry_msgs::Twist &msg);
-
+    void updateReferences(const medusa_msgs::mPStabilizationRefs &msg);
 
     /**
      * @brief  Method to update the gains, given a vector of doubles
@@ -84,17 +69,17 @@ public:
      *
      * @return a boolean which represents the success of the operation
      */
-    bool setPFGains(std::vector<double> gains) override;
+    bool setPSGains(std::vector<double> gains) override;
 
     /**
-     * @brief  Method that implements the path following control law
+     * @brief  Method that implements the path stabilization control law
      *
      * @param dt The time step between last call and current call (in seconds)
      */
-    void callPFController(double dt) override;
+    void callPSController(double dt) override;
 
     /**
-     * @brief  Method to publish_private the data from the path following
+     * @brief  Method to publish_private the data from the path stabilization
      */
     void publish_private() override;
 
@@ -135,29 +120,11 @@ protected:
     Eigen::Vector3d sigma(Eigen::Vector3d &s);
 
     /**
-     * @brief Method that given a vector of euler angles (roll, pitch, yaw) generates rotation matrix
+     * @brief Method that returns a tuple with the necessary references for the path stabilization and attitude controller
      *
-     * @param angles vector of angles in radians
-     * @return Rotation Matrix
-     */
-    Eigen::Matrix3d computeRotationMatrix(Eigen::Vector3d &angles);
-    Eigen::Matrix3d computeRotationMatrix(double roll, double pitch, double yaw);
-
-    /**
-     * @brief Method that given a vector of parameters computes the Skew Symmetric matrix
-     *
-     * @param s 3D vector
-     * @return Skew Symmetric Matrix
-     */
-    Eigen::Matrix3d computeSkewSymetric(Eigen::Vector3d &s);
-
-    /**
-     * @brief Method that returns a tuple with the necessary references for the path following and attitude controller
-     *
-     * @param p Position of vehicle in inertial frame
      * @return Tuple
      */
-    std::tuple<Eigen::Vector3d, Eigen::Matrix3d, Eigen::Matrix3d, Eigen::Matrix3d, Eigen::Vector3d, Eigen::Vector3d> getReferences(Eigen::Vector3d &p);
+    std::tuple<Eigen::Vector3d, Eigen::Matrix3d, Eigen::Matrix3d, Eigen::Matrix3d, Eigen::Vector3d, Eigen::Vector3d> getReferences();
 
 private:
 
@@ -172,16 +139,8 @@ private:
     double k_gamma_e_{0.0}; // gamma (sigmoid tighten gain)
     double rho_gamma_e_{0.0}; // gamma (maximum distance to virtual target) 
 
-    /**
-     * @brief Controller guidance parameters
-     * 
-     */
-    double k_psi_{0.0}; // maximum distance to diver when vehicle shoudl point towards to desired mission location
-    double sigma_m_{0.0}; // speed of change of heading reference (sigmoid tighteness)
-
-    bool has_received_target_pos_{false};
-    bool has_received_target_vel_{false};
-    bool has_received_mission_{false};
+    // flag to check if we have already received the necessary references from the guidance system and proceed to compute the control law
+    bool has_received_references_{false};
 
     /**
      * @brief The safety radius path between diver and robot
@@ -199,19 +158,21 @@ private:
     double desired_yaw_rate_{0.0};
 
     /**
-     * @brief The references for the target and mission
+     * @brief The references provided by the guidance system
      */
     Eigen::Vector3d target_vel_{0.0, 0.0, 0.0};
     Eigen::Vector3d target_pos_{0.0, 0.0, 0.0};
-    Eigen::Vector3d mission_pos_{0.0, 0.0, 0.0};
+    Eigen::Vector3d mission_pos_{0.0, 0.0, 0.0};  
+    Eigen::Vector3d desired_attitude_{0.0, 0.0, 0.0}; 
 
     /**
      * @brief The values for the dynamics of the gamma (virtual rabbit)
      */
-    double gamma_ref_dot_{0.0};
-    double gamma_ref_{0.0};
+
     double gamma_dot_{0.0};
     double gamma_{0.0};
+    double gamma_ref_{0.0};
+    double gamma_ref_dot_{0.0};
 
     /**
      * @brief ROS publishers to publish the data
@@ -226,10 +187,5 @@ private:
 
     ros::Publisher rabbit_pub_;
 
-    /**
-     * @brief ROS service to reset the path and to ask for a circular path
-     */
-    ros::ServiceClient reset_path_client_;
-    ros::ServiceClient spawn_circle_client_;
 };
 

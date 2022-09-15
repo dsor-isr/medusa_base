@@ -25,7 +25,6 @@
 #include "Lapierre.h"
 #include "Pramod.h" 
 #include "Samson.h"
-#include "Potes.h"
 #include "PathFollowing.h"
 #include "States.h"
 
@@ -127,7 +126,6 @@ class PathFollowingNode {
     ros::ServiceServer pf_samson_srv_;
     ros::ServiceServer pf_marcelo_srv_;
     ros::ServiceServer pf_relative_heading_srv_;
-    ros::ServiceServer pf_potes_srv_;
 
     /* Service to reset the virtual target position */
     ros::ServiceServer pf_reset_vt_srv_;
@@ -228,8 +226,6 @@ class PathFollowingNode {
     bool SetPramodService(path_following::SetPF::Request &req,
         path_following::SetPF::Response &res);
     bool SetSamsonService(path_following::SetPF::Request &req,
-        path_following::SetPF::Response &res);
-    bool SetPotesService(path_following::SetPF::Request &req,
         path_following::SetPF::Response &res);
 
     bool ResetVirtualTargetService(path_following::ResetVT::Request &req,

@@ -71,7 +71,6 @@ add_executable(${PROJECT_NAME}_node
   src/algorithms/Samson.cpp
   src/algorithms/Fossen.cpp
   src/algorithms/Marcelo.cpp
-  src/algorithms/Potes.cpp
   src/algorithms/RelativeHeading.cpp
 )
 

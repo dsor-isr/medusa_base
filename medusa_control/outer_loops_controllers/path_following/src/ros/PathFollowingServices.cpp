@@ -32,8 +32,6 @@ void PathFollowingNode::initializeServices() {
       this->nh_p_, "topics/services/pramod_pf", "/set_pramod_pf");
   std::string set_samson_name = MedusaGimmicks::getParameters<std::string>(
       this->nh_p_, "topics/services/samson_pf", "/set_samson_pf");
-  std::string set_potes_name = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/services/potes_pf", "/set_potes_pf");
   std::string set_relative_heading_name = MedusaGimmicks::getParameters<std::string>(
       this->nh_p_, "topics/services/relative_heading_pf", "/set_relative_heading_pf");
 
@@ -81,8 +79,6 @@ void PathFollowingNode::initializeServices() {
       set_pramod_name, &PathFollowingNode::SetPramodService, this);
   this->pf_samson_srv_ = this->nh_.advertiseService(
       set_samson_name, &PathFollowingNode::SetSamsonService, this);
-  this->pf_potes_srv_ = this->nh_.advertiseService(
-      set_potes_name, &PathFollowingNode::SetPotesService, this);
 
   this->pf_reset_vt_srv_ = this->nh_.advertiseService(
       reset_virtual_taget_name, &PathFollowingNode::ResetVirtualTargetService, this);
@@ -105,7 +101,7 @@ bool PathFollowingNode::StartPFService(path_following::StartPF::Request &req,
 
   /* Check if we have a path following algorithm allocated. If so, start the
    * timer callbacks */
-  if (this->pf_algorithm_ != nullptr) {
+  if (this->pf_algorithm_ != nullptr) { 
 
     /* Update the last time the iteration of the path following run */
     this->prev_time_ = ros::Time::now();
@@ -199,110 +195,6 @@ bool PathFollowingNode::UpdateGainsPFService(
   return true;
 }
 
-/* Service to switch to the Potes Path Following method */
-bool PathFollowingNode::SetPotesService(path_following::SetPF::Request &req,
-                                        path_following::SetPF::Response &res) {
-                                          
-  /* Don't change if the algorithm is running */
-  if (this->timer_.hasStarted()) {
-    ROS_INFO("Can't change algorithm when PF is running.");
-    res.success = false;
-    return true;
-  }
-
-  /* Clear the memory used by the previous controller */
-  this->deleteCurrentController();
-
-  std::string surge_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/surge");
-  std::string sway_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/sway");
-  std::string heave_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/heave");
-
-  std::string roll_rate_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/roll_rate");
-  std::string pitch_rate_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/pitch_rate");
-  std::string yaw_rate_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/yaw_rate");
-
-  std::string rabbit_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/publishers/rabbit");
-
-
-  /* Get the topic name for the subscribers the are only respective to this algorithm */
-  std::string target_pos_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/subscribers/target/pos");
-  std::string target_vel_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/subscribers/target/vel");
-  std::string mission_pos_topic = MedusaGimmicks::getParameters<std::string>(
-      this->nh_p_, "topics/subscribers/mission/pos");
-
-  /* Create the publishers for the node */
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(surge_topic, 1));
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(sway_topic, 1));
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(heave_topic, 1));
-
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(roll_rate_topic, 1));
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(pitch_rate_topic, 1));
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(yaw_rate_topic, 1));
-
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(rabbit_topic, 1));
-
-  /* Variables to store the gains of the controller */
-  double kp, lambda_p, k_gamma, k_gamma_e, rho_gamma_e, k_psi;
-  std::vector<double> Kp_omega_vector;
-  std::vector<double> Q_vector;
-  double sigma_m, circle_radius;
-
-
-  try {
-
-    /* Read the gains for the controller */
-    nh_p_.getParam("controller_gains/potes/kp", kp);
-    nh_p_.getParam("controller_gains/potes/lambda_p", lambda_p);
-    nh_p_.getParam("controller_gains/potes/k_gamma", k_gamma);
-    nh_p_.getParam("controller_gains/potes/k_gamma_e", k_gamma_e);
-    nh_p_.getParam("controller_gains/potes/rho_gamma_e", rho_gamma_e);
-    nh_p_.getParam("controller_gains/potes/k_psi", k_psi);
-    nh_p_.getParam("controller_gains/potes/Kp_omega", Kp_omega_vector);
-    nh_p_.getParam("controller_gains/potes/Q", Q_vector);
-    nh_p_.getParam("controller_gains/potes/sigma_m", sigma_m);
-    nh_p_.getParam("controller_gains/potes/circle_radius", circle_radius);
-
-    Eigen::Vector3d Kp_omega(Kp_omega_vector.data());
-    Eigen::Matrix3d Q(Q_vector.data());
-
-    /* Assign the new controller */
-    this->pf_algorithm_
-        = new Potes(kp, lambda_p, k_gamma, k_gamma_e, rho_gamma_e, k_psi, sigma_m,
-                    Kp_omega, Q, circle_radius,
-                    this->publishers_[0], this->publishers_[1], this->publishers_[2],
-                    this->publishers_[3], this->publishers_[4], this->publishers_[5], this->publishers_[6]);
-
-    res.success = true;
-
-    /* Initialize the subscribers */
-    ros::Subscriber target_pos_sub = nh_.subscribe(target_pos_topic, 10, &Potes::updateTargetPosition, (Potes*) this->pf_algorithm_);
-    ros::Subscriber target_vel_sub = nh_.subscribe(target_vel_topic, 10, &Potes::updateTargetVelocity, (Potes*) this->pf_algorithm_);
-    ros::Subscriber mission_sub = nh_.subscribe(mission_pos_topic, 10, &Potes::updateMissionLocation, (Potes*) this->pf_algorithm_);
-
-    /* Save the special subscribers in the subscriber vector so that they can be eliminated when changing between controllers */
-    this->subscribers_.push_back(target_pos_sub);
-    this->subscribers_.push_back(target_vel_sub);
-    this->subscribers_.push_back(mission_sub);
-
-  } catch (...) {
-    ROS_WARN("Some error occured. Please reset the PF node for safety");
-    res.success = false;
-    return false;
-  }
-
-  /* Return success */
-  ROS_INFO("PF controller switched to Potes. This is not a true path controller, but rather a path positioning/stabilization controller.");
-  return true;
-}
 
 /* Service to switch to the RelativeHeading Path Following method */
 bool PathFollowingNode::SetRelativeHeadingService(path_following::SetPF::Request &req, path_following::SetPF::Response &res) {
