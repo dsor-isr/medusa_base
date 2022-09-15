@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="871" column="1" bodyfile="src/console.py" bodystart="871" bodyend="-1"/>
+        <location file="src/console.py" line="872" column="1" bodyfile="src/console.py" bodystart="872" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classconsole_1_1subscriber__Thread_1a0fb6f08c6a73db7bf21c737acc254320" prot="public" static="no" mutable="no">
         <type></type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="872" column="1" bodyfile="src/console.py" bodystart="872" bodyend="-1"/>
+        <location file="src/console.py" line="873" column="1" bodyfile="src/console.py" bodystart="873" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classconsole_1_1subscriber__Thread_1aa9cde5948e418d25888be717f9a55fb5" prot="public" static="no" mutable="no">
         <type></type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="873" column="1" bodyfile="src/console.py" bodystart="873" bodyend="-1"/>
+        <location file="src/console.py" line="874" column="1" bodyfile="src/console.py" bodystart="874" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="870" column="1" bodyfile="src/console.py" bodystart="870" bodyend="878"/>
+        <location file="src/console.py" line="871" column="1" bodyfile="src/console.py" bodystart="871" bodyend="879"/>
       </memberdef>
       <memberdef kind="function" id="classconsole_1_1subscriber__Thread_1adbcae10639d38601fd91b648a8813a17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="879" column="1" bodyfile="src/console.py" bodystart="879" bodyend="883"/>
+        <location file="src/console.py" line="880" column="1" bodyfile="src/console.py" bodystart="880" bodyend="884"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -110,7 +110,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="src/console.py" line="869" column="1" bodyfile="src/console.py" bodystart="869" bodyend="884"/>
+    <location file="src/console.py" line="870" column="1" bodyfile="src/console.py" bodystart="870" bodyend="885"/>
     <listofallmembers>
       <member refid="classconsole_1_1subscriber__Thread_1aafbd16cfa6a207679d75984270fdb06c" prot="public" virt="non-virtual"><scope>console::subscriber_Thread</scope><name>__init__</name></member>
       <member refid="classconsole_1_1subscriber__Thread_1a0fb6f08c6a73db7bf21c737acc254320" prot="public" virt="non-virtual"><scope>console::subscriber_Thread</scope><name>callback_echo</name></member>

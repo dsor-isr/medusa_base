@@ -41,7 +41,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="src/console.py" line="1102" column="1" bodyfile="src/console.py" bodystart="1102" bodyend="1106"/>
+    <location file="src/console.py" line="1104" column="1" bodyfile="src/console.py" bodystart="1104" bodyend="1108"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

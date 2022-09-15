@@ -182,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="124" column="1" bodyfile="src/console.py" bodystart="124" bodyend="128"/>
+        <location file="src/console.py" line="124" column="1" bodyfile="src/console.py" bodystart="124" bodyend="129"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -211,7 +211,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="src/console.py" line="60" column="1" bodyfile="src/console.py" bodystart="60" bodyend="129"/>
+    <location file="src/console.py" line="60" column="1" bodyfile="src/console.py" bodystart="60" bodyend="130"/>
     <listofallmembers>
       <member refid="classconsole_1_1Topic__Struct_1a82c9281974448a5431b4bb2dcba1c870" prot="public" virt="non-virtual"><scope>console::Topic_Struct</scope><name>__init__</name></member>
       <member refid="classconsole_1_1Topic__Struct_1a1071e6e48f85daf97eb56fecf1b155bc" prot="public" virt="non-virtual"><scope>console::Topic_Struct</scope><name>__str__</name></member>

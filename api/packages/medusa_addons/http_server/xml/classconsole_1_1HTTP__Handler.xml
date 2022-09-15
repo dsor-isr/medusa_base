@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="971" column="1" bodyfile="src/console.py" bodystart="971" bodyend="1066"/>
+        <location file="src/console.py" line="972" column="1" bodyfile="src/console.py" bodystart="972" bodyend="1068"/>
       </memberdef>
       <memberdef kind="function" id="classconsole_1_1HTTP__Handler_1a1284f2c194c0cfa768ed35c595437f35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="1067" column="1" bodyfile="src/console.py" bodystart="1067" bodyend="1087"/>
+        <location file="src/console.py" line="1069" column="1" bodyfile="src/console.py" bodystart="1069" bodyend="1089"/>
       </memberdef>
       <memberdef kind="function" id="classconsole_1_1HTTP__Handler_1a9d78be9d1f6e6a29d9aaed4c18ef5c58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="1088" column="1" bodyfile="src/console.py" bodystart="1088" bodyend="1093"/>
+        <location file="src/console.py" line="1090" column="1" bodyfile="src/console.py" bodystart="1090" bodyend="1095"/>
       </memberdef>
       <memberdef kind="function" id="classconsole_1_1HTTP__Handler_1a8539a9e39b1748b7770df8b549e65420" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="1094" column="1" bodyfile="src/console.py" bodystart="1094" bodyend="1097"/>
+        <location file="src/console.py" line="1096" column="1" bodyfile="src/console.py" bodystart="1096" bodyend="1099"/>
       </memberdef>
       <memberdef kind="function" id="classconsole_1_1HTTP__Handler_1a0e7ad8553ef9eeaf7f8813763b7678fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/console.py" line="1099" column="1" bodyfile="src/console.py" bodystart="1099" bodyend="1101"/>
+        <location file="src/console.py" line="1101" column="1" bodyfile="src/console.py" bodystart="1101" bodyend="1103"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -120,7 +120,7 @@
         <label>BaseHTTPRequestHandler</label>
       </node>
     </collaborationgraph>
-    <location file="src/console.py" line="970" column="1" bodyfile="src/console.py" bodystart="970" bodyend="1102"/>
+    <location file="src/console.py" line="971" column="1" bodyfile="src/console.py" bodystart="971" bodyend="1104"/>
     <listofallmembers>
       <member refid="classconsole_1_1HTTP__Handler_1a8539a9e39b1748b7770df8b549e65420" prot="public" virt="non-virtual"><scope>console::HTTP_Handler</scope><name>address_string</name></member>
       <member refid="classconsole_1_1HTTP__Handler_1a34da894721cc5ba3c4116e7619adc529" prot="public" virt="non-virtual"><scope>console::HTTP_Handler</scope><name>do_GET</name></member>
