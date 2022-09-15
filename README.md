@@ -66,6 +66,24 @@ cd ~/<path_to_workspace>/<catkin_ws>/
 catkin build
 ```
 
+### Add submodules
+
+To add submodules to this repo (or another within the DSOR infrastructure) the standard practice is the following:
+
+```
+git submodule add git@github.com:dsor-isr/<repository name>.git
+```
+
+Now, go to ```.gitmodules``` file inside the repo, via ```vim .gitmodules``` or another editor of choice, and change the following line
+
+```
+url = ...
+```
+to
+```
+url = ..\<repository name>.git
+```
+
 ### Citation
 If you use Medusa Base in a scientific publication, please cite:
 ```
