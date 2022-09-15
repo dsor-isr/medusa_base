@@ -96,7 +96,7 @@
 <codeline lineno="26"><highlight class="normal"><sp/><sp/>pf_debug.yaw<sp/>=<sp/><ref refid="classPathFollowing_1a9a8fc2330c7b512a3dac2fd6d6158aee" kindref="member">pfollowing_debug_</ref>.yaw;</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/>pf_debug.psi<sp/>=<sp/><ref refid="classPathFollowing_1a9a8fc2330c7b512a3dac2fd6d6158aee" kindref="member">pfollowing_debug_</ref>.psi;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/>pf_debug.gamma<sp/>=<sp/><ref refid="classPathFollowing_1a9a8fc2330c7b512a3dac2fd6d6158aee" kindref="member">pfollowing_debug_</ref>.gamma;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/>pfollowing_debug_pub_.publish(pf_debug);</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
