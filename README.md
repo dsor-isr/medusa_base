@@ -1,6 +1,14 @@
 # Medusa Base
 This repository holds the Medusa Base code stack for underwater marine vehicles of DSOR-ISR (Dynamical Systems for Ocean Robotics - Institute for System Robotics). It contains the base of the control and navigation stack found in the MEDUSA class of marine vehicles.
 
+[![Build Status](https://ci.dsor.isr.tecnico.ulisboa.pt/buildStatus/icon?job=GitHub+DSOR%2Fmedusa_base%2Fmain)](https://ci.dsor.isr.tecnico.ulisboa.pt/job/GitHub%20DSOR/job/medusa_base/job/main/)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dsor-isr/medusa_base/main)
+![GitHub contributors](https://img.shields.io/github/contributors/dsor-isr/medusa_base)
+[![GitHub issues](https://img.shields.io/github/issues/dsor-isr/medusa_base)](https://github.com/dsor-isr/medusa_base/issues)
+[![GitHub forks](https://img.shields.io/github/forks/dsor-isr/medusa_base)](https://github.com/dsor-isr/medusa_base/network)
+[![GitHub stars](https://img.shields.io/github/stars/dsor-isr/medusa_base)](https://github.com/dsor-isr/medusa_base/stargazers)
+[![License](https://img.shields.io/github/license/dsor-isr/medusa_base?color=blue)](https://github.com/dsor-isr/medusa_base/blob/main/LICENSE)
+
 ### Requirements
 This code stack was developed with ROS1 in mind. In order to use, you are required to have:
 - Ubuntu 20.04LTS (64-bit)
@@ -8,48 +16,14 @@ This code stack was developed with ROS1 in mind. In order to use, you are requir
 - Python 3
 
 ### Installation
-- Install the Python requirements:
+- Run the installation script (note: you will require administrator priviledges)
 ```
-pip3 install --user numpy pandas matplotlib scipy sklearn rospkg catkin_pkg future joystick-controller
-```
-
-- Install C++ (apt-get) requirements:
-```
-sudo apt-get install python3-catkin-tools libgeographic-dev ros-noetic-geographic-msgs libxmlrcpp-dev librosconsole-dev libudev-dev libusb-1.0-0-dev ros-noetic-geodesy -y
+wget https://github.com/dsor-isr/medusa_base/blob/main/install_requirements.sh
+./install_requirements.sh
+rm install_requirements.sh
 ```
 
-- Manual install Geographiclib 1.50.1 (C++ library):
-```
-wget https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.50.1.tar.gz/download
-tar xfpz download
-cd GeographicLib-1.50.1 
-mkdir BUILD
-cd BUILD
-cmake ..
-sudo make
-sudo make test
-sudo make install
-cd ..
-cd ..
-sudo rm -R download GeographicLib-1.50.1
-```
-
-- Manual install Eigen version 3.4.0 (C++ equivalent of numpy in python):
-```
-wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
-tar xfpz eigen-3.4.0.tar.gz
-cd eigen-3.4.0
-mkdir BUILD
-cd BUILD
-cmake ..
-sudo make
-sudo make install
-cd ..
-cd ..
-sudo rm -R eigen-3.4.0 eigen-3.4.0.tar.gz
-```
-
-- Clone this repository and its submodules:
+- Clone this repository and its submodules to the catkin workspace:
 ```
 git clone --recursive git@github.com:dsor-isr/medusa_base.git
 ```
@@ -116,8 +90,8 @@ If you use Medusa Base in a scientific publication, please cite:
 TODO
 ```
 
-### Help and Support
-Documentation TODO
+### Documentation
+https://dsor-isr.github.io/medusa_base/
 
 ### Active Developers
 - João Quintas <jquintas@gmail.com>

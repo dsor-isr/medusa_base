@@ -17,6 +17,7 @@ msg/.*Result\.msg$
 msg/_.*\.py$
 medusa_msgs/src/medusa_msgs/
 medusa_scripts/tinker_tools/documentation_scripts/gathered_info/
+site/
 
 # By jorge
 msg/_*.py$

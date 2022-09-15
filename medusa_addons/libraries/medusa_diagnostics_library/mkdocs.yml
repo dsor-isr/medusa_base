@@ -1,0 +1,4 @@
+site_name: Medusa Diagnostics Library
+
+nav:
+  - Reference: "README.md"

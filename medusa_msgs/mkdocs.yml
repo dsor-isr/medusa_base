@@ -1,0 +1,4 @@
+site_name: Medusa ROS messages
+
+nav:
+  - Reference: "README.md"
