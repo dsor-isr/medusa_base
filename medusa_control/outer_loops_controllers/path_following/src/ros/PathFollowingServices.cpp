@@ -101,7 +101,7 @@ bool PathFollowingNode::StartPFService(path_following::StartPF::Request &req,
 
   /* Check if we have a path following algorithm allocated. If so, start the
    * timer callbacks */
-  if (this->pf_algorithm_ != nullptr) {
+  if (this->pf_algorithm_ != nullptr) { 
 
     /* Update the last time the iteration of the path following run */
     this->prev_time_ = ros::Time::now();
@@ -194,6 +194,7 @@ bool PathFollowingNode::UpdateGainsPFService(
 
   return true;
 }
+
 
 /* Service to switch to the RelativeHeading Path Following method */
 bool PathFollowingNode::SetRelativeHeadingService(path_following::SetPF::Request &req, path_following::SetPF::Response &res) {
