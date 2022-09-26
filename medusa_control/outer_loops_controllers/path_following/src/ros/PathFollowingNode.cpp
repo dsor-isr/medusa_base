@@ -18,7 +18,10 @@ PathFollowingNode::PathFollowingNode(ros::NodeHandle *nh, ros::NodeHandle *nh_p)
 
   /* Allocate memory for the default Path Following Algorithm - Brevik */
   this->pf_algorithm_ = getDefaultControllerBrevik();
-  pf_algorithm_->setPFollowingDebugPublisher(nh_p_.advertise<medusa_msgs::mPFollowingDebug>(MedusaGimmicks::getParameters<std::string>(nh_p_, "topics/publishers/pfollowing_debug"),1));
+
+  /* Set the debugging publisher */
+  std::string debug_topic = MedusaGimmicks::getParameters<std::string>(this->nh_p_, "topics/publishers/pfollowing_debug");
+  this->pf_algorithm_->setPFollowingDebugPublisher(this->nh_.advertise<medusa_msgs::mPFollowingDebug>(debug_topic, 1));
 }
 
 /**
@@ -60,7 +63,8 @@ PathFollowing *PathFollowingNode::getDefaultControllerLapierre() {
       this->nh_p_, "topics/publishers/rabbit");
 
   /* Create the subscribers for the node */
-  this->publishers_.push_back(nh_.advertise<std_msgs::Float64>(surge_topic, 1));
+  this->publishers_.push_back(
+      nh_.advertise<std_msgs::Float64>(surge_topic, 1));
   this->publishers_.push_back(
       nh_.advertise<std_msgs::Float64>(yaw_rate_topic, 1));
   this->publishers_.push_back(

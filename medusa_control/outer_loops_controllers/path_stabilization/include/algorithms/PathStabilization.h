@@ -8,40 +8,39 @@
 
 /* ROS includes for publishing the values and setting the mode of operation */
 #include "ros/ros.h"
-#include "dsor_paths/SetMode.h"
 #include <std_msgs/Float64.h>
-#include <medusa_msgs/mPFollowingDebug.h>
+#include <medusa_msgs/mPStabilizationDebug.h>
+#include <medusa_msgs/mPStabilizationRefs.h>
 
 /* Contains auxiliary functions for angle wrap-up and others */
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
+#include <dsor_utils/rotations.hpp>
+#include <cmath>
 
 /**
- * @brief  A Base class to update the path following law 
+ * @brief  A Base class to update the path stabilization law 
  *
- * @author    Marcelo Jacinto
- * @author    Joao Quintas
- * @author    Joao Cruz
- * @author    Hung Tuan
+ * @author    André Potes
  * @version   1.0a
  * @date      2021
  * @copyright MIT
  */
-class PathFollowing {
+class PathStabilization {
   
   public:
 
    
     /**
-     * @brief Virtual destructor for the abstract pathfollowing class
+     * @brief Virtual destructor for the abstract pathstabilization class
      */
-    virtual ~PathFollowing();
+    virtual ~PathStabilization();
 
     /**
-     * @brief  Method to update the path following control law
+     * @brief  Method to update the path stabilization control law
      *
      * @param dt The time diference between the current and previous call (in seconds)
      */
-    virtual void callPFController(double dt) = 0;
+    virtual void callPSController(double dt) = 0;
     
     /**
      * @brief  Method to publish the data given by the algorithm
@@ -56,7 +55,7 @@ class PathFollowing {
     virtual void start() = 0;
 
     /**
-     * @brief  Method used to check whether we have reached the end of the path following
+     * @brief  Method used to check whether we have reached the end of the path stabilization
      * algorithm or not. This method will be called in every iteration of the algorithm,
      * and when it return true, the algorithm will stop
      *
@@ -82,7 +81,7 @@ class PathFollowing {
 
     /**
      * @brief Method to reset the virtual target of the vehicle (gamma)
-     * to zero. Not all controllers need this (example: Samson, Fossen which use the closest point)
+     * to zero. Not all controllers need this.
      * 
      * This method calls the resetVirtualTarget(float value) method which can be overriden by each pf controller
      * @return Whether the reset was made successfully or not
@@ -97,7 +96,7 @@ class PathFollowing {
      *
      * @param gains A vector of gains for the controller
      */
-    virtual bool setPFGains(std::vector<double> gains) = 0;
+    virtual bool setPSGains(std::vector<double> gains) = 0;
 
     /** 
      * @brief  Method to update the vehicle state used by the controller 
@@ -111,14 +110,14 @@ class PathFollowing {
      *
      * @param path_state A structure with the current state of the path
      */
-    void UpdatePathState(const PathState &path_state);
+    void UpdateTargetState(const TargetState &target_state);
 
     /**
      * @brief Method to set common publishers
      *
      *
     */
-    void setPFollowingDebugPublisher(const ros::Publisher &pfollowing_debug_pub) {pfollowing_debug_pub_ = pfollowing_debug_pub;};
+    void setPStabilizationDebugPublisher(const ros::Publisher &pstabilization_debug_pub) {pstabilization_debug_pub_ = pstabilization_debug_pub;};
     
   protected:
    
@@ -128,20 +127,20 @@ class PathFollowing {
     VehicleState vehicle_state_;
     
     /** 
-     * @brief Variable to store the state of the path 
+     * @brief Variable to store the state of the target 
      */
-    PathState path_state_;  
+    TargetState target_state_;  
     
     /** 
-     * @brief Variable to store the state of the path 
+     * @brief Message variable for debugging path stabilization error variables
      */
-    PFollowingDebug pfollowing_debug_;  
+    PStabilizationDebug pstabilization_debug_;  
 
-    ros::Publisher pfollowing_debug_pub_; 
+    ros::Publisher pstabilization_debug_pub_; 
     
     /**
      * @brief Auxiliar method to smooth out the angle to be used by path 
-     * following algorithms 
+     * stabilization algorithms 
      */
     double algConvert(double alg_new, double alg_old, double alg_out_old);
 };
