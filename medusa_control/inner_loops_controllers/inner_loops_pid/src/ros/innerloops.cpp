@@ -25,7 +25,8 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw", 
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
-          &yaw_, &torque_request_[2], Innerloops::nodeFrequency()));
+          &yaw_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
+          MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw/max_turn_radius", 0.0)));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -53,7 +54,8 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw_rate",
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
-            &yaw_rate_, &torque_request_[2], Innerloops::nodeFrequency()));
+            &yaw_rate_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
+            MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw_rate/max_turn_radius", 0.0)));
 
   // Pitch rate
   controllers_.push_back(
@@ -68,8 +70,8 @@ void Innerloops::initializeSubscribers() {
       MedusaGimmicks::getParameters<std::string>(
         nh_, "topics/subscribers/roll_rate", "roll_rate_ref"),
         &roll_rate_, &torque_request_[0], Innerloops::nodeFrequency()));
-
-  // Speed controllers
+  
+  // Speed controllers 
   // Surge
   controllers_.push_back(
       new RosController(nh_, "surge",
@@ -111,6 +113,12 @@ void Innerloops::initializeSubscribers() {
   st_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
               nh_, "topics/subscribers/state", "/nav/filter/state"),
               10, &Innerloops::StateCallback, this);
+
+  // airmar subscription
+  airmar_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+              nh_, "topics/subscribers/water_speed", "/water_speed"),
+              10, &Innerloops::waterSpeedCallback, this);
+
 
   // state subscription
   force_bypass_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
@@ -207,6 +215,11 @@ void Innerloops::forceBypassCallback(const auv_msgs::BodyForceRequest &msg) {
   force_bypass_.wrench.torque.x = msg.wrench.torque.x;
   force_bypass_.wrench.torque.y = msg.wrench.torque.y;
   force_bypass_.wrench.torque.z = msg.wrench.torque.z;
+}
+
+void Innerloops::waterSpeedCallback(const medusa_msgs::dAirmar &msg) {
+  // Save water speed of craft via airmar state variables
+  water_speed_surge_ = msg.water_speed_m_s;
 }
 
 void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {

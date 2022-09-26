@@ -8,6 +8,15 @@ RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
   init(nh, controller_name, refCallback_topic);
 }
 
+// applicable only to angular controllers (yaw and yaw_rate)
+RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
+                             std::string refCallback_topic, double *state, double *water_speed_surge,
+                             double *force_or_torque, double frequency, double max_turn_radius)
+    : state_ptr_(state), water_speed_surge_ptr_(water_speed_surge), controller_name_(controller_name),
+      force_or_torque_ptr_(force_or_torque),  frequency_(frequency), max_turn_radius_(max_turn_radius) {
+  init(nh, controller_name, refCallback_topic);
+}
+
 void RosController::init(ros::NodeHandle &nh, std::string controller_name,
                          std::string refCallback_topic) {
   // default state not angle units
@@ -30,6 +39,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   double min_error = nh.param("controllers/" + controller_name + "/min_err", -max_error);
   max_ref_value_ = nh.param("controllers/" + controller_name + "/max_ref", 0.0);
   min_ref_value_ = nh.param("controllers/" + controller_name + "/min_ref", 0.0);
+  max_turn_radius_ = nh.param("controllers/" + controller_name + "/max_turn_radius", 0.0);
   debug_ = nh.param("controllers/" + controller_name + "/debug", false);
 
   // Don't create the controller if no gains were specified
@@ -38,6 +48,10 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
     pid_c_ = NULL;
     return;
   }
+
+  // subscribe to relevant topic
+  ros_sub_ = nh.subscribe(refCallback_topic.c_str(), 10,
+                          &RosController::refCallback, this);
 
   // If we are debugging, create a publisher for debug data related to this controller
   if (debug_) {
@@ -48,9 +62,19 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
           nh, "topics/publishers/debug/" + controller_name, "/debug/" + controller_name), 1);
   }
 
-  // subscribe to relevant topic
-  ros_sub_ = nh.subscribe(refCallback_topic.c_str(), 10,
-                          &RosController::refCallback, this);
+  // if controller is yaw/yaw rate, check if using maximum turning radius
+  if ( !DSOR::approximatelyEquals<double>(max_turn_radius_, 0.0) ) {
+
+    if (max_turn_radius_ <= 0.0) {
+      ROS_WARN_STREAM("Maximum turning radius must be higher than 0.");
+      pid_c_ = NULL;
+      return;
+    }
+
+    ROS_WARN_STREAM("Saturing input references for PID controller " + controller_name + ".");
+    if (controller_name.find("yaw") != std::string::npos) saturate_yaw_ref_ = true;
+    else if (controller_name.find("yaw_rate") != std::string::npos) saturate_yaw_rate_ref_ = true;
+  }
 
   // create the PID controller with/without low pass filter included
   if ( nh.hasParam("controllers/" + controller_name + "/lpf_fc") ) {
@@ -64,7 +88,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
       pid_c_ = NULL;
       return;
     }
-    
+  
     pid_c_ = new PID_Controller(kp, ki, kd, kff, kff_d, kff_lin_drag, kff_quad_drag, max_error, max_out, min_error, min_out, lpf_dt, lpf_fc);
   } 
   else {
@@ -121,8 +145,19 @@ double RosController::computeCommand() {
 
     return 0.0;
   }
+  
+  if (saturate_yaw_ref_) {
+    ROS_WARN_STREAM ("Saturating yaw ref");
+  }
+  else if (saturate_yaw_rate_ref_) {
+    // sature yaw_rate ref according to maximum turn radius and current surge speed
+    ROS_WARN_STREAM ("Saturating yaw rate ref");
+    double max_yaw_rate = (*water_speed_surge_ptr_ / max_turn_radius_) * ( 180 / (M_PI) );
+    ref_value_ = DSOR::saturation<double>(ref_value_, max_yaw_rate, -max_yaw_rate);
+  }
 
   double error = ref_value_ - *state_ptr_;
+
   if (isnan(ref_value_)) {
     ROS_ERROR("getting NaN in %s controller", controller_name_.c_str());
     return 0.0;

@@ -10,6 +10,7 @@
 #include "inner_loops_pid/ChangeInnerLimits.h"
 #include <auv_msgs/BodyForceRequest.h>
 #include <auv_msgs/NavigationStatus.h>
+#include <medusa_msgs/dAirmar.h>
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
 #include <std_msgs/Float64.h>
 
@@ -75,6 +76,13 @@ private:
   void StateCallback(const auv_msgs::NavigationStatus &msg);
 
   /**
+   * @brief Reads the surge speed of the vessel relative to water (and other information)
+   * 
+   * @param msg Airmar Message
+   */
+  void waterSpeedCallback(const medusa_msgs::dAirmar &msg);
+
+  /**
    * @brief  Receives a desired force to be applied to the vehicle that should
    * be added to the output of the innerloops
    *
@@ -121,6 +129,7 @@ private:
 
   // State Variables
   double yaw_, pitch_, roll_, yaw_rate_, pitch_rate_, roll_rate_;
+  double water_speed_surge_; // from airmar
   double surge_, sway_, heave_;
   double depth_, altitude_, vdepth_, valtitude_;
 
@@ -134,7 +143,7 @@ private:
   bool forces_hard_bypass_;
   double timeout_ref_;
 
-  ros::Subscriber st_sub_; // State subscriber
+  ros::Subscriber st_sub_, airmar_sub_; // State and Airmar (water speed) subscriber
   ros::Subscriber force_bypass_sub_;
 
   ros::ServiceServer change_ff_gains_srv_;
