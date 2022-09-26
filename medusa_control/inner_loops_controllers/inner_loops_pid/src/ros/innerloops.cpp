@@ -26,7 +26,7 @@ void Innerloops::initializeSubscribers() {
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
           &yaw_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
-          MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw/max_turn_radius", 0.0)));
+          MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw/min_turn_radius", 0.0)));
 
   controllers_.back()->setCircularUnits(true);
 
@@ -55,7 +55,7 @@ void Innerloops::initializeSubscribers() {
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
             &yaw_rate_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
-            MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw_rate/max_turn_radius", 0.0)));
+            MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw_rate/min_turn_radius", 0.0)));
 
   // Pitch rate
   controllers_.push_back(

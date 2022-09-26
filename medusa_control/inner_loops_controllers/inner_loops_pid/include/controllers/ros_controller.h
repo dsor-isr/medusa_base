@@ -62,7 +62,7 @@ public:
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
                 std::string refCallback_topic, double *state, double *water_speed_surge,
-                double *force_or_torque, double frequency, double max_turn_radius);
+                double *force_or_torque, double frequency, double min_turn_radius);
   
   /**
    * @brief  Core function. Computes the PID output
@@ -144,7 +144,7 @@ protected:
   double ref_value_;     // reference value of the variable being controlled
   double max_ref_value_; // maximum value of the reference being controlled
   double min_ref_value_; // minimum value of the reference being controlled
-  double max_turn_radius_; // maxuimum turning radius to saturate yaw  rate reference
+  double min_turn_radius_; // maxuimum turning radius to saturate yaw  rate reference
   bool saturate_yaw_ref_{false}; bool saturate_yaw_rate_ref_{false};
   ros::Time ref_time_;   // timestamp of the reference
   ros::Time last_cmd_;   // last controller call
