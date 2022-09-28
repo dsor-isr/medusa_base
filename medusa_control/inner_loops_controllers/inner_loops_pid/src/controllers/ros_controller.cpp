@@ -11,12 +11,12 @@ RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
 RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
                              std::string refCallback_topic, double *state,
                              double *force_or_torque, double frequency,
-                             bool *turn_limiter_flag, double *airmar_t_received,
-                             double *airmar_speed_surge)
+                             bool *turn_limiter_flag, double *water_speed_t_received,
+                             double *water_speed_surge)
     : state_ptr_(state), controller_name_(controller_name),
       force_or_torque_ptr_(force_or_torque),  frequency_(frequency),
       turn_limiter_flag_ptr_(turn_limiter_flag), 
-      airmar_t_received_ptr_(airmar_t_received), airmar_speed_surge_ptr_(airmar_speed_surge) {
+      water_speed_t_received_ptr_(water_speed_t_received), water_speed_surge_ptr_(water_speed_surge) {
   init(nh, controller_name, refCallback_topic);
 }
 
@@ -24,11 +24,11 @@ RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
 RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
                              std::string refCallback_topic, double *state,
                              double *force_or_torque, double frequency,
-                             bool *turn_limiter_flag, double *airmar_t_received,
-                             double *airmar_speed_surge, RateLimiter *rate_limiter)
+                             bool *turn_limiter_flag, double *water_speed_t_received,
+                             double *water_speed_surge, RateLimiter *rate_limiter)
     : state_ptr_(state), controller_name_(controller_name), force_or_torque_ptr_(force_or_torque),
       frequency_(frequency), turn_limiter_flag_ptr_(turn_limiter_flag),
-      airmar_t_received_ptr_(airmar_t_received), airmar_speed_surge_ptr_(airmar_speed_surge),
+      water_speed_t_received_ptr_(water_speed_t_received), water_speed_surge_ptr_(water_speed_surge),
       rate_limiter_ptr_(rate_limiter) {
   init(nh, controller_name, refCallback_topic);
 }
@@ -67,7 +67,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   
   // subscribe to water speed measurements from airmar if using yaw or yaw rate controller
   if (controller_name == "yaw" || controller_name == "yaw_rate")
-    no_response_airmar_t_max_ = nh.param("no_water_speed_t_max", 0.0);
+    no_response_water_speed_t_max_ = nh.param("no_water_speed_t_max", 0.0);
 
   // subscribe to relevant topic
   ros_sub_ = nh.subscribe(refCallback_topic.c_str(), 10,
@@ -161,15 +161,15 @@ double RosController::computeCommand() {
       return 0.0;
     }
 
-    double no_response_time_airmar = tnow.toSec() - *airmar_t_received_ptr_;
-    if ( no_response_time_airmar >= no_response_airmar_t_max_ ) {
-      ROS_WARN_STREAM("No measurements received from airmar for " << no_response_time_airmar << "seconds.\n" + controller_name_ + " controller will not provide output.");
+    double no_response_time_water_speed = tnow.toSec() - *water_speed_t_received_ptr_;
+    if ( no_response_time_water_speed >= no_response_water_speed_t_max_ ) {
+      ROS_WARN_STREAM("No measurements received from airmar for " << no_response_time_water_speed << "seconds.\n" + controller_name_ + " controller will not provide output.");
       return 0.0;
     }
 
     if (controller_name_ == "yaw") {
       
-      double rate_limit = (*airmar_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
+      double rate_limit = (*water_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
 
       rate_limiter_ptr_->setNewRateLimit(rate_limit);
 
@@ -179,7 +179,7 @@ double RosController::computeCommand() {
     }
     else if (controller_name_ == "yaw_rate") {
 
-      double max_yaw_rate = (*airmar_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
+      double max_yaw_rate = (*water_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
 
       ref_value_ = DSOR::saturation<double>(ref_value_, -max_yaw_rate, max_yaw_rate);
       

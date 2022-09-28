@@ -6,7 +6,6 @@
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>
 #include <auv_msgs/NavigationStatus.h>
-#include <medusa_msgs/dAirmar.h>
 #include <dsor_utils/math.hpp>
 #include <dsor_utils/filters/rate_limiter.hpp>
 #include <dsor_utils/rotations.hpp>
@@ -43,13 +42,13 @@ public:
    * @param force_or_torque  Pointer to force or torque output
    * @param frequency Frequency of controller sampling rate
    * @param turn_limiter_flag Pointer to a flag for turning ON/OFF the turn limiter for yaw/yaw_rate
-   * @param airmar_t_received Time in seconds since last measurement from airmar
-   * @param airmar_speed_surge Airmar speed measurement
+   * @param water_speed_t_received Time in seconds since last measurement from airmar
+   * @param water_speed_surge Airmar speed measurement
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
                 std::string refCallback_topic, double *state,
                 double *force_or_torque, double frequency, bool *turn_limiter_flag,
-                double *airmar_t_received, double *airmar_speed_surge);
+                double *water_speed_t_received, double *water_speed_surge);
 
   /**
    * @brief  Constructor of a innerloop controller for yaw (due to turn limiter flag and slew rate limiter)
@@ -63,14 +62,14 @@ public:
    * @param frequency Frequency of controller sampling rate
    * @param turn_limiter_flag Pointer to a flag for turning ON/OFF the turn limiter for yaw/yaw_rate
    * @param rate_limiter slew rate limiter class for yaw turn radius limitation
-   * @param airmar_t_received Time in seconds since last measurement from airmar
-   * @param airmar_speed_surge Airmar speed measurement
+   * @param water_t_received Time in seconds since last measurement from airmar
+   * @param water_speed_surge Airmar speed measurement
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
                 std::string refCallback_topic, double *state,
                 double *force_or_torque, double frequency,
-                bool *turn_limiter_flag, double *airmar_t_received,
-                double *airmar_speed_surge, RateLimiter *rate_limiter);
+                bool *turn_limiter_flag, double *water_speed_t_received,
+                double *water_speed_surge, RateLimiter *rate_limiter);
   
   /**
    * @brief  Core function. Computes the PID output
@@ -164,9 +163,9 @@ protected:
   double *state_ptr_;
 
   // callback for water speed from airmar
-  double *airmar_speed_surge_ptr_; // last speed realtive to water measurement of airmar 
-  double *airmar_t_received_ptr_; // time of last measurement received from airmar
-  double no_response_airmar_t_max_; // maximum time allowed for no measurements received from airmar
+  double *water_speed_surge_ptr_; // last speed realtive to water measurement of airmar 
+  double *water_speed_t_received_ptr_; // time of last measurement received from airmar
+  double no_response_water_speed_t_max_; // maximum time allowed for no measurements received from airmar
 
   // pointer to flag for turning ON/OFF the turn limiter for yaw and yaw_rate
   bool *turn_limiter_flag_ptr_;

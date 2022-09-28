@@ -26,9 +26,9 @@ void Innerloops::initializeSubscribers() {
               10, &Innerloops::turnRadiusLimiterCallback, this);
 
   // airmar measurements subscription
-  airmar_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+  water_speed_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
               nh_, "topics/subscribers/water_speed", "/water_speed"),
-              10, &Innerloops::airmarCallback, this);
+              10, &Innerloops::waterSpeedCallback, this);
 
   // state subscription
   st_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
@@ -48,7 +48,7 @@ void Innerloops::initializeSubscribers() {
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
           &yaw_, &torque_request_[2], Innerloops::nodeFrequency(),
-          &turn_radius_limiter_flag_, &airmar_t_received_, &airmar_speed_surge_,
+          &turn_radius_limiter_flag_, &water_speed_t_received_, &water_speed_surge_,
           &rate_limiter_));
 
   controllers_.back()->setCircularUnits(true);
@@ -78,7 +78,7 @@ void Innerloops::initializeSubscribers() {
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
             &yaw_rate_, &torque_request_[2], Innerloops::nodeFrequency(),
-            &turn_radius_limiter_flag_, &airmar_t_received_, &airmar_speed_surge_));
+            &turn_radius_limiter_flag_, &water_speed_t_received_, &water_speed_surge_));
 
   // Pitch rate
   controllers_.push_back(
@@ -245,11 +245,11 @@ void Innerloops::turnRadiusLimiterCallback(const std_msgs::Bool &msg) {
 }
 
 
-void Innerloops::airmarCallback(const medusa_msgs::dAirmar &msg) {
-  airmar_t_received_ = ros::Time::now().toSec();
+void Innerloops::waterSpeedCallback(const std_msgs::Float64 &msg) {
+  water_speed_t_received_ = ros::Time::now().toSec();
 
   // Save water speed of craft via airmar state variables
-  airmar_speed_surge_ = msg.water_speed_m_s;
+  water_speed_surge_ = msg.data;
 }
 
 
@@ -274,10 +274,10 @@ void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
   vdepth_ = msg.seafloor_velocity.z;
   valtitude_ = -msg.seafloor_velocity.z;
 
-  //airmar_t_received_ = ros::Time::now().toSec();
+  //water_speed_t_received_ = ros::Time::now().toSec();
 
   // Save water speed of craft via airmar state variables
-  // airmar_speed_surge_ = surge_;
+  // water_speed_surge_ = surge_;
 }
 
 bool Innerloops::changeFFGainsService(

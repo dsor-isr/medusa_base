@@ -80,7 +80,7 @@ private:
    * 
    * @param msg Airmar Message
    */
-  void airmarCallback(const medusa_msgs::dAirmar &msg);
+  void waterSpeedCallback(const std_msgs::Float64 &msg);
 
   /**
    * @brief  Reads the state topic and saves into the respective variables
@@ -138,7 +138,7 @@ private:
   double yaw_, pitch_, roll_, yaw_rate_, pitch_rate_, roll_rate_;
   double surge_, sway_, heave_;
   double depth_, altitude_, vdepth_, valtitude_;
-  double airmar_t_received_, airmar_speed_surge_;
+  double water_speed_t_received_, water_speed_surge_;
 
   double force_request_[3]{}; // Forces, x,y,z (body)
 
@@ -156,7 +156,7 @@ private:
   RateLimiter rate_limiter_;
 
   ros::Subscriber turn_radius_limiter_sub_;
-  ros::Subscriber airmar_sub_;
+  ros::Subscriber water_speed_sub_;
   ros::Subscriber st_sub_; // State subscriber
   ros::Subscriber force_bypass_sub_;
 
