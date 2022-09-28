@@ -10,9 +10,9 @@
 #include "inner_loops_pid/ChangeInnerLimits.h"
 #include <auv_msgs/BodyForceRequest.h>
 #include <auv_msgs/NavigationStatus.h>
-#include <medusa_msgs/dAirmar.h>
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
 #include <std_msgs/Float64.h>
+#include <std_msgs/Bool.h>
 
 /**
  * @brief  Implementation of the inner loops. Computes the forces and torques
@@ -69,18 +69,25 @@ private:
   void timerCallback(const ros::TimerEvent &event);
 
   /**
-   * @brief  Reads the state topic and saves into the respective variables
-   *
-   * @param msg  State message
+   * @brief Reads the turn_radius_limiter topic to update the turn_radius_limiter flag
+   * 
+   * @param msg 
    */
-  void StateCallback(const auv_msgs::NavigationStatus &msg);
+  void turnRadiusLimiterCallback(const std_msgs::Bool &msg);
 
   /**
    * @brief Reads the surge speed of the vessel relative to water (and other information)
    * 
    * @param msg Airmar Message
    */
-  void waterSpeedCallback(const medusa_msgs::dAirmar &msg);
+  void airmarCallback(const medusa_msgs::dAirmar &msg);
+
+  /**
+   * @brief  Reads the state topic and saves into the respective variables
+   *
+   * @param msg  State message
+   */
+  void StateCallback(const auv_msgs::NavigationStatus &msg);
 
   /**
    * @brief  Receives a desired force to be applied to the vehicle that should
@@ -129,9 +136,9 @@ private:
 
   // State Variables
   double yaw_, pitch_, roll_, yaw_rate_, pitch_rate_, roll_rate_;
-  double water_speed_surge_; // from airmar
   double surge_, sway_, heave_;
   double depth_, altitude_, vdepth_, valtitude_;
+  double airmar_t_received_, airmar_speed_surge_;
 
   double force_request_[3]{}; // Forces, x,y,z (body)
 
@@ -142,8 +149,15 @@ private:
   // Hard - discards the values from the PIDs and only uses the ones received from external topics
   bool forces_hard_bypass_;
   double timeout_ref_;
+  
+  // flag to turn ON or OFF the turn radius limiter approach for yaw and yaw_rate controllers
+  bool turn_radius_limiter_flag_{false};
+  // Slew Rate limiter for yaw turn radius limiter approach
+  RateLimiter rate_limiter_;
 
-  ros::Subscriber st_sub_, airmar_sub_; // State and Airmar (water speed) subscriber
+  ros::Subscriber turn_radius_limiter_sub_;
+  ros::Subscriber airmar_sub_;
+  ros::Subscriber st_sub_; // State subscriber
   ros::Subscriber force_bypass_sub_;
 
   ros::ServiceServer change_ff_gains_srv_;
@@ -159,6 +173,7 @@ private:
 
   // Forces and Torques publisher
   ros::Publisher ft_pub_;
+  
   // tf2_ros::Buffer tf_buffer_;
   // tf2_ros::TransformListener tf_;
 };

@@ -167,3 +167,8 @@ otherwise if a yaw rate ref exists the heading controller will be reset and the 
 
 5 - Saturating common mode: the horizontal common mode is saturated between [-(60\*60);(60\*60)].
 
+### Yaw and Yaw Rate Turn Radius Limiter
+
+There is an additional feature regarding the Yaw and Yaw Rate inner loop controllers which forces the input references to be processed for the vehicle to not turn below a certain turn radius. This parameter is defined in the __control.yaml__ file of the respective vehicle via the name **min_turn_radius** (can be different for each controller). 
+
+Because this feature only work when there is information about the vehicle relative speed to the water in surge (e.g., provided by the __Airmar__ sensor) we need to specify the amount of time allowed with no infromation regarding the relative water speed. This parameter is also define in the __control.yaml__ file of the respective vehicle via the name **no_water_speed_t_max**. 
