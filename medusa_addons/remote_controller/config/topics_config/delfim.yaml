@@ -1,0 +1,28 @@
+remote_controller:
+  node_frequency: 10 #Hz
+  topics:
+    publishers:
+
+      # Thruster port and stbd side RPM command (percentage)
+      thruster_port: "/thrusters/port/rpm_command"
+
+      thruster_stbd: "/thrusters/stbd/rpm_command"
+
+      thruster_both: "/thrusters/RPM_Command"
+
+      # Linear velocity inner-loops
+      surge: "/ref/surge"
+      sway: "/ref/sway"
+      heave: "/ref/heave"
+
+      # Angular speed references
+      yaw_rate: "/ref/yaw_rate"
+
+      # Orientation references
+      yaw: "/ref/yaw"
+
+      # Depth references
+      depth: "/ref/depth"
+
+    subscribers:
+      state: "/nav/filter/state"

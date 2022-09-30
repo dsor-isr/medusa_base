@@ -8,6 +8,31 @@ RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
   init(nh, controller_name, refCallback_topic);
 }
 
+RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
+                             std::string refCallback_topic, double *state,
+                             double *force_or_torque, double frequency,
+                             bool *turn_limiter_flag, double *water_speed_t_received,
+                             double *water_speed_surge)
+    : state_ptr_(state), controller_name_(controller_name),
+      force_or_torque_ptr_(force_or_torque),  frequency_(frequency),
+      turn_limiter_flag_ptr_(turn_limiter_flag), 
+      water_speed_t_received_ptr_(water_speed_t_received), water_speed_surge_ptr_(water_speed_surge) {
+  init(nh, controller_name, refCallback_topic);
+}
+
+// applicable only to yaw_rate controllers
+RosController::RosController(ros::NodeHandle &nh, std::string controller_name,
+                             std::string refCallback_topic, double *state,
+                             double *force_or_torque, double frequency,
+                             bool *turn_limiter_flag, double *water_speed_t_received,
+                             double *water_speed_surge, RateLimiter *rate_limiter)
+    : state_ptr_(state), controller_name_(controller_name), force_or_torque_ptr_(force_or_torque),
+      frequency_(frequency), turn_limiter_flag_ptr_(turn_limiter_flag),
+      water_speed_t_received_ptr_(water_speed_t_received), water_speed_surge_ptr_(water_speed_surge),
+      rate_limiter_ptr_(rate_limiter) {
+  init(nh, controller_name, refCallback_topic);
+}
+
 void RosController::init(ros::NodeHandle &nh, std::string controller_name,
                          std::string refCallback_topic) {
   // default state not angle units
@@ -30,6 +55,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
   double min_error = nh.param("controllers/" + controller_name + "/min_err", -max_error);
   max_ref_value_ = nh.param("controllers/" + controller_name + "/max_ref", 0.0);
   min_ref_value_ = nh.param("controllers/" + controller_name + "/min_ref", 0.0);
+  min_turn_radius_ = nh.param("controllers/" + controller_name + "/min_turn_radius", 1.0);
   debug_ = nh.param("controllers/" + controller_name + "/debug", false);
 
   // Don't create the controller if no gains were specified
@@ -38,6 +64,14 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
     pid_c_ = NULL;
     return;
   }
+  
+  // subscribe to water speed measurements from airmar if using yaw or yaw rate controller
+  if (controller_name == "yaw" || controller_name == "yaw_rate")
+    no_response_water_speed_t_max_ = nh.param("no_water_speed_t_max", 0.0);
+
+  // subscribe to relevant topic
+  ros_sub_ = nh.subscribe(refCallback_topic.c_str(), 10,
+                          &RosController::refCallback, this);
 
   // If we are debugging, create a publisher for debug data related to this controller
   if (debug_) {
@@ -46,11 +80,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
     debug_pub_ = nh.advertise<medusa_msgs::mPidDebug>(
       MedusaGimmicks::getParameters<std::string>(
           nh, "topics/publishers/debug/" + controller_name, "/debug/" + controller_name), 1);
-  }
-
-  // subscribe to relevant topic
-  ros_sub_ = nh.subscribe(refCallback_topic.c_str(), 10,
-                          &RosController::refCallback, this);
+  }  
 
   // create the PID controller with/without low pass filter included
   if ( nh.hasParam("controllers/" + controller_name + "/lpf_fc") ) {
@@ -64,7 +94,7 @@ void RosController::init(ros::NodeHandle &nh, std::string controller_name,
       pid_c_ = NULL;
       return;
     }
-    
+  
     pid_c_ = new PID_Controller(kp, ki, kd, kff, kff_d, kff_lin_drag, kff_quad_drag, max_error, max_out, min_error, min_out, lpf_dt, lpf_fc);
   } 
   else {
@@ -122,7 +152,43 @@ double RosController::computeCommand() {
     return 0.0;
   }
 
+  ros::Time tnow = ros::Time::now(); 
+
+  if ( (controller_name_ == "yaw" || controller_name_ == "yaw_rate") && *turn_limiter_flag_ptr_) {
+
+    if (min_turn_radius_ <= 0.0) {
+      ROS_WARN_STREAM("Minimum turn limit radius must be higher than 0. Ignoring " + controller_name_ + " reference.");
+      return 0.0;
+    }
+
+    double no_response_time_water_speed = tnow.toSec() - *water_speed_t_received_ptr_;
+    if ( no_response_time_water_speed >= no_response_water_speed_t_max_ ) {
+      ROS_WARN_STREAM("No measurements received from airmar for " << no_response_time_water_speed << "seconds.\n" + controller_name_ + " controller will not provide output.");
+      return 0.0;
+    }
+
+    if (controller_name_ == "yaw") {
+      
+      double rate_limit = (*water_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
+
+      rate_limiter_ptr_->setNewRateLimit(rate_limit);
+
+      ref_value_ = DSOR::wrapTo360<double>(rate_limiter_ptr_->Calculate(ref_value_));
+
+      ROS_INFO_STREAM("YAW ref_value saturate: " << ref_value_);    
+    }
+    else if (controller_name_ == "yaw_rate") {
+
+      double max_yaw_rate = (*water_speed_surge_ptr_ / min_turn_radius_) * ( 180 / M_PI );
+
+      ref_value_ = DSOR::saturation<double>(ref_value_, -max_yaw_rate, max_yaw_rate);
+      
+      ROS_INFO_STREAM("YAW_RATE ref_value saturate: " << ref_value_);
+    }
+  }
+
   double error = ref_value_ - *state_ptr_;
+
   if (isnan(ref_value_)) {
     ROS_ERROR("getting NaN in %s controller", controller_name_.c_str());
     return 0.0;
@@ -135,9 +201,7 @@ double RosController::computeCommand() {
 
     if (error < -180)
       error += 360;
-  }
-
-  ros::Time tnow = ros::Time::now();  
+  } 
   
   // Call the controller
   *force_or_torque_ptr_ += (positive_output_ ? 1 : -1) * pid_c_->computeCommand(error, ref_value_, (tnow - last_cmd_).toSec(), debug_);

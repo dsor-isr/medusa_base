@@ -5,6 +5,10 @@
 #include <medusa_gimmicks_library/MedusaGimmicks.h>
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>
+#include <auv_msgs/NavigationStatus.h>
+#include <dsor_utils/math.hpp>
+#include <dsor_utils/filters/rate_limiter.hpp>
+#include <dsor_utils/rotations.hpp>
 #include <medusa_msgs/mPidDebug.h>
 
 /**
@@ -28,21 +32,45 @@ public:
                 double *force_or_torque, double frequency);
 
   /**
-   * @brief  Constructor of a innerloop controller
+   * @brief  Constructor of a innerloop controller for yaw_rate (due to turn limiter flag)
    *
    * @param nh  ROS nodehandle to read parameters and subscribe to relevant
    * topics
    * @param controller_name  Controller name (variable being controlled)
    * @param refCallback_topic  Topic name
    * @param state  Pointer to state variable being controlled
-   * @param state_dot  Pointer to the derivative of the state variable being
-   * controlled
    * @param force_or_torque  Pointer to force or torque output
    * @param frequency Frequency of controller sampling rate
+   * @param turn_limiter_flag Pointer to a flag for turning ON/OFF the turn limiter for yaw/yaw_rate
+   * @param water_speed_t_received Time in seconds since last measurement from airmar
+   * @param water_speed_surge Airmar speed measurement
    */
   RosController(ros::NodeHandle &nh, std::string controller_name,
-                std::string refCallback_topic, double *state, double *state_dot,
-                double *force_or_torque, double frequency);
+                std::string refCallback_topic, double *state,
+                double *force_or_torque, double frequency, bool *turn_limiter_flag,
+                double *water_speed_t_received, double *water_speed_surge);
+
+  /**
+   * @brief  Constructor of a innerloop controller for yaw (due to turn limiter flag and slew rate limiter)
+   *
+   * @param nh  ROS nodehandle to read parameters and subscribe to relevant
+   * topics
+   * @param controller_name  Controller name (variable being controlled)
+   * @param refCallback_topic  Topic name
+   * @param state  Pointer to state variable being controlled
+   * @param force_or_torque  Pointer to force or torque output
+   * @param frequency Frequency of controller sampling rate
+   * @param turn_limiter_flag Pointer to a flag for turning ON/OFF the turn limiter for yaw/yaw_rate
+   * @param rate_limiter slew rate limiter class for yaw turn radius limitation
+   * @param water_t_received Time in seconds since last measurement from airmar
+   * @param water_speed_surge Airmar speed measurement
+   */
+  RosController(ros::NodeHandle &nh, std::string controller_name,
+                std::string refCallback_topic, double *state,
+                double *force_or_torque, double frequency,
+                bool *turn_limiter_flag, double *water_speed_t_received,
+                double *water_speed_surge, RateLimiter *rate_limiter);
+  
   /**
    * @brief  Core function. Computes the PID output
    *
@@ -92,6 +120,7 @@ public:
   void setLimitBoundsPID(const float &max_out, const float &min_out) { pid_c_->setLimitBounds(max_out, min_out);}
 
 protected:
+  
   /**
    * @brief  Callback function. Saturates the value if boundaries exist
    *
@@ -123,13 +152,25 @@ protected:
   double ref_value_;     // reference value of the variable being controlled
   double max_ref_value_; // maximum value of the reference being controlled
   double min_ref_value_; // minimum value of the reference being controlled
+  double min_turn_radius_; // maxuimum turning radius to saturate yaw  rate reference
+  bool turn_limit_yaw_ref_{false}; bool turn_limit_yaw_rate_ref_{false};
   ros::Time ref_time_;   // timestamp of the reference
   ros::Time last_cmd_;   // last controller call
   bool debug_;           // flag to check wheter to output or not pid internal information 
   medusa_msgs::mPidDebug debug_msg_; // msg to publish debug information
 
-  // pointers to state values
+  // pointers to state values 
   double *state_ptr_;
+
+  // callback for water speed from airmar
+  double *water_speed_surge_ptr_; // last speed realtive to water measurement of airmar 
+  double *water_speed_t_received_ptr_; // time of last measurement received from airmar
+  double no_response_water_speed_t_max_; // maximum time allowed for no measurements received from airmar
+
+  // pointer to flag for turning ON/OFF the turn limiter for yaw and yaw_rate
+  bool *turn_limiter_flag_ptr_;
+  // respective handler to the slew rate limiter class
+  RateLimiter *rate_limiter_ptr_;  
 
   // pointer to correspondig force or torque
   double *force_or_torque_ptr_;

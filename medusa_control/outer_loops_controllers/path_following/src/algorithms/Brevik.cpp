@@ -32,7 +32,7 @@ void Brevik::callPFController(double dt) {
   Eigen::Vector2d veh_p;
   veh_p << this->vehicle_state_.eta1[0], this->vehicle_state_.eta1[1];
 
-  double Delta_h = 2;
+  double Delta_h = 10; // HARDCODED!!!
 
   /* Compute the rotation matrix */
   Eigen::Matrix2d RI_F;
