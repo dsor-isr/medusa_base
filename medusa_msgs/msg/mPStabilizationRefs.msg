@@ -1,0 +1,6 @@
+Header header
+geometry_msgs/Point mission_pos
+
+float64 desired_roll
+float64 desired_pitch
+float64 desired_heading
