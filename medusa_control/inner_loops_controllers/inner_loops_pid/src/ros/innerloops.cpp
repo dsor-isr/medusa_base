@@ -19,17 +19,40 @@ Innerloops::Innerloops(ros::NodeHandle &nh) : nh_(nh) {
 Innerloops::~Innerloops() { ros::shutdown(); }
 
 void Innerloops::initializeSubscribers() {
+
+  // turn on/off yaw/yaw_rate limitation on turning
+  turn_radius_limiter_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+              nh_, "topics/subscribers/turn_radius_limiter", "/turn_radius_limiter"),
+              10, &Innerloops::turnRadiusLimiterCallback, this);
+
+  // airmar measurements subscription
+  water_speed_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+              nh_, "topics/subscribers/water_speed", "/water_speed"),
+              10, &Innerloops::waterSpeedCallback, this);
+
+  // state subscription
+  st_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+              nh_, "topics/subscribers/state", "/nav/filter/state"),
+              10, &Innerloops::StateCallback, this);
+
+  // force bypass subscription
+  force_bypass_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
+                        nh_, "topics/subscribers/force_bypass", "/force_bypass"),
+                        10, &Innerloops::forceBypassCallback, this);
+
   // Angular controllers
+  
   // Yaw
   controllers_.push_back(
       new RosController(nh_, "yaw", 
         MedusaGimmicks::getParameters<std::string>(
           nh_, "topics/subscribers/yaw", "yaw_ref"),
-          &yaw_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
-          MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw/max_turn_radius", 0.0)));
+          &yaw_, &torque_request_[2], Innerloops::nodeFrequency(),
+          &turn_radius_limiter_flag_, &water_speed_t_received_, &water_speed_surge_,
+          &rate_limiter_));
 
   controllers_.back()->setCircularUnits(true);
-
+  
   // Pitch
   controllers_.push_back(
       new RosController(nh_, "pitch",
@@ -54,8 +77,8 @@ void Innerloops::initializeSubscribers() {
       new RosController(nh_, "yaw_rate",
           MedusaGimmicks::getParameters<std::string>(
             nh_, "topics/subscribers/yaw_rate", "yaw_rate_ref"),
-            &yaw_rate_, &water_speed_surge_, &torque_request_[2], Innerloops::nodeFrequency(),
-            MedusaGimmicks::getParameters<double>(nh_, "controllers/yaw_rate/max_turn_radius", 0.0)));
+            &yaw_rate_, &torque_request_[2], Innerloops::nodeFrequency(),
+            &turn_radius_limiter_flag_, &water_speed_t_received_, &water_speed_surge_));
 
   // Pitch rate
   controllers_.push_back(
@@ -108,22 +131,6 @@ void Innerloops::initializeSubscribers() {
         nh_, "topics/subscribers/altitude_safety", "altitude_ref"),
         &altitude_, &force_request_[2], Innerloops::nodeFrequency()));
   controllers_.back()->setPositiveOutput(false);
-
-  // state subscription
-  st_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
-              nh_, "topics/subscribers/state", "/nav/filter/state"),
-              10, &Innerloops::StateCallback, this);
-
-  // airmar subscription
-  airmar_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
-              nh_, "topics/subscribers/water_speed", "/water_speed"),
-              10, &Innerloops::waterSpeedCallback, this);
-
-
-  // state subscription
-  force_bypass_sub_ = nh_.subscribe(MedusaGimmicks::getParameters<std::string>(
-                        nh_, "topics/subscribers/force_bypass", "/force_bypass"),
-                        10, &Innerloops::forceBypassCallback, this);
 }
 
 void Innerloops::initializeServices() {
@@ -154,6 +161,7 @@ double Innerloops::nodeFrequency() {
   ROS_INFO("Node will run at : %lf [hz]", node_frequency);
   return node_frequency;
 }
+
 
 void Innerloops::timerCallback(const ros::TimerEvent &event) {
   // Set force and torque request to zero
@@ -217,14 +225,43 @@ void Innerloops::forceBypassCallback(const auv_msgs::BodyForceRequest &msg) {
   force_bypass_.wrench.torque.z = msg.wrench.torque.z;
 }
 
-void Innerloops::waterSpeedCallback(const medusa_msgs::dAirmar &msg) {
-  // Save water speed of craft via airmar state variables
-  water_speed_surge_ = msg.water_speed_m_s;
+void Innerloops::turnRadiusLimiterCallback(const std_msgs::Bool &msg) {
+
+  if (!nh_.hasParam("controllers/yaw/min_turn_radius")) {
+    ROS_WARN_STREAM("No turning radius specified for Yaw controller. Using default value of 1.0 meter.");
+  }
+  else if (!nh_.hasParam("controllers/yaw_rate/min_turn_radius")) {
+    ROS_WARN_STREAM("No turning radius specified for Yaw Rate controller. Using default value of 1.0 meter.");
+  }
+
+  if (msg.data) {
+    ROS_INFO_STREAM("Saturing input references for Yaw and Yaw Rate PID controllers.");
+
+    // create the slew rate limiter object based on the initial value (using circular units)
+    bool using_circular_units = true;
+    rate_limiter_ = RateLimiter(yaw_, using_circular_units);
+  }
+  else {
+    ROS_INFO_STREAM("Removing turn radius limitation of Yaw and Yaw Rate PID controllers.");
+  }
+    
+
+  // Update the Flag to turn on/off the turn limiter
+  turn_radius_limiter_flag_ = msg.data;
 }
+
+
+void Innerloops::waterSpeedCallback(const std_msgs::Float64 &msg) {
+  water_speed_t_received_ = ros::Time::now().toSec();
+
+  // Save water speed of craft via airmar state variables
+  water_speed_surge_ = msg.data;
+}
+
 
 void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
   // Save the state into variables to be used separately
-
+  
   // controller state variables
   roll_ = msg.orientation.x;
   pitch_ = msg.orientation.y;
@@ -242,6 +279,11 @@ void Innerloops::StateCallback(const auv_msgs::NavigationStatus &msg) {
 
   vdepth_ = msg.seafloor_velocity.z;
   valtitude_ = -msg.seafloor_velocity.z;
+
+  //water_speed_t_received_ = ros::Time::now().toSec();
+
+  // Save water speed of craft via airmar state variables
+  // water_speed_surge_ = surge_;
 }
 
 bool Innerloops::changeFFGainsService(
